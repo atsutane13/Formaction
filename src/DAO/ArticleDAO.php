@@ -28,7 +28,7 @@ class ArticleDAO extends DAO{
 
 	//retourne la liste des articles de l'utilisateur dont l'id est fourni
 	public function getArticlesFromUser($idUser){
-		$result = $this->bdd->prepare('SELECT * FROM articles WHERE author = :id');
+		$result = $this->bdd->prepare('SELECT * FROM articles WHERE users.id = :id');
 		$result->bindValue(':id', $idUser, \PDO::PARAM_INT);
 		$result->execute();
 		return $result->fetchALL(\PDO::FETCH_ASSOC);

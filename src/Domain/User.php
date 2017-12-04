@@ -6,32 +6,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-    /**
-     * User id.
-     *
-     * @var integer
-     */
+
     private $id;
 
-    /**
-     * User name.
-     *
-     * @var string
-     */
     private $username;
 
-    /**
-     * User email.
-     *
-     * @var string
-     */
     private $email;
 
-    /**
-     * User phone.
-     *
-     * @var string
-     */
     private $phone;
 
     private $password;
@@ -40,7 +21,7 @@ class User implements UserInterface
 
     private $role;
 
-    private $image;
+    private $url;
 
 
     public function getId() {
@@ -130,12 +111,12 @@ class User implements UserInterface
         // Nothing to do here
     }
 
-    public function setImage($image){
-        $this->image=$image;
+    public function setUrl($url){
+        $this->url=$url;
     }
 
-    public function getImage(){
-        return $this->image;
+    public function getUrl(){
+        return $this->url;
     }
 
 }
