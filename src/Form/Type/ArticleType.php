@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 
+
 class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -24,7 +25,9 @@ class ArticleType extends AbstractType
                 )
             ));
 
+
         $builder->add('content', TextareaType::class,array(
+
             'attr'=>array(
                 'class'=> 'form-control',
                 'rows'=> '8',
@@ -32,7 +35,9 @@ class ArticleType extends AbstractType
                 )
         ));
 
+
         $builder->add('duree', NumberType::class,array(
+
             'attr'=>array(
                 'class'=> 'form-control'
                 )

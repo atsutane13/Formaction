@@ -9,6 +9,8 @@ class Article{
     private $date_publi;
     private $users_id;
     private $duree;
+    private $category_id;
+    private $publi;
 
     
     public function getId(){
@@ -27,8 +29,16 @@ class Article{
         return $this->date_publi;
     }
     
-    public function getAuthor(){
-        return $this->author;
+    public function getUsers_id(){
+        return $this->users_id;
+    }
+
+    public function getCategory_id(){
+        return $this->category_id;
+    }
+
+    public function getPubli(){
+        return $this->publi;
     }
     
         //setters
@@ -58,10 +68,6 @@ class Article{
         }
     }
 
-    public function setAuthor($authorId){
-            $this->author = $authorId;         
-    }
-
     public function setId($duree){
         if(!empty($duree) AND is_numeric($duree)){
             $this->id = $duree;
@@ -71,7 +77,25 @@ class Article{
     }
 
     public function getDuree(){
-        
+        return $this->duree;
+    }
+
+    public function setUsers_id($users_id){        
+            $this->users_id = $users_id;         
+    }
+
+    public function setCategory_id($category_id){
+        if(!empty($category_id) AND is_numeric($category_id)){
+            $this->category_id = $category_idid;
+            return $this;
+        }
+        return false;
+    }
+
+    public function setPubli($publi){
+        if(!empty($publi) AND is_string($publi)){
+            $this->publi = $publi; 
+        }
     }
     
 }
