@@ -1,0 +1,46 @@
+{% extends "layout.html.twig" %}
+{% block title %}page Admin{% endblock %}
+
+{% block content %}
+<div class='row'>
+<section class="col-sm-7" >
+<h2>Mes articles</h2>
+{% for flashMessage in app.session.flashbag.get('success') %}
+{# affichage du message de réussite #}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+    </div>
+{% endfor %}          
+{% for article in articles %}
+<ul>
+    <li>{{ article.title }}
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a> 
+        |<a href="{{ path('updateAdmin', {id: article.id}) }}">Modifier</a>
+        {% endif %}
+    </li>
+    
+    </ul>
+{% endfor %}
+</section>
+<section class="col-sm-45" >
+<h2>Mes users</h2>
+{% for flashMessage in app.session.flashbag.get('success') %}
+{# affichage du message de réussite #}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+    </div>
+{% endfor %}          
+{% for user in users %}
+<ul>
+    <li>{{ user.username }}
+            <a href="{{ path('updateUser', {id: user.id}) }}">Modifier</a>|
+        <a href="{{ path('deleteUser', {id: user.id}) }}">Supprimer</a> 
+        
+    </li>
+</ul>
+{% endfor %}
+</section>
+</div>
+{% endblock %}
+
