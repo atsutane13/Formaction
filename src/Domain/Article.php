@@ -7,7 +7,8 @@ class Article{
     private $title;
     private $content;
     private $date_publi;
-    private $author;
+    private $users_id;
+    private $duree;
 
     
     public function getId(){
@@ -58,8 +59,18 @@ class Article{
     }
 
     public function setAuthor($authorId){
-        
-            $this->author = $authorId; 
+            $this->author = $authorId;         
+    }
+
+    public function setId($duree){
+        if(!empty($duree) AND is_numeric($duree)){
+            $this->id = $duree;
+            return $this;
+        }
+        return false;
+    }
+
+    public function getDuree(){
         
     }
     

@@ -1,0 +1,40 @@
+	{% extends "layout.html.twig" %}
+	
+	{% block title %}Un utilisateur{% endblock %}
+	
+	{% block content %}
+            <h2>utilisateur:</h2>
+			<div class="row">
+					<div class="col-md-8">
+						<article>
+				<h2>{{ user.username }}</h2>
+				<p>{{ user.email }}</p>
+				<p>{{ user.phone }}</p>
+			</article>
+			
+			
+			</div>
+				<div class="col-md-4">
+						{{ form_start(uploadForm) }}
+						{{ form_end(uploadForm) }}
+					</div>
+				</div>
+
+			<h2>Articles écrits par {{ user.username }}</h2>
+			{% for article in articles %}
+			<article>
+				<h2>{{ article.title }}</h2>
+				<p>{{ article.content }}</p>
+				<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a>
+					
+				{% if token is defined and token.id == article.author %}
+					| <a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
+
+				{% endif %}
+				</p>
+			</article>
+			{% endfor %}
+			
+
+		{% endblock %}
+		

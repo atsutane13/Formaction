@@ -4,19 +4,31 @@ namespace WF3\DAO;
 class ArticleDAO extends DAO{
 
 	private $userDAO;
+	private $imageDAO;
 
 	public function setUserDAO(UserDAO $userDAO	){
 		$this->userDAO=$userDAO;
+	}
+
+	public function setImageDAO(ImageDAO $imageDAO	){
+		$this->imageDAO=$imageDAO;
 	}
 
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
 		$idAuteur=$article->getAuthor();
 		$author=$this->userDAO->find($article->getAuthor());
-		if(array_key_exists('author',$row) && is_numeric($row['author'])){
+		if(array_key_exists('users_id',$row) && is_numeric($row['users_id'])){
 			$auteur=$this->userDAO->find($idAuteur);
 		}
 		$article->setAuthor($author);
+		$imageAuthor=$article->getImage();
+		$image=$this->imageDAO->find($article->getImage());
+		if(array_key_exists('users_id',$row) && is_string($row['users_id'])){
+			$image=$this->userDAO->find($imageAuthor);
+		}
+		$article->setAuthor($image);
+
 		return $article;
     }
 
@@ -28,7 +40,7 @@ class ArticleDAO extends DAO{
 
 	//retourne la liste des articles de l'utilisateur dont l'id est fourni
 	public function getArticlesFromUser($idUser){
-		$result = $this->bdd->prepare('SELECT * FROM articles WHERE author = :id');
+		$result = $this->bdd->prepare('SELECT * FROM articles WHERE users_id = :id');
 		$result->bindValue(':id', $idUser, \PDO::PARAM_INT);
 		$result->execute();
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
