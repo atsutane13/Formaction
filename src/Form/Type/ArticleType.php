@@ -55,7 +55,7 @@ class ArticleType extends AbstractType
                 )            
             ));
 
-        $builder->add('category_id', ChoiceType::class, array(
+        $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
                 'choisissez un role' => null,
                 'Web' => '1',

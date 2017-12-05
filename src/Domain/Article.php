@@ -7,11 +7,11 @@ class Article{
     private $title;
     private $content;
     private $date_publi;
-    private $users_id;
+    private $usersId;
     private $duree;
-    private $category_id;
+    private $categoryId;
     private $publi;
-    private $image_id;
+    private $imageId;
 
     
     public function getId(){
@@ -31,11 +31,11 @@ class Article{
     }
     
     public function getUsers_id(){
-        return $this->users_id;
+        return $this->usersId;
     }
 
-    public function getCategory_id(){
-        return $this->category_id;
+    public function getCategoryId(){
+        return $this->categoryId;
     }
 
     public function getPubli(){
@@ -89,9 +89,9 @@ class Article{
             $this->users_id = $users_id;         
     }
 
-    public function setCategory_id($category_id){
-        if(!empty($category_id) AND is_numeric($category_id)){
-            $this->category_id = $category_id;
+    public function setCategoryId($categoryId){
+        if(!empty($categoryId) AND is_numeric($categoryId)){
+            $this->categoryId = $categoryId;
             return $this;
         }
         return false;

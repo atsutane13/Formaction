@@ -183,11 +183,8 @@ class HomeController{
     		//c'est l'utilisateur connecté qui est l'auteur de l'article
     		$article->setAuthor($user->getId());
     		//on insère dans la base
-    		$app['dao.article']->insert(array(
-    			'title'=>$article->getTitle(),
-    			'content'=>$article->getContent(),
-    			'author'=>$article->getAuthor()
-    		));
+    		$app['dao.article']->insert($articles);
+
     		//on stocke en session un message de réussite
     		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
 
