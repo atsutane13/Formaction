@@ -90,9 +90,6 @@ class HomeController{
 			$uploadForm = $app['form.factory']->create(UploadImageType::class);
 			$uploadForm->handleRequest($request);
 			if($uploadForm->isSubmitted() AND $uploadForm->isValid()){
-				//on récupère les infos du fichier envoyé
-				//ici comme j'ai généré le formulaire avec ma classe UploadImageType
-				//c'est silex qui a généré le nom "upload_image"
 				$file = $request->files->get('upload_image')['image'];
 				//je lui dis où stocker le fichier
 				//$app['upload_dir'] est défini dans app/config/prod.php
@@ -101,10 +98,9 @@ class HomeController{
 				//$filename = $file->getClientOriginalName();
 				//guessExtension() renvoie l'extension du fichier
 				$filename = md5(uniqid()).'.'.$file->guessExtension();
-				$user->setImage($filename);
-				$app['dao.user']->update($user->getId(),$user);
 				//on transfère le fichier
 				$file->move($path,$filename);
+				
 			}
 		return $app['twig']->render('user.html.twig', array('user' => $user, 'articles' => $articles, 'token'=>$tok,
 		'uploadForm' => $uploadForm->createView()));
@@ -166,22 +162,22 @@ class HomeController{
 			throw new AccessDeniedHttpException(); //error 403m accet interdit
 		}
 		$token=$app['security.token_storage']->getToken();
-		if(NULL!==$token){
-			$user=$token->getUser();
-		}
+		$user=$token->getUser();
+
     	//je crée un objet article vide
-    	$article = new Article();
+		$article = new Article();
     	//je crée mon objet formulaire à partir de la classe ArticleType
     	$articleForm = $app['form.factory']->create(ArticleType::class, $article);
-    	//on envoie les paramètres de la requête à notre objet formulaire
     	$articleForm->handleRequest($request);
-    	//on vérifie si le formulaire a été envoyé
-    	//et si les données envoyées sont valides
     	if($articleForm->isSubmitted() && $articleForm->isValid()){
-    		//c'est l'utilisateur connecté qui est l'auteur de l'article
-    		$article->setAuthor($user->getId());
-    		//on insère dans la base
-    		$app['dao.article']->insert($article);
+			$article->setUsersId($user->getId());	
+			$path = __DIR__.'/../../'.$app['upload_dir'];
+			$filename = md5(uniqid()).'.'.$file->guessExtension();
+			$file->move($path,$filename);		
+			$article->setImage($filename);
+			$app['dao.article']->insert($article);
+			
+
     		//on stocke en session un message de réussite
     		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
 

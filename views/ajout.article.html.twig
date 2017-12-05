@@ -11,20 +11,9 @@
 			{# dump(article) #}
 
             {{ form_start(articleForm)}}
-            	
-            	<div class="form-group">
-            	{# affichage des éventuelles erreurs pour le champ titre #}
-            	{# customisation du champ titre #}
-            	{{ form_widget(articleForm.title)}}
-            	</div>
 
-            	<div class="form-group">
-            		{# affichage des éventuelles erreurs pour le champ contenu #}
-            		{# customisation du champ contenu #}
-                    {{ form_widget(articleForm.content)}}
-            	</div>
 
-            	{{ form_widget(articleForm.Enregistrer)}}
+
 
 			{{ form_end(articleForm)}}
 		{% endblock %}

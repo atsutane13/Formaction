@@ -138,6 +138,7 @@ class DAO implements DB {
 
             $data = $dataArray;
 
+            
         }
 
         //créationde la requête sql insert

@@ -11,7 +11,7 @@ class Article{
     private $duree;
     private $categoryId;
     private $publi;
-    private $imageId;
+    private $image;
 
     
     public function getId(){
@@ -33,23 +33,23 @@ class Article{
     public function getUsersId(){
         return $this->usersId;
     }
-
+    
     public function getCategoryId(){
         return $this->categoryId;
     }
-
+    
     public function getPubli(){
         return $this->publi;
     }
-
+    
     public function getDuree(){
         return $this->duree;
     }
-
-    public function getImageId(){
-        return $this->imageId;
+     
+    public function getImage(){
+        return $this->image;
     }
-    
+
         //setters
     public function setId($id){
         if(!empty($id) AND is_numeric($id)){
@@ -70,24 +70,24 @@ class Article{
             $this->content = $content; 
         }
     }
-
+    
     public function setDatePubli($datePubli){
         if(!empty($datePubli) AND is_string($datePubli)){
             $this->datePubli = $datePubli; 
         }
     }
-
+    
     public function setDuree($duree){
         if(!empty($duree) AND is_numeric($duree)){
             $this->duree = $duree;
         }
         return false;
     }
-
+    
     public function setUsersId($usersId){        
-            $this->usersId = $usersId;         
+        $this->usersId = $usersId;         
     }
-
+    
     public function setCategoryId($categoryId){
         if(!empty($categoryId) AND is_numeric($categoryId)){
             $this->categoryId = $categoryId;
@@ -101,12 +101,9 @@ class Article{
         }
     }
 
-    public function setImageId($image_id){
-        if(!empty($image_id) AND is_string($image_id)){
-            $this->immageId = $image_id;
-            return $this;
+    public function setImage($image_pc){
+        if(!empty($image_pc) AND is_string($image_pc)){
+            $this->image = $image_pc; 
         }
-        return false;
     }
-    
 }

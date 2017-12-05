@@ -16,16 +16,16 @@ class ArticleDAO extends DAO{
 
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
-		$idAuteur=$article->getUsers_id();
+		$idAuteur=$article->getUsersId();
 		$author=$this->userDAO->find($article->getUsers_id());
-		if(array_key_exists('users_id',$row) && is_numeric($row['users_id'])){
+		if(array_key_exists('usersId',$row) && is_numeric($row['usersId'])){
 			$auteur=$this->userDAO->find($idAuteur);
 		}
-		$article->setAuthor($author);
+		$article->setUsersId($author);
 
 		$imageAuthor=$article->getImage();
 		$image=$this->imageDAO->find($article->getImage());
-		if(array_key_exists('image_id',$row) && is_string($row['image_id'])){
+		if(array_key_exists('imageId',$row) && is_string($row['imageId'])){
 			$image=$this->imageDAO->find($imageAuthor);
 		}
 		$article->setImage($image);
@@ -35,25 +35,25 @@ class ArticleDAO extends DAO{
 
 
 	public function getLastArticles(){
-		$result = $this->bdd->query('SELECT * FROM articles ORDER BY date_publi DESC LIMIT 0,5');
+		$result = $this->bdd->query('SELECT * FROM articles ORDER BY datePubli DESC LIMIT 0,5');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
 
 	//retourne la liste des articles de l'utilisateur dont l'id est fourni
 	public function getArticlesFromUser($idUser){
-		$result = $this->bdd->prepare('SELECT * FROM articles WHERE users_id = :id');
+		$result = $this->bdd->prepare('SELECT * FROM articles WHERE usersId = :id');
 		$result->bindValue(':id', $idUser, \PDO::PARAM_INT);
 		$result->execute();
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
 
 	public function getArticlesWithAuthor(){
-		$result = $this->bdd->query('SELECT articles.id AS idArticle, title, content, users.id AS idUser, username, date_publi FROM articles INNER JOIN users ON articles.users_id = users.id');
+		$result = $this->bdd->query('SELECT articles.id AS idArticle, title, content, users.id AS idUser, username, datePubli FROM articles INNER JOIN users ON articles.usersId = users.id');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
     
     public function findArticlesByTitle($title){
-        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, content, users.id AS idUser, username FROM articles INNER JOIN users ON articles.author = users.id WHERE title LIKE :title');
+        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, content, users.id AS idUser, username FROM articles INNER JOIN users ON articles.usersId = users.id WHERE title LIKE :title');
         $result->bindValue(':title', '%' . $title . '%');
         $result->execute();
         return $result->fetchALL(\PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ class ArticleDAO extends DAO{
 
 	public function deleteArticleByAuthor($id){
 		if(!empty($id) && is_numeric($id)){
-            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE author = :auteur');
+            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE usersId = :auteur');
             $delete->bindValue(':auteur', $id, \PDO::PARAM_INT);
 
             if($delete->execute()){
@@ -86,4 +86,5 @@ class ArticleDAO extends DAO{
             }
         }
 	}
+
 }
