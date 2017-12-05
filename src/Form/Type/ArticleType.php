@@ -53,10 +53,12 @@ class ArticleType extends AbstractType
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
-            )            
+            ),
+            'label'=>'visibilite'
+            
         ));
 
-        $builder->add('category_id', ChoiceType::class, array(
+        $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
                 'choisissez un role' => null,
                 'Web' => '1',
@@ -65,17 +67,20 @@ class ArticleType extends AbstractType
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
-            )            
+            ),
+            'label'=>'categorie'
         ));
 
-        $builder->add('image', FileType::class,array(
-                'constraints' => new Assert\Image()
+        $builder->add('imageId', FileType::class,array(
+                'constraints' => new Assert\Image(),
+                'label'=>'image'
         )); 
 
         $builder->add('Enregistrer', SubmitType::class,array(
             'attr'=>array(
                 'class'=> 'btn btn-default'
-                )
+            )
+            
         ));
     }
 
