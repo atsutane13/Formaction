@@ -35,6 +35,8 @@ interface FormConfigBuilderInterface extends FormConfigInterface
     /**
      * Adds an event subscriber for events on this form.
      *
+     * @param EventSubscriberInterface $subscriber The subscriber to attach
+     *
      * @return $this The configuration object
      */
     public function addEventSubscriber(EventSubscriberInterface $subscriber);
@@ -48,7 +50,7 @@ interface FormConfigBuilderInterface extends FormConfigInterface
      * view to the normalized format.
      *
      * @param DataTransformerInterface $viewTransformer
-     * @param bool                     $forcePrepend    If set to true, prepend instead of appending
+     * @param bool                     $forcePrepend    if set to true, prepend instead of appending
      *
      * @return $this The configuration object
      */
@@ -70,7 +72,7 @@ interface FormConfigBuilderInterface extends FormConfigInterface
      * normalized to the model format.
      *
      * @param DataTransformerInterface $modelTransformer
-     * @param bool                     $forceAppend      If set to true, append instead of prepending
+     * @param bool                     $forceAppend      if set to true, append instead of prepending
      *
      * @return $this The configuration object
      */
@@ -96,12 +98,16 @@ interface FormConfigBuilderInterface extends FormConfigInterface
     /**
      * Sets the attributes.
      *
+     * @param array $attributes The attributes
+     *
      * @return $this The configuration object
      */
     public function setAttributes(array $attributes);
 
     /**
      * Sets the data mapper used by the form.
+     *
+     * @param DataMapperInterface $dataMapper
      *
      * @return $this The configuration object
      */
@@ -146,8 +152,9 @@ interface FormConfigBuilderInterface extends FormConfigInterface
     /**
      * Sets the property path that the form should be mapped to.
      *
-     * @param null|string|PropertyPathInterface $propertyPath The property path or null if the path should be set
-     *                                                        automatically based on the form's name
+     * @param null|string|PropertyPathInterface $propertyPath
+     *                                                        The property path or null if the path should be set
+     *                                                        automatically based on the form's name.
      *
      * @return $this The configuration object
      */
@@ -167,7 +174,7 @@ interface FormConfigBuilderInterface extends FormConfigInterface
      * Sets whether the form's data should be modified by reference.
      *
      * @param bool $byReference Whether the data should be
-     *                          modified by reference
+     *                          modified by reference.
      *
      * @return $this The configuration object
      */
@@ -195,6 +202,8 @@ interface FormConfigBuilderInterface extends FormConfigInterface
 
     /**
      * Set the types.
+     *
+     * @param ResolvedFormTypeInterface $type The type of the form
      *
      * @return $this The configuration object
      */
@@ -224,6 +233,8 @@ interface FormConfigBuilderInterface extends FormConfigInterface
 
     /**
      * Sets the form factory used for creating new forms.
+     *
+     * @param FormFactoryInterface $formFactory The form factory
      */
     public function setFormFactory(FormFactoryInterface $formFactory);
 
@@ -247,6 +258,8 @@ interface FormConfigBuilderInterface extends FormConfigInterface
 
     /**
      * Sets the request handler used by the form.
+     *
+     * @param RequestHandlerInterface $requestHandler
      *
      * @return $this The configuration object
      */

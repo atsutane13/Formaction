@@ -181,12 +181,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
             'minutes' => '',
             'seconds' => '6',
         );
-        if (method_exists($this, 'expectException')) {
-            $this->expectException(TransformationFailedException::class);
-            $this->expectExceptionMessage('This amount of "minutes" is invalid');
-        } else {
-            $this->setExpectedException(TransformationFailedException::class, 'This amount of "minutes" is invalid');
-        }
+        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(TransformationFailedException::class, 'This amount of "minutes" is invalid');
         $transformer->reverseTransform($input);
     }
 
@@ -196,12 +191,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
         $input = array(
             'invert' => '1',
         );
-        if (method_exists($this, 'expectException')) {
-            $this->expectException(TransformationFailedException::class);
-            $this->expectExceptionMessage('The value of "invert" must be boolean');
-        } else {
-            $this->setExpectedException(TransformationFailedException::class, 'The value of "invert" must be boolean');
-        }
+        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(TransformationFailedException::class, 'The value of "invert" must be boolean');
         $transformer->reverseTransform($input);
     }
 

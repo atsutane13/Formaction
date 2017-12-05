@@ -49,7 +49,7 @@ use Symfony\Component\PropertyAccess\PropertyPath;
  * either as "Y-m-d" string or as timestamp. Internally we still want to
  * use a DateTime object for processing. To convert the data from string/integer
  * to DateTime you can set a normalization transformer by calling
- * addModelTransformer(). The normalized data is then converted to the displayed
+ * addNormTransformer(). The normalized data is then converted to the displayed
  * data as described before.
  *
  * The conversions (1) -> (2) -> (3) use the transform methods of the transformers.
@@ -160,6 +160,8 @@ class Form implements \IteratorAggregate, FormInterface
 
     /**
      * Creates a new form based on the given configuration.
+     *
+     * @param FormConfigInterface $config The form configuration
      *
      * @throws LogicException if a data mapper is not provided for a compound form
      */
@@ -942,7 +944,7 @@ class Form implements \IteratorAggregate, FormInterface
      *
      * @return FormInterface The child form
      *
-     * @throws \OutOfBoundsException if the named child does not exist
+     * @throws \OutOfBoundsException If the named child does not exist.
      */
     public function offsetGet($name)
     {
@@ -955,8 +957,8 @@ class Form implements \IteratorAggregate, FormInterface
      * @param string        $name  Ignored. The name of the child is used
      * @param FormInterface $child The child to be added
      *
-     * @throws AlreadySubmittedException if the form has already been submitted
-     * @throws LogicException            when trying to add a child to a non-compound form
+     * @throws AlreadySubmittedException If the form has already been submitted.
+     * @throws LogicException            When trying to add a child to a non-compound form.
      *
      * @see self::add()
      */
@@ -970,7 +972,7 @@ class Form implements \IteratorAggregate, FormInterface
      *
      * @param string $name The name of the child to remove
      *
-     * @throws AlreadySubmittedException if the form has already been submitted
+     * @throws AlreadySubmittedException If the form has already been submitted.
      */
     public function offsetUnset($name)
     {

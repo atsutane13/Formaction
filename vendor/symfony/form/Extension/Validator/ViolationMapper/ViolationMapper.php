@@ -269,6 +269,8 @@ class ViolationMapper implements ViolationMapperInterface
     }
 
     /**
+     * @param FormInterface $form
+     *
      * @return bool
      */
     private function acceptsErrors(FormInterface $form)

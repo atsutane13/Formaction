@@ -178,7 +178,7 @@ class DateIntervalType extends AbstractType
     {
         $timeParts = $this->timeParts;
         $compound = function (Options $options) {
-            return 'single_text' !== $options['widget'];
+            return $options['widget'] !== 'single_text';
         };
 
         $placeholderDefault = function (Options $options) {

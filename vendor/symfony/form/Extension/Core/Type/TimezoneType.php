@@ -13,10 +13,7 @@ namespace Symfony\Component\Form\Extension\Core\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
-use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeZoneToStringTransformer;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,20 +25,8 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
      * The choices are generated from the ICU function \DateTimeZone::listIdentifiers().
      *
      * @var ArrayChoiceList
-     *
-     * @deprecated since version 3.4, to be removed in 4.0
      */
     private $choiceList;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        if ('datetimezone' === $options['input']) {
-            $builder->addModelTransformer(new DateTimeZoneToStringTransformer($options['multiple']));
-        }
-    }
 
     /**
      * {@inheritdoc}
@@ -56,20 +41,10 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
                     return null;
                 }
 
-                $regions = $options['regions'];
-
-                return new CallbackChoiceLoader(function () use ($regions) {
-                    return self::getTimezones($regions);
-                });
+                return $this;
             },
             'choice_translation_domain' => false,
-            'input' => 'string',
-            'regions' => \DateTimeZone::ALL,
         ));
-
-        $resolver->setAllowedValues('input', array('string', 'datetimezone'));
-
-        $resolver->setAllowedTypes('regions', 'int');
     }
 
     /**
@@ -90,29 +65,21 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated since version 3.4, to be removed in 4.0
      */
     public function loadChoiceList($value = null)
     {
-        @trigger_error(sprintf('Method "%s" is deprecated since version 3.4 and will be removed in 4.0.', __METHOD__), E_USER_DEPRECATED);
-
         if (null !== $this->choiceList) {
             return $this->choiceList;
         }
 
-        return $this->choiceList = new ArrayChoiceList(self::getTimezones(\DateTimeZone::ALL), $value);
+        return $this->choiceList = new ArrayChoiceList($this->getTimezones(), $value);
     }
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated since version 3.4, to be removed in 4.0
      */
     public function loadChoicesForValues(array $values, $value = null)
     {
-        @trigger_error(sprintf('Method "%s" is deprecated since version 3.4 and will be removed in 4.0.', __METHOD__), E_USER_DEPRECATED);
-
         // Optimize
         $values = array_filter($values);
         if (empty($values)) {
@@ -129,13 +96,9 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated since version 3.4, to be removed in 4.0
      */
     public function loadValuesForChoices(array $choices, $value = null)
     {
-        @trigger_error(sprintf('Method "%s" is deprecated since version 3.4 and will be removed in 4.0.', __METHOD__), E_USER_DEPRECATED);
-
         // Optimize
         $choices = array_filter($choices);
         if (empty($choices)) {
@@ -153,15 +116,13 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
     /**
      * Returns a normalized array of timezone choices.
      *
-     * @param int $regions
-     *
      * @return array The timezone choices
      */
-    private static function getTimezones($regions)
+    private static function getTimezones()
     {
         $timezones = array();
 
-        foreach (\DateTimeZone::listIdentifiers($regions) as $timezone) {
+        foreach (\DateTimeZone::listIdentifiers() as $timezone) {
             $parts = explode('/', $timezone);
 
             if (count($parts) > 2) {
@@ -178,6 +139,6 @@ class TimezoneType extends AbstractType implements ChoiceLoaderInterface
             $timezones[$region][str_replace('_', ' ', $name)] = $timezone;
         }
 
-        return 1 === count($timezones) ? reset($timezones) : $timezones;
+        return $timezones;
     }
 }
