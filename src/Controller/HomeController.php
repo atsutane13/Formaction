@@ -15,7 +15,6 @@ use WF3\Form\Type\UserRegisterType;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use WF3\Form\Type\UploadImageType;
 
-
 class HomeController{
 
 	//page d'accueil qui affiche tout les articles
@@ -126,9 +125,8 @@ class HomeController{
 			->setBody($app['twig']->render('contact.email.html.twig',array('name'=>$data['name'],'email'=>$data['email'],'message'=>$data['message'])),
 			'text/html');
 			$app['mailer']->send($message);
-
 		}
-		return $app['twig']->render('contact.html.twig', array('contactForm' => $contactForm->createView(), ));
+		return $app['twig']->render('contact.html.twig', array('contactForm' => $contactForm->createView() ));
 	}
     
     //page contact
@@ -183,8 +181,12 @@ class HomeController{
     		//c'est l'utilisateur connecté qui est l'auteur de l'article
     		$article->setAuthor($user->getId());
     		//on insère dans la base
-    		$app['dao.article']->insert($articles);
 
+    		
+
+
+    		$app['dao.article']->insert($article);
+ 
     		//on stocke en session un message de réussite
     		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
 

@@ -16,18 +16,19 @@ class ArticleDAO extends DAO{
 
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
-		$idAuteur=$article->getAuthor();
-		$author=$this->userDAO->find($article->getAuthor());
+		$idAuteur=$article->getUsers_id();
+		$author=$this->userDAO->find($article->getUsers_id());
 		if(array_key_exists('users_id',$row) && is_numeric($row['users_id'])){
 			$auteur=$this->userDAO->find($idAuteur);
 		}
 		$article->setAuthor($author);
+
 		$imageAuthor=$article->getImage();
 		$image=$this->imageDAO->find($article->getImage());
-		if(array_key_exists('users_id',$row) && is_string($row['users_id'])){
-			$image=$this->userDAO->find($imageAuthor);
+		if(array_key_exists('image_id',$row) && is_string($row['image_id'])){
+			$image=$this->imageDAO->find($imageAuthor);
 		}
-		$article->setAuthor($image);
+		$article->setImage($image);
 
 		return $article;
     }

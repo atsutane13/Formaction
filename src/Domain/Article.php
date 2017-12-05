@@ -6,7 +6,7 @@ class Article{
     private $id;
     private $title;
     private $content;
-    private $date_publi;
+    private $datePubli;
     private $usersId;
     private $duree;
     private $categoryId;
@@ -26,11 +26,14 @@ class Article{
         return $this->content;
     }
     
-    public function getDate_publi(){
-        return $this->date_publi;
+    public function getDatePubli(){
+        return $this->datePubli;
     }
     
-    public function getUsers_id(){
+
+      
+
+    public function getUsersId(){
         return $this->usersId;
     }
 
@@ -46,8 +49,8 @@ class Article{
         return $this->duree;
     }
 
-    public function getImage_id(){
-        return $this->image_id;
+    public function getImageId(){
+        return $this->imageId;
     }
     
         //setters
@@ -71,28 +74,26 @@ class Article{
         }
     }
 
-    public function setDate_publi($datePubli){
+    public function setDatePubli($datePubli){
         if(!empty($datePubli) AND is_string($datePubli)){
-            $this->date_publi = $datePubli; 
+            $this->datePubli = $datePubli; 
         }
     }
 
     public function setDuree($duree){
         if(!empty($duree) AND is_numeric($duree)){
             $this->duree = $duree;
-            return $this;
         }
         return false;
     }
 
-    public function setUsers_id($users_id){        
-            $this->users_id = $users_id;         
+    public function setUsersId($usersId){        
+            $this->usersId = $usersId;         
     }
 
     public function setCategoryId($categoryId){
         if(!empty($categoryId) AND is_numeric($categoryId)){
             $this->categoryId = $categoryId;
-            return $this;
         }
         return false;
     }
@@ -103,9 +104,9 @@ class Article{
         }
     }
 
-    public function setImage_id($image_id){
+    public function setImageId($image_id){
         if(!empty($image_id) AND is_string($image_id)){
-            $this->immage_id = $image_id;
+            $this->immageId = $image_id;
             return $this;
         }
         return false;

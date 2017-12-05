@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -22,8 +23,8 @@ class ArticleType extends AbstractType
             'attr'=>array(
                 'class'=> 'form-control',
                 'placeholder'=>'entrez votre titre'
-                )
-            ));
+            )
+        ));
 
 
         $builder->add('content', TextareaType::class,array(
@@ -52,8 +53,10 @@ class ArticleType extends AbstractType
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
-                )            
-            ));
+            ),
+            'label'=>'visibilite'
+            
+        ));
 
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
@@ -64,13 +67,20 @@ class ArticleType extends AbstractType
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
-                )            
-            ));
+            ),
+            'label'=>'categorie'
+        ));
+
+        $builder->add('imageId', FileType::class,array(
+                'constraints' => new Assert\Image(),
+                'label'=>'image'
+        )); 
 
         $builder->add('Enregistrer', SubmitType::class,array(
             'attr'=>array(
                 'class'=> 'btn btn-default'
-                )
+            )
+            
         ));
     }
 
