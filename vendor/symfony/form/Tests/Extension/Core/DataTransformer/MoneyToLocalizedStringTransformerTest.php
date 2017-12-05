@@ -72,12 +72,4 @@ class MoneyToLocalizedStringTransformerTest extends TestCase
 
         $this->assertNull($transformer->reverseTransform(''));
     }
-
-    public function testFloatToIntConversionMismatchOnReversTransform()
-    {
-        $transformer = new MoneyToLocalizedStringTransformer(null, null, null, 100);
-        IntlTestHelper::requireFullIntl($this, false);
-        \Locale::setDefault('de_AT');
-        $this->assertSame(3655, (int) $transformer->reverseTransform('36,55'));
-    }
 }

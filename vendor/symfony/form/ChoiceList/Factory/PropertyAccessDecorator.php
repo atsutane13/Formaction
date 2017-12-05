@@ -41,9 +41,22 @@ use Symfony\Component\PropertyAccess\PropertyPath;
  */
 class PropertyAccessDecorator implements ChoiceListFactoryInterface
 {
+    /**
+     * @var ChoiceListFactoryInterface
+     */
     private $decoratedFactory;
+
+    /**
+     * @var PropertyAccessorInterface
+     */
     private $propertyAccessor;
 
+    /**
+     * Decorates the given factory.
+     *
+     * @param ChoiceListFactoryInterface     $decoratedFactory The decorated factory
+     * @param null|PropertyAccessorInterface $propertyAccessor The used property accessor
+     */
     public function __construct(ChoiceListFactoryInterface $decoratedFactory, PropertyAccessorInterface $propertyAccessor = null)
     {
         $this->decoratedFactory = $decoratedFactory;
@@ -63,7 +76,7 @@ class PropertyAccessDecorator implements ChoiceListFactoryInterface
     /**
      * {@inheritdoc}
      *
-     * @param iterable                          $choices The choices
+     * @param array|\Traversable                $choices The choices
      * @param null|callable|string|PropertyPath $value   The callable or path for
      *                                                   generating the choice values
      *
