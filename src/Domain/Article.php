@@ -11,6 +11,7 @@ class Article{
     private $duree;
     private $category_id;
     private $publi;
+    private $image_id;
 
     
     public function getId(){
@@ -40,6 +41,14 @@ class Article{
     public function getPubli(){
         return $this->publi;
     }
+
+    public function getDuree(){
+        return $this->duree;
+    }
+
+    public function getImage_id(){
+        return $this->image_id;
+    }
     
         //setters
     public function setId($id){
@@ -68,16 +77,12 @@ class Article{
         }
     }
 
-    public function setId($duree){
+    public function setDuree($duree){
         if(!empty($duree) AND is_numeric($duree)){
-            $this->id = $duree;
+            $this->duree = $duree;
             return $this;
         }
         return false;
-    }
-
-    public function getDuree(){
-        return $this->duree;
     }
 
     public function setUsers_id($users_id){        
@@ -86,7 +91,7 @@ class Article{
 
     public function setCategory_id($category_id){
         if(!empty($category_id) AND is_numeric($category_id)){
-            $this->category_id = $category_idid;
+            $this->category_id = $category_id;
             return $this;
         }
         return false;
@@ -96,6 +101,14 @@ class Article{
         if(!empty($publi) AND is_string($publi)){
             $this->publi = $publi; 
         }
+    }
+
+    public function setImage_id($image_id){
+        if(!empty($image_id) AND is_string($image_id)){
+            $this->immage_id = $image_id;
+            return $this;
+        }
+        return false;
     }
     
 }
