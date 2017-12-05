@@ -5,13 +5,12 @@ class Article{
     //déclaration des attributs
     private $id;
     private $title;
-    private $content;
     private $datePubli;
     private $usersId;
     private $duree;
     private $categoryId;
-    private $publi;
     private $image;
+    private $url;
 
     
     public function getId(){
@@ -20,10 +19,6 @@ class Article{
     
     public function getTitle(){
         return $this->title;
-    }
-    
-    public function getContent(){
-        return $this->content;
     }
     
     public function getDatePubli(){
@@ -37,9 +32,9 @@ class Article{
     public function getCategoryId(){
         return $this->categoryId;
     }
-    
-    public function getPubli(){
-        return $this->publi;
+
+    public function getUrl(){
+        return $this->url;
     }
     
     public function getDuree(){
@@ -65,12 +60,6 @@ class Article{
         }
     }
 
-    public function setContent($content){
-        if(!empty($content) AND is_string($content)){
-            $this->content = $content; 
-        }
-    }
-    
     public function setDatePubli($datePubli){
         if(!empty($datePubli) AND is_string($datePubli)){
             $this->datePubli = $datePubli; 
@@ -95,9 +84,9 @@ class Article{
         return false;
     }
 
-    public function setPubli($publi){
-        if(!empty($publi) AND is_string($publi)){
-            $this->publi = $publi; 
+    public function setUrl($url){
+        if(!empty($url) AND is_string($url)){
+            $this->url = $url; 
         }
     }
 
