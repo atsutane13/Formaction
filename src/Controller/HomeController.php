@@ -182,9 +182,6 @@ class HomeController{
     		$article->setAuthor($user->getId());
     		//on insère dans la base
 
-    		
-
-
     		$app['dao.article']->insert($article);
  
     		//on stocke en session un message de réussite

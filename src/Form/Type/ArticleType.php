@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -23,16 +24,16 @@ class ArticleType extends AbstractType
             'attr'=>array(
                 'class'=> 'form-control',
                 'placeholder'=>'entrez votre titre'
-            )
+            ),
+            'label'=>'Nom de la formation'
         ));
 
 
-        $builder->add('content', TextareaType::class,array(
-
-            'attr'=>array(
-                'class'=> 'form-control',
-                'rows'=> '8',
-                'placeholder'=>'entrez votre texte'
+        $builder->add('url', UrlType::class,array(
+            
+                'attr'=>array(
+                'class'=> 'form-control',            
+                'placeholder'=>'entrez votre url'
                 )
         ));
 
@@ -44,20 +45,6 @@ class ArticleType extends AbstractType
                 )
         ));
         
-        $builder->add('publi', ChoiceType::class, array(
-            'choices'  => array(
-                'choisissez un role' => null,
-                'Publier' => 'publier',
-                'Temporaire' => 'temporaire',
-                'Archiver' => 'archiver'
-            ),
-            'constraints'=>array(
-                new Assert\NotBlank()                
-            ),
-            'label'=>'visibilite'
-            
-        ));
-
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
                 'choisissez un role' => null,

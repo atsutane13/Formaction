@@ -3,9 +3,9 @@ namespace WF3\Domain;
 
 class Image{
     private $id;
-    private $image_pc;
-    private $image_portable;
-    private $users_id;
+    private $imagePc;
+    private $imagePortable;
+    private $usersId;
 
     public function getId(){
         return $this->id;
@@ -18,30 +18,30 @@ class Image{
         return false;
     }
 
-    public function getImage_pc(){
-        return $this->image_pc;
+    public function getImagePc(){
+        return $this->imagePc;
     }
-    public function setImage_pct($image_pc){
-        if(!empty($image_pc) AND is_string($image_pc)){
-            $this->image_pc = $image_pc; 
+    public function setImagePc($imagePc){
+        if(!empty($imagePc) AND is_string($imagePc)){
+            $this->imagePc = $imagePc; 
         }
     }
 
-    public function getImage_portable(){
-        return $this->image_portable;
+    public function getImagePortable(){
+        return $this->imagePortable;
     }
-    public function setImage_portable($image_portable){
-        if(!empty($image_portable) AND is_string($image_portable)){
-            $this->image_portable = $image_portable; 
+    public function setImagePortable($imagePortable){
+        if(!empty($imagePortable) AND is_string($imagePortable)){
+            $this->imagePortable = $imagePortable; 
         }
     }
 
-    public function getUsers_id(){
-        return $this->users_id;
+    public function getUsersId(){
+        return $this->usersId;
     }
-    public function setUsers_id($users_id){
+    public function setUsersId($usersId){
         
-            $this->users_id = $users_id; 
+            $this->usersId = $usersId; 
         
     }
 }
