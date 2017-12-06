@@ -13,16 +13,13 @@
 			<article>
 				<h2>{{ article.title }}</h2>
 				<p>publié par 
-					<a href="{{ path('voirUser', {id: article.idUser}) }}">
-						{{ article.username }}
+					<a href="{{ path('voirUser', {id: article.idIntervenant}) }}">
+						{{ article.nom }}
 					</a>
 					le {{article.datePubli}}
 				</p>
 				<p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a>
-					{% if token is defined and token.id == article.idUser %}
-					| <a href="{{ path('deleteArticle', {id: article.idArticle}) }}">Supprimer</a>
 
-				{% endif %}</p>
 			</article>
 			{% endfor %}
 		{% endblock %}

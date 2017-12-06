@@ -18,7 +18,7 @@
 
 
 <ul>
-    <img src="{{ asset('img/' ~ article.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
+    <img src="{{ asset('uplpoads/' ~ article.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
     <li>{{ article.title }}
              
         {% if is_granted('ROLE_ADMIN') %}
@@ -43,7 +43,7 @@
 {% endfor %}          
 {% for intervenant in intervenants %}
 <ul>
-    <img src="{{ asset('img/' ~ intervenant.logo ) }}" class="img img-responsive img-rounded" width="150">
+    <img src="{{ asset('uploads/' ~ intervenant.logo ) }}" class="img img-responsive img-rounded" width="150">
     <li>{{ intervenant.nom }}
             <a href="{{ path('updateUser', {id: intervenant.id}) }}">Modifier</a>|
         <a href="{{ path('deleteUser', {id: intervenant.id}) }}">Supprimer</a> 
