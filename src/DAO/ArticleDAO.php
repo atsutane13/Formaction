@@ -10,9 +10,6 @@ class ArticleDAO extends DAO{
 		$this->userDAO=$userDAO;
 	}
 
-	public function setImageDAO(ImageDAO $imageDAO	){
-		$this->imageDAO=$imageDAO;
-	}
 
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
@@ -22,13 +19,6 @@ class ArticleDAO extends DAO{
 			$auteur=$this->userDAO->find($idAuteur);
 		}
 		$article->setUsersId($author);
-
-		$imageAuthor=$article->getImage();
-		$image=$this->imageDAO->find($article->getImage());
-		if(array_key_exists('imageId',$row) && is_string($row['imageId'])){
-			$image=$this->imageDAO->find($imageAuthor);
-		}
-		$article->setImage($image);
 
 		return $article;
     }
@@ -61,8 +51,8 @@ class ArticleDAO extends DAO{
 
 	public function deleteArticleByAuthor($id){
 		if(!empty($id) && is_numeric($id)){
-            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE usersId = :auteur');
-            $delete->bindValue(':auteur', $id, \PDO::PARAM_INT);
+            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE usersId = :id');
+            $delete->bindValue(':id', $id, \PDO::PARAM_INT);
 
             if($delete->execute()){
                 return true;

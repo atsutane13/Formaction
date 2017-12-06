@@ -6,9 +6,9 @@
             <h2>Mon article</h2>
 			<article>
 				<h2>{{ article.title }}</h2>
-				<p>{{ article.content }}</p>
-				<p>publié par <a href="{{ path('voirUser', {id:article.author.id})}}">{{article.author.username}}</a> le {{ article.date_publi }}</p>
-				{% if token is defined and token.id == article.author %}
+
+				<p>publié par <a href="{{ path('voirUser', {id:article.usersId.id})}}">{{article.usersId.username}}</a> le {{ article.datePubli }}</p>
+				{% if token is defined and token.id == article.usersId %}
 				<a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
 
 			{% endif %}</p>
