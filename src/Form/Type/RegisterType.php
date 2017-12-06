@@ -49,16 +49,7 @@ class RegisterType extends AbstractType
             )
         ));
 
-        $builder->add('role', ChoiceType::class, array(
-            'choices'  => array(
-                'choisissez un role' => null,
-                'User' => 'ROLE_USER',
-                'Admin' => 'ROLE_ADMIN'
-            ),
-            'constraints'=>array(
-                new Assert\NotBlank()                
-            )            
-        ));
+
         $builder->add('password', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'The password fields must match.',

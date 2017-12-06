@@ -12,9 +12,11 @@ use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 class AdminController{
     public function indexAction(Application $app){
         $articles = $app['dao.article']->findAll();	
-        $users = $app['dao.user']->findAll();
+        $intervenants = $app['dao.intervenant']->findAll();
+
+
         
-        return $app['twig']->render('admin/index.admin.html.twig', array('articles' => $articles, 'users'=>$users));
+        return $app['twig']->render('admin/index.admin.html.twig', array('articles' => $articles, 'intervenants'=>$intervenants));
     }
 
     public function updateAction(Application $app, Request $request, $id){

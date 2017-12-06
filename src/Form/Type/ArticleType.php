@@ -18,14 +18,6 @@ class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('intervenant', TextType::class,array(
-            'attr'=>array(
-                'class'=> 'form-control',
-                'placeholder'=>'Nom de l\'intervnant'
-            ),
-            'label'=>'Intervenant'
-        ));
-
         $builder->add('title', TextType::class,array(
             'attr'=>array(
                 'class'=> 'form-control',
@@ -45,13 +37,25 @@ class ArticleType extends AbstractType
             'choices'  => array(
                 'choisissez un role' => null,
                 'Web' => '1',
-                'Metier du bois' => '2',
-                'Metier de bouche' => '3'
+                'Metiers du bois' => '2',
+                'Metiers de bouche' => '3'
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
             ),
             'label'=>'categorie'
+        ));
+
+        $builder->add('intervenantId', ChoiceType::class, array(
+            'choices'  => array(
+                'choisissez un role' => null,
+                'Philomathique Botrdeaux' => '1',
+                'CFA' => '2'
+            ),
+            'constraints'=>array(
+                new Assert\NotBlank()                
+            ),
+            'label'=>'Intervenant'
         ));
 
         $builder->add('url', UrlType::class,array(
@@ -61,11 +65,6 @@ class ArticleType extends AbstractType
             ),
             'label'=>'url de la formation'
         ));
-
-        $builder->add('image', FileType::class,array(
-                'constraints' => new Assert\Image(),
-                'label'=>'image'
-        )); 
 
         $builder->add('Enregistrer', SubmitType::class,array(
             'attr'=>array(

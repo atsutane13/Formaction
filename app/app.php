@@ -73,7 +73,7 @@ $app['swiftmailer.options'] = array(
 
 $app['dao.article'] = function($app){
     $articleDAO= new WF3\DAO\ArticleDAO($app['db'], 'articles', 'WF3\Domain\Article');
-    $articleDAO->setUserDAO($app['dao.user']);
+    $articleDAO->setIntervenantDAO($app['dao.intervenant']);
     return $articleDAO;
     
 };
@@ -82,6 +82,10 @@ $app['dao.article'] = function($app){
 //on pourra ainsi accéder à notre classe UserDAO grâce à $app['dao.user'] 
 $app['dao.user'] = function($app){
 	return new WF3\DAO\UserDAO($app['db'], 'users', 'WF3\Domain\User');
+};
+
+$app['dao.intervenant'] = function($app){
+	return new WF3\DAO\IntervenantDAO($app['db'], 'intervenant', 'WF3\Domain\Intervenant');
 };
 
 

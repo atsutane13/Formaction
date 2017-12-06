@@ -3,25 +3,27 @@ namespace WF3\DAO;
 
 class ArticleDAO extends DAO{
 
-	private $userDAO;
-	private $imageDAO;
+	private $intervenantDAO;
 
-	public function setUserDAO(UserDAO $userDAO	){
-		$this->userDAO=$userDAO;
+
+	public function setIntervenantDAO(IntervenantDAO $intervenantDAO	){
+		$this->intervenantDAO=$intervenantDAO;
 	}
 
 
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
-		$idAuteur=$article->getUsersId();
-		$author=$this->userDAO->find($article->getUsersId());
-		if(array_key_exists('usersId',$row) && is_numeric($row['usersId'])){
-			$auteur=$this->userDAO->find($idAuteur);
+		$idAuteur=$article->getIntervenantId();
+		$author=$this->intervenantDAO->find($article->getIntervenantId());
+		if(array_key_exists('intervenantId',$row) && is_numeric($row['intervenantId'])){
+			$auteur=$this->intervenantDAO->find($idAuteur);
 		}
-		$article->setUsersId($author);
+		$article->setIntervenantId($author);
 
 		return $article;
-    }
+	}
+	
+
 
 
 	public function getLastArticles(){
