@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -19,6 +18,14 @@ class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('intervenant', TextType::class,array(
+            'attr'=>array(
+                'class'=> 'form-control',
+                'placeholder'=>'Nom de l\'intervnant'
+            ),
+            'label'=>'Intervenant'
+        ));
+
         $builder->add('title', TextType::class,array(
             'attr'=>array(
                 'class'=> 'form-control',
@@ -27,7 +34,7 @@ class ArticleType extends AbstractType
             'label'=>'Nom de la formation'
         ));
 
-        $builder->add('duree', NumberType::class,array(
+        $builder->add('duree', TextType::class,array(
 
             'attr'=>array(
                 'class'=> 'form-control'
@@ -38,8 +45,8 @@ class ArticleType extends AbstractType
             'choices'  => array(
                 'choisissez un role' => null,
                 'Web' => '1',
-                'Menuiserie' => '2',
-                'Peinture' => '3'
+                'Metier du bois' => '2',
+                'Metier de bouche' => '3'
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                

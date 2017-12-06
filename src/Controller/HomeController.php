@@ -172,10 +172,11 @@ class HomeController{
     	if($articleForm->isSubmitted() && $articleForm->isValid()){
 			$article->setUsersId($user->getId());	
 			$path = __DIR__.'/../../'.$app['upload_dir'];
+			$file = $request->files->get('article')['image'];
 			$filename = md5(uniqid()).'.'.$file->guessExtension();
-			$file->move($path,$filename);		
 			$article->setImage($filename);
 			$app['dao.article']->insert($article);
+			$file->move($path,$filename);		
 			
 
     		//on stocke en session un message de réussite
@@ -186,7 +187,8 @@ class HomeController{
     	//j'envoie à la vue le formulaire grâce à $articleForm->createView() 
     	return $app['twig']->render('ajout.article.html.twig', array(
     			'articleForm' => $articleForm->createView(),
-    			'article' => $article
+				'article' => $article,
+				'file'=>$request->files
     	));
 	}
 	

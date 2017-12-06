@@ -17,7 +17,7 @@ class ArticleDAO extends DAO{
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
 		$idAuteur=$article->getUsersId();
-		$author=$this->userDAO->find($article->getUsers_id());
+		$author=$this->userDAO->find($article->getUsersId());
 		if(array_key_exists('usersId',$row) && is_numeric($row['usersId'])){
 			$auteur=$this->userDAO->find($idAuteur);
 		}
@@ -48,12 +48,12 @@ class ArticleDAO extends DAO{
 	}
 
 	public function getArticlesWithAuthor(){
-		$result = $this->bdd->query('SELECT articles.id AS idArticle, title,  users.id AS idUser, username, date_publi FROM articles INNER JOIN users ON articles.users_id = users.id');
+		$result = $this->bdd->query('SELECT articles.id AS idArticle, title,  users.id AS idUser, username, datePubli FROM articles INNER JOIN users ON articles.usersId = users.id');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
     
     public function findArticlesByTitle($title){
-        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, users.id AS idUser, username FROM articles INNER JOIN users ON articles.users_id = users.id WHERE title LIKE :title');
+        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, users.id AS idUser, username FROM articles INNER JOIN users ON articles.usersId = users.id WHERE title LIKE :title');
         $result->bindValue(':title', '%' . $title . '%');
         $result->execute();
         return $result->fetchALL(\PDO::FETCH_ASSOC);
@@ -72,7 +72,7 @@ class ArticleDAO extends DAO{
 
 	public function advanceSearch($str){
 		if(!empty($str)){			
-			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN users ON  articles.author = users.id WHERE username LIKE :string OR title LIKE :string');
+			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN users ON  articles.usersId = users.id WHERE username LIKE :string OR title LIKE :string');
 			$search->bindValue(':string', '%'.$str.'%');
 
             if($search->execute()){				

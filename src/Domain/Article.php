@@ -4,6 +4,7 @@ namespace WF3\Domain;
 class Article{
     //déclaration des attributs
     private $id;
+    private $intervenant;
     private $title;
     private $datePubli;
     private $usersId;
@@ -15,6 +16,10 @@ class Article{
     
     public function getId(){
         return $this->id;
+    }
+
+    public function getIntervenant(){
+        return $this->intervenant;
     }
     
     public function getTitle(){
@@ -49,6 +54,14 @@ class Article{
     public function setId($id){
         if(!empty($id) AND is_numeric($id)){
             $this->id = $id;
+            return $this;
+        }
+        return false;
+    }
+
+    public function setIntervenant($intervenant){
+        if(!empty($intervenant) AND is_numeric($intervenant)){
+            $this->intervenant = $intervenant;
             return $this;
         }
         return false;
