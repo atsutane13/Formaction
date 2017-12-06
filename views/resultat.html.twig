@@ -3,11 +3,10 @@
     <h2>{{ article.title }}</h2>
     <p>publié par 
         <a href="{{ path('voirUser', {id: article.idUser}) }}">
-            {{ article.author.username }}
+            {{ article.usersId.username }}
         </a>
-        le {{article.date_publi}}
+        le {{article.datePubli}}
     </p>
-    <p>{{ article.content }}</p>
     <p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a></p>
 </article>
 {% endfor %}

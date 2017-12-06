@@ -27,7 +27,7 @@ class ArticleType extends AbstractType
             'label'=>'Nom de la formation'
         ));
 
-        $builder->add('duree', NumberType::class,array(
+        $builder->add('duree', TextType::class,array(
 
             'attr'=>array(
                 'class'=> 'form-control'
@@ -39,7 +39,7 @@ class ArticleType extends AbstractType
                 'choisissez un role' => null,
                 'Web' => '1',
                 'Menuiserie' => '2',
-                'Peinture' => '3'
+                'Metier de bouche' => '3'
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                

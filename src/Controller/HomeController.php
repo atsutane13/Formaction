@@ -172,10 +172,13 @@ class HomeController{
     	if($articleForm->isSubmitted() && $articleForm->isValid()){
 			$article->setUsersId($user->getId());	
 			$path = __DIR__.'/../../'.$app['upload_dir'];
+			$file = $request->files->get('article')['image'];
+			
 			$filename = md5(uniqid()).'.'.$file->guessExtension();
-			$file->move($path,$filename);		
+			$file->move($path,$filename);	
+			$app['dao.article']->insert($article);	
 			$article->setImage($filename);
-			$app['dao.article']->insert($article);
+			
 			
 
     		//on stocke en session un message de réussite

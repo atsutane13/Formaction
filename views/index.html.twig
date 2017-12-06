@@ -16,9 +16,8 @@
 					<a href="{{ path('voirUser', {id: article.idUser}) }}">
 						{{ article.username }}
 					</a>
-					le {{article.date_publi}}
+					le {{article.datePubli}}
 				</p>
-				<p>{{ article.content }}</p>
 				<p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a>
 					{% if token is defined and token.id == article.idUser %}
 					| <a href="{{ path('deleteArticle', {id: article.idArticle}) }}">Supprimer</a>
