@@ -4,6 +4,7 @@ namespace WF3\Controller;
 use Silex\Application;
 use WF3\Domain\Article;
 use WF3\Domain\User;
+use WF3\Domain\Intervenant;
 use Symfony\Component\HttpFoundation\Request;
 use WF3\Form\Type\ArticleType;
 use WF3\Form\Type\RegisterType;
@@ -36,21 +37,22 @@ class AdminController{
     
 
     public function AddUserAction(Application $app, Request $request){
-        $user=new User();
-        $articleForm = $app['form.factory']->create(RegisterType::class, $user);
+        $intervenant=new Intervenant();
+        $articleForm = $app['form.factory']->create(RegisterType::class, $intervenant);
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
-            $salt = substr(md5(time()),0,23);
-            $user->setSalt($salt);
-            $encoder=$app['security.encoder.bcrypt'];
-            $pwd=$encoder->encodePassword($user->getPassword(), $user->getSalt());
-            $user->setPassword($pwd);
-            $app['dao.user']->insert($user);
-            $app['session']->getFlashBag()->add('success', 'Utilisateur bien enregistré');
+	
+			$path = __DIR__.'/../../'.$app['upload_dir'];
+			$file = $request->files->get('register')['logo'];
+			$filename = md5(uniqid()).'.'.$file->guessExtension();
+			$intervenant->setLogo($filename);
+            $app['dao.intervenant']->insert($intervenant);
+			$file->move($path,$filename);
+            $app['session']->getFlashBag()->add('success', 'Intervenant bien enregistré');
         }
         return $app['twig']->render('admin/adduser.admin.html.twig', array(
-            'articleForm' => $articleForm->createView(),
-            'user' => $user
+            'articleForm' => $articleForm->createView()
+
         ));
     }
 

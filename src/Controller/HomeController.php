@@ -46,14 +46,7 @@ class HomeController{
 
 	//page d'affichage d'un article
 	public function articleAction(Application $app, $id){
-		$article = $app['dao.article']->find($id);
-		if($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
-			$token=$app['security.token_storage']->getToken();	
-			if(NULL!==$token){			
-				$tok=$token->getUser();
-			}
-		return $app['twig']->render('article.html.twig', array('article' => $article,'token'=>$tok));
-		}
+		$article = $app['dao.article']->find($id);	
 		return $app['twig']->render('article.html.twig', array('article' => $article));
 	}
 
@@ -161,8 +154,7 @@ class HomeController{
 			//return $app->redirect($app['url_generator']->generate('home')); //redirection
 			throw new AccessDeniedHttpException(); //error 403m accet interdit
 		}
-		$token=$app['security.token_storage']->getToken();
-		$user=$token->getUser();
+
 
     	//je crée un objet article vide
 		$article = new Article();
@@ -170,14 +162,8 @@ class HomeController{
     	$articleForm = $app['form.factory']->create(ArticleType::class, $article);
     	$articleForm->handleRequest($request);
     	if($articleForm->isSubmitted() && $articleForm->isValid()){
-			$article->setUsersId($user->getId());	
-			$path = __DIR__.'/../../'.$app['upload_dir'];
-			$file = $request->files->get('article')['image'];
-			$filename = md5(uniqid()).'.'.$file->guessExtension();
-			$article->setImage($filename);
+
 			$app['dao.article']->insert($article);
-			$file->move($path,$filename);		
-			
 
     		//on stocke en session un message de réussite
     		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');

@@ -9,7 +9,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -32,6 +35,10 @@ class ArticleType extends AbstractType
                 'class'=> 'form-control'
                 )
         ));
+
+        // $builder->add('datePubli', DateTimeType::class, array(
+        //     'input'=> 'datetime'
+        // ));
         
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(

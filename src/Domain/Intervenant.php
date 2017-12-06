@@ -7,6 +7,8 @@ class Intervenant {
     private $id;
     private $logo;
     private $nom;
+    private $phone;
+    private $email;
 
     public function getId(){
         return $this->id;
@@ -35,6 +37,22 @@ class Intervenant {
     public function setNom($nom){
 
             $this->nom = $nom;
+        }
+
+    public function getPhone(){
+        return $this->phone;
+    }
+    public function setPhone($phone){
+
+            $this->phone = $phone;
+        }
+
+    public function getEmail(){
+        return $this->email;
+    }
+    public function setEmail($email){
+
+            $this->email = $email;
         }
 
 }

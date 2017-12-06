@@ -7,7 +7,6 @@ class Article{
     private $intervenantId;
     private $title;
     private $datePubli;
-    private $usersId;
     private $duree;
     private $categoryId;
     private $url;
@@ -29,9 +28,6 @@ class Article{
         return $this->datePubli;
     }
     
-    public function getUsersId(){
-        return $this->usersId;
-    }
     
     public function getCategoryId(){
         return $this->categoryId;
@@ -77,9 +73,6 @@ class Article{
         return false;
     }
     
-    public function setUsersId($usersId){        
-        $this->usersId = $usersId;         
-    }
     
     public function setCategoryId($categoryId){
             $this->categoryId = $categoryId;

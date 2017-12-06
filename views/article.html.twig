@@ -7,11 +7,13 @@
 			<article>
 				<h2>{{ article.title }}</h2>
 
-				<p>publié par <a href="{{ path('voirUser', {id:article.usersId.id})}}">{{article.usersId.username}}</a> le {{ article.datePubli }}</p>
-				{% if token is defined and token.id == article.usersId %}
-				<a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
+				<p>publié par <a href="{{ path('voirUser', {id:article.intervenantId.id})}}">{{article.intervenantId.nom}}</a> le {{ article.datePubli }}</p>
+				{% if is_granted('ROLE_ADMIN') %}
 
-			{% endif %}</p>
+				<a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
+			{% endif %}
+
+			
 			</article>
 		{% endblock %}
 		
