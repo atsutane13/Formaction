@@ -61,10 +61,20 @@ class Article{
     }
 
     public function setDatePubli($datePubli){
+<<<<<<< HEAD
             $this->datePubli = $datePubli; 
     }
     
     public function setDuree($duree){
+=======
+
+            $this->datePubli = $datePubli; 
+        
+    }
+    
+    public function setDuree($duree){
+        if(!empty($duree) AND is_string($duree)){
+>>>>>>> 5e7ae4359a4015ea085fe0fda4d56074ebf2c126
             $this->duree = $duree;
     }
     

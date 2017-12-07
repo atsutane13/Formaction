@@ -14,6 +14,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use WF3\Form\Type\UserRegisterType;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use WF3\Form\Type\UploadImageType;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class HomeController{
 
@@ -162,19 +164,16 @@ class HomeController{
     	$articleForm = $app['form.factory']->create(ArticleType::class, $article);
     	$articleForm->handleRequest($request);
     	if($articleForm->isSubmitted() && $articleForm->isValid()){
-
 			$app['dao.article']->insert($article);
-
-    		//on stocke en session un message de réussite
+			
+   		//on stocke en session un message de réussite
     		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
 
     	}
-
     	//j'envoie à la vue le formulaire grâce à $articleForm->createView() 
     	return $app['twig']->render('ajout.article.html.twig', array(
     			'articleForm' => $articleForm->createView(),
 				'article' => $article,
-				'file'=>$request->files
     	));
 	}
 	
