@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+{% block title %}Ajout category{% endblock %}
+
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {{ form_start(articleForm)}}
+
+
+
+
+    {{ form_end(articleForm)}}
+{% endblock %}

@@ -3,10 +3,21 @@
 {% block title %}Un article{% endblock %}
 
 {% block content %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+<div class="alert alert-success">
+    {{ flashMessage }}
+</div>
+{% endfor %}
         <h2>Mes category</h2>
         {% for category in categorys %}
+
         <article>
-            <a href ="{{ path('categoryArt', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>            
+                <img src="{{ asset('uploads/' ~ category.image ) }}" class="img img-responsive img-rounded" width="150">
+            <a href ="{{ path('categoryArt', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
+        |   <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a>      
+        {% endif %}            
         </article>
         {% endfor %}
     {% endblock %}

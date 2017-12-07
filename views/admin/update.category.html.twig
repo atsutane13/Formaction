@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+{% block title %}page modification{% endblock %}
+
+{% block content %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+<div class="alert alert-success">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+<article>
+    {{ form_start(articleForm)}}
+
+    {{ form_end(articleForm)}}
+</article>
+{% endblock %}

@@ -4,10 +4,12 @@ namespace WF3\Controller;
 use Silex\Application;
 use WF3\Domain\Article;
 use WF3\Domain\User;
+use WF3\Domain\Category;
 use WF3\Domain\Intervenant;
 use Symfony\Component\HttpFoundation\Request;
 use WF3\Form\Type\ArticleType;
 use WF3\Form\Type\RegisterType;
+use WF3\Form\Type\CategoryType;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 class AdminController{
@@ -79,8 +81,13 @@ class AdminController{
                 $intervenant->setLogo($filename);
                 $app['dao.intervenant']->update($id, $intervenant);
                 $file->move($path,$filename);
-                unlink( '../'.$app['upload_dir'] . "/". $logo);               
-                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+                if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
+                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
+                    $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+                }
+                else{
+                    $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+                }
             }
     	}
         return $app['twig']->render('admin/update.user.html.twig', array(
@@ -88,6 +95,83 @@ class AdminController{
             'intervenant'=> $app['dao.intervenant']->find($id),
             'logo'=> $logo
         )); 
+    }
+////////////////////////////////////////////////
+
+//////////CATEGORY
+
+///////////////////////////////////////
+
+    public function ajoutCategoryAction(Application $app, Request $request){
+        $intervenant=new Category();
+        $articleForm = $app['form.factory']->create(CategoryType::class, $intervenant);
+        $articleForm->handleRequest($request);
+        if($articleForm->isSubmitted() && $articleForm->isValid()){
+
+            $path = __DIR__.'/../../'.$app['upload_dir'];
+            $file = $request->files->get('category')['image'];
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $intervenant->setImage($filename);
+            $app['dao.category']->insert($intervenant);
+            $file->move($path,$filename);
+            $app['session']->getFlashBag()->add('success', 'Category bien enregistré');
+        }
+        return $app['twig']->render('admin/ajoutCategory.admin.html.twig', array(
+            'articleForm' => $articleForm->createView()
+
+        ));
+    }
+
+    public function updateCategoryAction(Application $app, Request $request, $id){
+        if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
+			//return $app->redirect($app['url_generator']->generate('home')); //redirection
+			throw new AccessDeniedHttpException(); //error 403m accet interdit
+		}
+        $intervenant = $app['dao.category']->find($id);	
+        $logo=$intervenant->getImage();
+        $intervenant->setImage(NULL);
+        
+        $articleForm = $app['form.factory']->create(CategoryType::class, $intervenant);
+        $articleForm->handleRequest($request);
+        if($articleForm->isSubmitted() && $articleForm->isValid()){
+            if($intervenant->getImage()===NULL){
+                $intervenant->setImage($logo);
+                $app['dao.category']->update($id, $intervenant);
+                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');    
+            }else{
+                $path = __DIR__.'/../../'.$app['upload_dir'];
+                $file = $request->files->get('category')['image'];
+                $filename = md5(uniqid()).'.'.$file->guessExtension();
+                $intervenant->setImage($filename);
+                $app['dao.category']->update($id, $intervenant);
+                $file->move($path,$filename);
+                if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
+                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
+                    $app['session']->getFlashBag()->add('success', 'Category modifier');
+                }
+                else{
+                    $app['session']->getFlashBag()->add('success', 'Category modifier');
+                }
+                                         
+            }
+    	}
+        return $app['twig']->render('admin/update.category.html.twig', array(
+           'articleForm' => $articleForm->createView(),
+            'category'=> $app['dao.category']->find($id),
+            'image'=> $logo
+        )); 
+    }
+
+    public function DeleteCategoryAction(Application $app, Request $request, $id){
+        if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
+			//return $app->redirect($app['url_generator']->generate('home')); //redirection
+			throw new AccessDeniedHttpException(); //error 403m accet interdit
+        }
+        $user=$app['dao.category']->delete($id);
+        //on crée un message de réussite dans la session
+        $app['session']->getFlashBag()->add('success', 'Category bien supprimé');
+        //on redirige vers la page d'accueil
+        return $app->redirect($app['url_generator']->generate('category'));
     }
 
     public function DeleteUserAction(Application $app, Request $request, $id){
