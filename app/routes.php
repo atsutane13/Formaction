@@ -59,7 +59,19 @@ $app->match('/admin/ajout/user', 'WF3\Controller\AdminController::AddUserAction'
 
 $app->match('/Register', 'WF3\Controller\HomeController::RegisterAction')->bind('RegisterUser');
 
-$app->match('/admin/update/user/{id}', 'WF3\Controller\AdminController::UpdateUserAction')->bind('updateUser');
+$app->match('/admin/update/user/{id}', 'WF3\Controller\AdminController::UpdateUserAction')
+->bind('updateUser');
+
+$app->get('/deleteCategory/{id}', 'WF3\Controller\AdminController::DeleteCategoryAction')
+->assert('id', '\d+')
+->bind('deleteCategory');
+
+$app->match('/updateCategory/{id}', 'WF3\Controller\AdminController::updateCategoryAction')
+->assert('id', '\d+')
+->bind('updateCategory');
+
+$app->match('/ajoutCategory', 'WF3\Controller\AdminController::ajoutCategoryAction')
+->bind('ajoutCategory');
 
 $app->get('/admin/delete/user/{id}', 'WF3\Controller\AdminController::DeleteUserAction')->bind('deleteUser');
 

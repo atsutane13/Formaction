@@ -5,6 +5,7 @@ class Category{
 
     private $id;
     private $category;
+    private $image;
 
     public function getId(){
         return $this->id;
@@ -25,6 +26,14 @@ class Category{
             $this->category = $category;
             return $this;
         }
-        return false;
+
+    }
+
+    public function getImage(){
+        return $this->image;
+    }
+    public function setImage($image){
+            $this->image = $image;
+
     }
 }

@@ -19,10 +19,10 @@
                 <li><a href="{{ path('lastArticles') }}">Derniers articles</a></li>
 				<li><a href="{{ path('contactezmoi') }}">Contact</a></li>
 				<li><a href="{{ path('advanceSearch') }}">Recherche avancee</a></li>
-				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					{% if is_granted('ROLE_ADMIN') %}
-						<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-					{% endif %}
+				
+				{% if is_granted('ROLE_ADMIN') %}
+					<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+					<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
 					<li><a href="{{ path('ajoutAdArticle') }}">Ajouter article</a></li>
 					<li><a href="{{ path('ajoutUser') }}">Ajouter Intervenant</a></li>
 					<li><a href="{{ path('logout') }}">déconnexion</a></li>

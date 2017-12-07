@@ -62,6 +62,8 @@ class ArticleDAO extends DAO{
         }
 	}
 
+	
+
 	public function findArticlesByCategory($title){
         $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, intervenant.id AS idIntervenant, nom FROM articles INNER JOIN intervenant ON articles.intervenantId = intervenant.id WHERE categoryId = :category');
         $result->bindValue(':category', $title);
