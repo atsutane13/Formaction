@@ -13,7 +13,7 @@
 			<article>
 				<h2>{{ article.title }}</h2>
 				<p>publié par 
-					<a href="{{ path('voirUser', {id: article.idIntervenant}) }}">
+					<a href="{{article.url}}">
 						{{ article.nom }}
 					</a>
 					le {{article.datePubli}}

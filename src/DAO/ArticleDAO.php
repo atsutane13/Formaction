@@ -40,7 +40,7 @@ class ArticleDAO extends DAO{
 	}
 
 	public function getArticlesWithAuthor(){
-		$result = $this->bdd->query('SELECT articles.id AS idArticle, title,  intervenant.id AS idIntervenant, nom, datePubli FROM articles INNER JOIN intervenant ON articles.intervenantId= intervenant.id');
+		$result = $this->bdd->query('SELECT articles.id AS idArticle, title,  intervenant.id AS idIntervenant, nom, datePubli, url FROM articles INNER JOIN intervenant ON articles.intervenantId= intervenant.id');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
     
