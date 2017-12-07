@@ -61,16 +61,11 @@ class Article{
     }
 
     public function setDatePubli($datePubli){
-        if(!empty($datePubli) AND is_string($datePubli)){
             $this->datePubli = $datePubli; 
-        }
     }
     
     public function setDuree($duree){
-        if(!empty($duree) AND is_numeric($duree)){
             $this->duree = $duree;
-        }
-        return false;
     }
     
     
@@ -79,9 +74,7 @@ class Article{
     }
 
     public function setUrl($url){
-        if(!empty($url) AND is_string($url)){
             $this->url = $url; 
-        }
     }
 
 }
