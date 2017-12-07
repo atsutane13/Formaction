@@ -62,6 +62,14 @@ class ArticleDAO extends DAO{
         }
 	}
 
+	public function findArticlesByCategory($title){
+        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, intervenant.id AS idIntervenant, nom FROM articles INNER JOIN intervenant ON articles.intervenantId = intervenant.id WHERE categoryId = :category');
+        $result->bindValue(':category', $title);
+        $result->execute();
+		return $result->fetchALL(\PDO::FETCH_ASSOC);
+		
+	}
+
 	public function advanceSearch($str){
 		if(!empty($str)){			
 			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN users ON  articles.usersId = users.id WHERE username LIKE :string OR title LIKE :string');
