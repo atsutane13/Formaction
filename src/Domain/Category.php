@@ -18,11 +18,11 @@ class Category{
     }
 
     public function getCategory(){
-        return $this->id;
+        return $this->category;
     }
-    public function setCategory(){
+    public function setCategory($category){
         if(!empty($category) AND is_string($category)){
-            $this->id = $id;
+            $this->category = $category;
             return $this;
         }
         return false;

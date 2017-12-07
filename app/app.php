@@ -88,5 +88,9 @@ $app['dao.intervenant'] = function($app){
 	return new WF3\DAO\IntervenantDAO($app['db'], 'intervenant', 'WF3\Domain\Intervenant');
 };
 
+$app['dao.category'] = function($app){
+    return new WF3\DAO\categoryDAO($app['db'], 'category', 'WF3\Domain\Category');
+};
+
 
 

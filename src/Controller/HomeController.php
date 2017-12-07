@@ -208,6 +208,18 @@ class HomeController{
 		));
 	}
 
+	public function categoryAction(Application $app, Request $request){
+		$category = $app['dao.category']-> findAll();
+		return $app['twig']->render('category.html.twig', array('categorys' => $category));
+
+	}
+
+	public function categoryArtAction(Application $app, Request $request, $id){
+		$category = $app['dao.article']-> findArticlesByCategory($id);
+		return $app['twig']->render('categoryArt.html.twig', array('articles' => $category));
+
+	}
+
 	// public function advanceSearchAction(Application $app, Request $request){
 	// 	$post=$request->query->get('search');
 	// 	$articles=$app['dao.article']->advanceSearch($post);

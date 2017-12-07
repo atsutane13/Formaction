@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+{% block title %}Ma page d'accueil{% endblock %}
+
+{% block content %}
+    <h2>Mes articles</h2>
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    {# affichage du message de réussite #}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}          
+    {% for article in articles %}
+    <article>
+        <h2>{{ article.title }}</h2>
+        <p>publié par 
+            <a href="{{ path('voirUser', {id: article.idIntervenant}) }}">
+                {{ article.nom }}
+            </a>
+
+        </p>
+        <p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a>
+
+    </article>
+    {% endfor %}
+{% endblock %}

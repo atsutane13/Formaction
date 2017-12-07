@@ -20,7 +20,12 @@ $app->get('/article/delete/{id}', 'WF3\Controller\HomeController::deleteArticleA
 ->assert('id', '\d+')
 ->bind('deleteArticle');
 
+$app->get('/category', 'WF3\Controller\HomeController::categoryAction')
+->bind('category');
 
+$app->get('/categoryArt/{id}', 'WF3\Controller\HomeController::categoryArtAction')
+->assert('id', '\d+')
+->bind('categoryArt');
 
 //page qui affiche un auteur
 $app->match('/user/{id}', 'WF3\Controller\HomeController::userAction')
