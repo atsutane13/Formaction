@@ -20,8 +20,7 @@ $app->get('/article/delete/{id}', 'WF3\Controller\HomeController::deleteArticleA
 ->assert('id', '\d+')
 ->bind('deleteArticle');
 
-//affichage des utilisateurs
-$app->get('/users/list', 'WF3\Controller\HomeController::usersListAction')->bind('usersList');
+
 
 //page qui affiche un auteur
 $app->match('/user/{id}', 'WF3\Controller\HomeController::userAction')

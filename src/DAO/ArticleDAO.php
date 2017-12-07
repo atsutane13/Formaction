@@ -33,7 +33,7 @@ class ArticleDAO extends DAO{
 
 	//retourne la liste des articles de l'utilisateur dont l'id est fourni
 	public function getArticlesFromUser($idUser){
-		$result = $this->bdd->prepare('SELECT * FROM articles WHERE usersId = :id');
+		$result = $this->bdd->prepare('SELECT * FROM articles WHERE intervenantId = :id');
 		$result->bindValue(':id', $idUser, \PDO::PARAM_INT);
 		$result->execute();
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
@@ -53,7 +53,7 @@ class ArticleDAO extends DAO{
 
 	public function deleteArticleByAuthor($id){
 		if(!empty($id) && is_numeric($id)){
-            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE usersId = :id');
+            $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE intervenantId = :id');
             $delete->bindValue(':id', $id, \PDO::PARAM_INT);
 
             if($delete->execute()){

@@ -18,7 +18,7 @@
 
 
 <ul>
-    <img src="{{ asset('uplpoads/' ~ article.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
+    <img src="{{ asset('uploads/' ~ article.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
     <li>{{ article.title }}
              
         {% if is_granted('ROLE_ADMIN') %}

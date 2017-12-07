@@ -7,11 +7,8 @@
 			{% for article in articles %}
 			<article>
 				<h2>{{ article.title }}</h2>
-				<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a>
-					{% if token is defined and token.id == article.usersId %}
-					| <a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
+				<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a></p>
 
-				{% endif %}</p>
 			</article>
 			{% endfor %}
 		{% endblock %}

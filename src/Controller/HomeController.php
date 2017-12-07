@@ -65,11 +65,6 @@ class HomeController{
         return $app->redirect($app['url_generator']->generate('home'));
 	}
 
-	//liste des utilisateurs
-	public function usersListAction(Application $app){
-		$users = $app['dao.user']->findAll();
-    	return $app['twig']->render('users.list.html.twig', array('users' => $users));
-	}
 
 	//fiche d'un utilisateur
 	public function userAction(Application $app,Request $request, $id){

@@ -44,6 +44,7 @@ class RegisterType extends AbstractType
             'attr'=>array(
                 'class' => 'form-control'
             ),
+            'required'=> false,
             'constraints'=> new Assert\Image()
         ));
 

@@ -7,6 +7,8 @@ use WF3\Domain\Intervenant;
 
 class IntervenantDAO extends DAO {
 
+    
+
 }
 
    

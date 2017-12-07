@@ -61,21 +61,32 @@ class AdminController{
 			//return $app->redirect($app['url_generator']->generate('home')); //redirection
 			throw new AccessDeniedHttpException(); //error 403m accet interdit
 		}
-        $user = $app['dao.user']->find($id);	
-        $articleForm = $app['form.factory']->create(RegisterType::class, $user);
+        $intervenant = $app['dao.intervenant']->find($id);	
+        $logo=$intervenant->getLogo();
+        $intervenant->setLogo(NULL);
+        
+        $articleForm = $app['form.factory']->create(RegisterType::class, $intervenant);
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
-            $salt = substr(md5(time()),0,23);
-            $user->setSalt($salt);
-            $encoder=$app['security.encoder.bcrypt'];
-            $pwd=$encoder->encodePassword($user->getPassword(), $user->getSalt());
-            $user->setPassword($pwd);
-    		$app['dao.user']->update($id, $user);
-    		$app['session']->getFlashBag()->add('success', 'Utilisateur modifier');
-
+            if($intervenant->getLogo()===NULL){
+                $intervenant->setLogo($logo);
+                $app['dao.intervenant']->update($id, $intervenant);
+                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');    
+            }else{
+                $path = __DIR__.'/../../'.$app['upload_dir'];
+                $file = $request->files->get('register')['logo'];
+                $filename = md5(uniqid()).'.'.$file->guessExtension();
+                $intervenant->setLogo($filename);
+                $app['dao.intervenant']->update($id, $intervenant);
+                $file->move($path,$filename);
+                unlink( '../'.$app['upload_dir'] . "/". $logo);               
+                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+            }
     	}
         return $app['twig']->render('admin/update.user.html.twig', array(
-            'articleForm' => $articleForm->createView()
+           'articleForm' => $articleForm->createView(),
+            'intervenant'=> $app['dao.intervenant']->find($id),
+            'logo'=> $logo
         )); 
     }
 
@@ -85,7 +96,7 @@ class AdminController{
 			throw new AccessDeniedHttpException(); //error 403m accet interdit
         }
         $articles=$app['dao.article']->deleteArticleByAuthor($id);
-        $user=$app['dao.user']->delete($id);
+        $user=$app['dao.intervenant']->delete($id);
         //on crée un message de réussite dans la session
         $app['session']->getFlashBag()->add('success', 'Article bien supprimé');
         //on redirige vers la page d'accueil
