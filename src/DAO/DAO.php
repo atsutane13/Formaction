@@ -168,11 +168,19 @@ class DAO implements DB {
 
         foreach($data as $key=>$value){
             //on va créer les lignes bindValue correspondantes
+<<<<<<< HEAD
+            if($value===NULL||$value===TRUE){
+                $add->bindValue(':' . $key, $value);
+            }else{
+            $add->bindValue(':' . $key, strip_tags($value));
+            }
+=======
             if($value===Null||$value===TRUE){
                 $add->bindValue(':' . $key, $value);
             }
             else{$add->bindValue(':' . $key, strip_tags($value));}
             
+>>>>>>> 5e7ae4359a4015ea085fe0fda4d56074ebf2c126
         }
 
         if($add->execute()){
