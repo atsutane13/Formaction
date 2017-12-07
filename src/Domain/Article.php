@@ -61,13 +61,13 @@ class Article{
     }
 
     public function setDatePubli($datePubli){
-        if(!empty($datePubli) AND is_string($datePubli)){
+
             $this->datePubli = $datePubli; 
-        }
+        
     }
     
     public function setDuree($duree){
-        if(!empty($duree) AND is_numeric($duree)){
+        if(!empty($duree) AND is_string($duree)){
             $this->duree = $duree;
         }
         return false;
