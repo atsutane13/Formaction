@@ -220,6 +220,8 @@ class HomeController{
 
 	}
 
+	
+
 	// public function advanceSearchAction(Application $app, Request $request){
 	// 	$post=$request->query->get('search');
 	// 	$articles=$app['dao.article']->advanceSearch($post);
