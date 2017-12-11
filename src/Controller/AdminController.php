@@ -27,7 +27,6 @@ class AdminController{
         $article = new Article();
         $articleForm = $app['form.factory']->create(ArticleType::class, $article);
         $articleForm->handleRequest($request);
-        $dropCat=$app['dao.category']->getCategoryWithId();
         if($articleForm->isSubmitted() && $articleForm->isValid()){
             $app['dao.article']->insert($article);
             $app['session']->getFlashBag()->add('success', 'Article bien enregistré');
@@ -111,11 +110,12 @@ class AdminController{
                 $intervenant->setLogo($filename);
                 $app['dao.intervenant']->update($id, $intervenant);
                 $file->move($path,$filename);
-                if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
-                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
+                if($Logo===NULL){
+                    
                     $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
                 else{
+                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
                     $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
             }

@@ -5,7 +5,7 @@ namespace WF3\Form\Type;
 use Symfony\Component\Form\AbstractType;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -40,13 +40,13 @@ class RegisterType extends AbstractType
             )
         ));
 
-        $builder->add('email', EmailType::class,array(
+        $builder->add('contact', UrlType::class,array(
             'attr'=>array(
                 'class'=>'form-control',
-                'placeholder'=>'entrez un email'
+                'placeholder'=>'entrez un un URL de la page'
             ),
             'constraints'=>array(
-                new Assert\Email
+                new Assert\Url()
             )
         ));
 

@@ -52,8 +52,16 @@ class ArticleType extends AbstractType
         $builder->add('intervenantId', ChoiceType::class, array(
             'choices'  => array(
                 'choisissez un role' => null,
-                'Philomathique Botrdeaux' => '1',
-                'CFA' => '2'
+                'PHILOMATHIQUE BORDEAUX' => '1',
+                'CFA' => '2',
+                'LE WAGON' => '3',
+                'WILD CODE SCHOOL BORDEAUX' => '4',
+                'GRETA AQUITAINE' => '5',
+                'MODULA BORDEAUX' => '6',
+                'CESI EXIA BORDEAUX' => '7',
+                'DIGITAL CAMPUS' => '8',
+                'GIP FCIP AQUITAIN' => '9',
+                'CFA: INSTITUT DES SAVEURS' => '10'
             ),
             'constraints'=>array(
                 new Assert\NotBlank()                
