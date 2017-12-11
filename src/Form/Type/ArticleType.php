@@ -35,10 +35,6 @@ class ArticleType extends AbstractType
                 'class'=> 'form-control'
                 )
         ));
-
-        // $builder->add('datePubli', DateTimeType::class, array(
-        //     'input'=> 'datetime'
-        // ));
         
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(

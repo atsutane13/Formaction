@@ -40,6 +40,16 @@ class RegisterType extends AbstractType
             )
         ));
 
+        $builder->add('email', EmailType::class,array(
+            'attr'=>array(
+                'class'=>'form-control',
+                'placeholder'=>'entrez un email'
+            ),
+            'constraints'=>array(
+                new Assert\Email
+            )
+        ));
+
         $builder->add('logo', FileType::class,array(
             'attr'=>array(
                 'class' => 'form-control'
