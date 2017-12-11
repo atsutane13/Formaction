@@ -15,35 +15,64 @@ use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 class AdminController{
     public function indexAction(Application $app){
         $articles = $app['dao.article']->findAll();	
-        $intervenants = $app['dao.intervenant']->findAll();
-
-
-        
+        $intervenants = $app['dao.intervenant']->findAll();        
         return $app['twig']->render('admin/index.admin.html.twig', array('articles' => $articles, 'intervenants'=>$intervenants));
+    }    
+
+                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+                    //////////////// ARTICLES \\\\\\\\\\\\\\\\\\
+                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+
+    public function AjoutArticleAction(Application $app, Request $request){
+        $article = new Article();
+        $articleForm = $app['form.factory']->create(ArticleType::class, $article);
+        $articleForm->handleRequest($request);
+        if($articleForm->isSubmitted() && $articleForm->isValid()){
+            $app['dao.article']->insert($article);
+            $app['session']->getFlashBag()->add('success', 'Article bien enregistré');
+        }
+        return $app['twig']->render('ajout.article.html.twig', array(
+            'articleForm' => $articleForm->createView(),
+            'article' => $article
+        ));
     }
 
-    public function updateAction(Application $app, Request $request, $id){
+    public function updateArticleAction(Application $app, Request $request, $id){
         $article = $app['dao.article']->find($id);	
         $articleForm = $app['form.factory']->create(ArticleType::class, $article);
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
-    		$app['dao.article']->update($id, $article);
-    		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
-
-    	}
+            $app['dao.article']->update($id, $article);
+            $app['session']->getFlashBag()->add('success', 'Article bien enregistré');
+        }
         return $app['twig']->render('admin/update.admin.html.twig', array(
             'articleForm' => $articleForm->createView()
         ));        
     }
 
-    
+    //page de suppression d'article
+    public function deleteArticleAction(Application $app, $id){
+        if(!$app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
+            //return $app->redirect($app['url_generator']->generate('home')); //redirection
+            throw new AccessDeniedHttpException(); //error 403m accet interdit
+        }
+        $article = $app['dao.article']->delete($id);
+        //on crée un message de réussite dans la session
+        $app['session']->getFlashBag()->add('success', 'Article bien supprimé');
+        //on redirige vers la page d'accueil
+        return $app->redirect($app['url_generator']->generate('home'));
+    }
 
-    public function AddUserAction(Application $app, Request $request){
+                    //////////////////////\\\\\\\\\\\\\\\\\\\\\\\\
+                    //////////////// INTERVENANT \\\\\\\\\\\\\\\\\\
+                    //////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
+
+// Ajout un intervenant
+    public function AjoutIntervenantAction(Application $app, Request $request){
         $intervenant=new Intervenant();
         $articleForm = $app['form.factory']->create(RegisterType::class, $intervenant);
         $articleForm->handleRequest($request);
-        if($articleForm->isSubmitted() && $articleForm->isValid()){
-	
+        if($articleForm->isSubmitted() && $articleForm->isValid()){	
 			$path = __DIR__.'/../../'.$app['upload_dir'];
 			$file = $request->files->get('register')['logo'];
 			$filename = md5(uniqid()).'.'.$file->guessExtension();
@@ -54,11 +83,11 @@ class AdminController{
         }
         return $app['twig']->render('admin/adduser.admin.html.twig', array(
             'articleForm' => $articleForm->createView()
-
         ));
     }
 
-    public function UpdateUserAction(Application $app, Request $request, $id){
+// Modifie un intervenant
+    public function UpdateIntervenantAction(Application $app, Request $request, $id){
         if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			//return $app->redirect($app['url_generator']->generate('home')); //redirection
 			throw new AccessDeniedHttpException(); //error 403m accet interdit
@@ -73,7 +102,7 @@ class AdminController{
             if($intervenant->getLogo()===NULL){
                 $intervenant->setLogo($logo);
                 $app['dao.intervenant']->update($id, $intervenant);
-                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');    
+                $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');    
             }else{
                 $path = __DIR__.'/../../'.$app['upload_dir'];
                 $file = $request->files->get('register')['logo'];
@@ -81,28 +110,42 @@ class AdminController{
                 $intervenant->setLogo($filename);
                 $app['dao.intervenant']->update($id, $intervenant);
                 $file->move($path,$filename);
-                if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
-                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
-                    $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+                if($Logo===NULL){
+                    
+                    $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
                 else{
-                    $app['session']->getFlashBag()->add('success', 'Intervenant modifier');
+                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
+                    $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
             }
     	}
         return $app['twig']->render('admin/update.user.html.twig', array(
            'articleForm' => $articleForm->createView(),
-            'intervenant'=> $app['dao.intervenant']->find($id),
-            'logo'=> $logo
+           'intervenant'=> $app['dao.intervenant']->find($id),
+           'logo'=> $logo
         )); 
     }
-////////////////////////////////////////////////
 
-//////////CATEGORY
+// Supprime un intervenant
+    public function DeleteIntervenantAction(Application $app, Request $request, $id){
+        if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
+            //return $app->redirect($app['url_generator']->generate('home')); //redirection
+            throw new AccessDeniedHttpException(); //error 403m accet interdit
+        }
+        $articles=$app['dao.article']->deleteArticleByAuthor($id);
+        $user=$app['dao.intervenant']->delete($id);
+        //on crée un message de réussite dans la session
+        $app['session']->getFlashBag()->add('success', 'Article bien supprimé');
+        //on redirige vers la page d'accueil
+        return $app->redirect($app['url_generator']->generate('usersList'));
+    }
+                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+                    //////////////// CATEGORY \\\\\\\\\\\\\\\\\\
+                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
 
-///////////////////////////////////////
-
-    public function ajoutCategoryAction(Application $app, Request $request){
+// Ajoute une category
+public function ajoutCategoryAction(Application $app, Request $request){
         $intervenant=new Category();
         $articleForm = $app['form.factory']->create(CategoryType::class, $intervenant);
         $articleForm->handleRequest($request);
@@ -122,6 +165,7 @@ class AdminController{
         ));
     }
 
+// Modifie une category
     public function updateCategoryAction(Application $app, Request $request, $id){
         if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			//return $app->redirect($app['url_generator']->generate('home')); //redirection
@@ -137,7 +181,7 @@ class AdminController{
             if($intervenant->getImage()===NULL){
                 $intervenant->setImage($logo);
                 $app['dao.category']->update($id, $intervenant);
-                $app['session']->getFlashBag()->add('success', 'Intervenant modifier');    
+                $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');    
             }else{
                 $path = __DIR__.'/../../'.$app['upload_dir'];
                 $file = $request->files->get('category')['image'];
@@ -147,10 +191,10 @@ class AdminController{
                 $file->move($path,$filename);
                 if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
                     unlink( '../'.$app['upload_dir'] . "/". $logo); 
-                    $app['session']->getFlashBag()->add('success', 'Category modifier');
+                    $app['session']->getFlashBag()->add('success', 'Category modifiée');
                 }
                 else{
-                    $app['session']->getFlashBag()->add('success', 'Category modifier');
+                    $app['session']->getFlashBag()->add('success', 'Category modifiée');
                 }
                                          
             }
@@ -162,6 +206,7 @@ class AdminController{
         )); 
     }
 
+// Supression d'une category
     public function DeleteCategoryAction(Application $app, Request $request, $id){
         if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			//return $app->redirect($app['url_generator']->generate('home')); //redirection
@@ -172,18 +217,5 @@ class AdminController{
         $app['session']->getFlashBag()->add('success', 'Category bien supprimé');
         //on redirige vers la page d'accueil
         return $app->redirect($app['url_generator']->generate('category'));
-    }
-
-    public function DeleteUserAction(Application $app, Request $request, $id){
-        if(!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
-			//return $app->redirect($app['url_generator']->generate('home')); //redirection
-			throw new AccessDeniedHttpException(); //error 403m accet interdit
-        }
-        $articles=$app['dao.article']->deleteArticleByAuthor($id);
-        $user=$app['dao.intervenant']->delete($id);
-        //on crée un message de réussite dans la session
-        $app['session']->getFlashBag()->add('success', 'Article bien supprimé');
-        //on redirige vers la page d'accueil
-        return $app->redirect($app['url_generator']->generate('usersList'));
     }
 }
