@@ -74,7 +74,7 @@ class ArticleDAO extends DAO{
 
 	public function advanceSearch($str){
 		if(!empty($str)){			
-			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN intervenant ON  articles.intervenantId = intervenant.id WHERE nom LIKE :string  OR duree LIKE :string');
+			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN intervenant ON  articles.intervenantId = intervenant.id WHERE nom LIKE :string  OR duree LIKE :string OR title LIKE :string');
 			$search->bindValue(':string', '%'.$str.'%');
             $search->execute();				
 			return $search->fetchALL(\PDO::FETCH_ASSOC);;
