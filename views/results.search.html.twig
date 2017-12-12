@@ -4,11 +4,10 @@
 	
 	{% block content %}
             <h2>Résultats</h2>
-
-			{% for article in articles %}
+		{% for article in articles %}
 			<article>
-				<h2>{{ article.intervenant }}</h2>
-				<h3>{{ article.title }}</h3>
+				<h2>{{ article.title }}</h2>
+				<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a>
 
 			</article>
 			{% endfor %}

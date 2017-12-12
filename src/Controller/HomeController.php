@@ -18,11 +18,11 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class HomeController{
-
-                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
-                    //////////////// AFFICHAGE \\\\\\\\\\\\\\\\\\
-                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
-
+	
+	/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+	//////////////// AFFICHAGE \\\\\\\\\\\\\\\\\\
+	/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+	
 	//page d'accueil qui affiche tout les articles
 	public function homePageAction(Application $app){
 		$articles = $app['dao.article']->getArticlesWithAuthor();	
@@ -31,11 +31,22 @@ class HomeController{
 			if(NULL!==$token){			
 				$tok=$token->getUser();
 			}
-		 return $app['twig']->render('index.html.twig', array('articles' => $articles,'token'=>$tok));
+			return $app['twig']->render('index.html.twig', array('articles' => $articles,'token'=>$tok));
 		}
 		return $app['twig']->render('index.html.twig', array('articles' => $articles));
 	}
-
+	
+	// permet de cherche une category
+	public function categoryAction(Application $app, Request $request){
+		$category = $app['dao.category']-> findAll();
+		return $app['twig']->render('category.html.twig', array('categorys' => $category));
+	}
+	
+	// cherche des article en fonction de la category
+	public function categoryArtAction(Application $app, Request $request, $id){
+	$category = $app['dao.article']-> findArticlesByCategory($id);
+	return $app['twig']->render('categoryArt.html.twig', array('articles' => $category));
+	}
 	//page qui affiche les 5 derniers articles
 	public function lastFiveFormationsAction(Application $app){
 		$articles = $app['dao.article']->getLastArticles();
@@ -90,98 +101,86 @@ class HomeController{
                     /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
 
     //page contact
-    public function seurcheAction(Application $app, Request $request){
-        $articles = $app['dao.article']->findArticlesByTitle($request->query->get('search'));
-        //$articles = $app['dao.article']->findArticlesByTitle($_GET['title']);
-        return $app['twig']->render('results.search.html.twig', array('articles' => $articles));
-    }
 	
 	// page de connection de l'admin
     public function loginAction(Application $app, Request $request){//formulaire de connexion en dur.
     	//j'appelle la vue qui contient le formulaire de connexion
     	//error va contenir les éventuels messages d'erreur
     	return $app['twig']->render('login.html.twig', array(
-    		'error' => $app['security.last_error']($request),
+			'error' => $app['security.last_error']($request),
     		'last_username' => $app['session']->get('_security.last_username')
     	));
 	}
-
+	
     // public function ajoutArticleAction(Application $app, Request $request){
-    // 	//on récupère l'utilisateur connecté
-	// 	if(!$app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
-	// 		//return $app->redirect($app['url_generator']->generate('home')); //redirection
-	// 		throw new AccessDeniedHttpException(); //error 403m accet interdit
-	// 	}
-    // 	//je crée un objet article vide
-	// 	$article = new Article();
-    // 	//je crée mon objet formulaire à partir de la classe ArticleType
-    // 	$articleForm = $app['form.factory']->create(ArticleType::class, $article);
-    // 	$articleForm->handleRequest($request);
-    // 	if($articleForm->isSubmitted() && $articleForm->isValid()){
-	// 		$app['dao.article']->insert($article);
-   	// 	//on stocke en session un message de réussite
-    // 		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
-    // 	}
-    // 	//j'envoie à la vue le formulaire grâce à $articleForm->createView() 
+		// 	//on récupère l'utilisateur connecté
+		// 	if(!$app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
+			// 		//return $app->redirect($app['url_generator']->generate('home')); //redirection
+			// 		throw new AccessDeniedHttpException(); //error 403m accet interdit
+			// 	}
+			// 	//je crée un objet article vide
+			// 	$article = new Article();
+			// 	//je crée mon objet formulaire à partir de la classe ArticleType
+			// 	$articleForm = $app['form.factory']->create(ArticleType::class, $article);
+			// 	$articleForm->handleRequest($request);
+			// 	if($articleForm->isSubmitted() && $articleForm->isValid()){
+				// 		$app['dao.article']->insert($article);
+				// 	//on stocke en session un message de réussite
+				// 		$app['session']->getFlashBag()->add('success', 'Article bien enregistré');
+				// 	}
+				// 	//j'envoie à la vue le formulaire grâce à $articleForm->createView() 
     // 	return $app['twig']->render('ajout.article.html.twig', array(
-    // 			'articleForm' => $articleForm->createView(),
-	// 			'article' => $article,
+		// 			'articleForm' => $articleForm->createView(),
+		// 			'article' => $article,
     // 	));
 	// }
 	
 	// public function RegisterAction(Application $app, Request $request){
-    //     $user=new User();
-    //     $articleForm = $app['form.factory']->create(UserRegisterType::class, $user);
-    //     $articleForm->handleRequest($request);
-    //     if($articleForm->isSubmitted() && $articleForm->isValid()){			
-    //         $salt = substr(md5(time()),0,23);
-    //         $user->setSalt($salt);
-    //         $encoder=$app['security.encoder.bcrypt'];
-    //         $pwd=$encoder->encodePassword($user->getPassword(), $user->getSalt());
-	// 		$user->setPassword($pwd);
-	// 		$user->setRole('ROLE_USER');
-    //         $app['dao.user']->insert($user);
-	// 		$app['session']->getFlashBag()->add('success', 'Utilisateur bien enregistré');
-    //     }
-    //     return $app['twig']->render('Register.html.twig', array(
-    //         'articleForm' => $articleForm->createView(),
-    //         'user' => $user
-    //     ));
-	// }
-	
-
-                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
-                    //////////////// RECHERCHE \\\\\\\\\\\\\\\\\\
-                    /////////////////////\\\\\\\\\\\\\\\\\\\\\\\
-
-	// permet de chercher une formation dans une barre de recherche
-	public function advanceSearchAction(Application $app, Request $request){		
-		$articles=[];
-		$searchForm = $app['form.factory']->create(SearchType::class);
-		$searchForm->handleRequest($request);
-		$post =[];
-		//if($searchForm->isValid()){	
-			$post=$request->query->get('search');
-			$articles=$app['dao.article']->advanceSearch($post['text']);
-		//}
-		return $app['twig']->render('search.html.twig', array(
-			'searchForm' => $searchForm->createView(),
-			'articles'=>$articles,
-			'post'=>$request->query->get('search')
-		));
-	}
-
-	// permet de cherche une category
-	public function categoryAction(Application $app, Request $request){
-		$category = $app['dao.category']-> findAll();
-		return $app['twig']->render('category.html.twig', array('categorys' => $category));
-	}
-
-	// cherche des article en fonction de la category
-	public function categoryArtAction(Application $app, Request $request, $id){
-		$category = $app['dao.article']-> findArticlesByCategory($id);
-		return $app['twig']->render('categoryArt.html.twig', array('articles' => $category));
-	}
+		//     $user=new User();
+		//     $articleForm = $app['form.factory']->create(UserRegisterType::class, $user);
+		//     $articleForm->handleRequest($request);
+		//     if($articleForm->isSubmitted() && $articleForm->isValid()){			
+			//         $salt = substr(md5(time()),0,23);
+			//         $user->setSalt($salt);
+			//         $encoder=$app['security.encoder.bcrypt'];
+			//         $pwd=$encoder->encodePassword($user->getPassword(), $user->getSalt());
+			// 		$user->setPassword($pwd);
+			// 		$user->setRole('ROLE_USER');
+			//         $app['dao.user']->insert($user);
+			// 		$app['session']->getFlashBag()->add('success', 'Utilisateur bien enregistré');
+			//     }
+			//     return $app['twig']->render('Register.html.twig', array(
+				//         'articleForm' => $articleForm->createView(),
+				//         'user' => $user
+				//     ));
+				// }
+				
+				
+				/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+				//////////////// RECHERCHE \\\\\\\\\\\\\\\\\\
+				/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
+				public function seurcheAction(Application $app, Request $request){
+					$articles=$app['dao.article']->advanceSearch($request->query->get('search'));
+					return $app['twig']->render('results.search.html.twig', array('articles' => $articles));
+				}
+				
+				// permet de chercher une formation dans une barre de recherche
+				// public function advanceSearchAction(Application $app, Request $request){		
+				// 	$articles=[];
+				// 	$searchForm = $app['form.factory']->create(SearchType::class);
+				// 	$searchForm->handleRequest($request);
+				// 	$post =[];
+				// 	//if($searchForm->isValid()){	
+				// 		$post=$request->query->get('search');
+				// 		$articles=$app['dao.article']->advanceSearch($post['text']);
+				// 		//}
+				// 		return $app['twig']->render('search.html.twig', array(
+				// 			'searchForm' => $searchForm->createView(),
+				// 			'articles'=>$articles,
+				// 			'post'=>$request->query->get('search')
+				// 		));
+				// 	}
+					
 
 	
 
