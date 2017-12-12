@@ -1,46 +1,93 @@
-<!doctype html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-	<div class="container">
-		<header>
-			<img src="{{ asset('elandy.jpg') }}" class="img img-responsive img-rounded" width="150">
-            <h1>projet Silex avec twig</h1>
-		</header>
-        <nav class="nav nav-bar">
-            <ul>
-				<li><a href="{{ path('home') }}">Accueil</a></li>
-				<li><a href="{{ path('category') }}">Category</a></li>
-                <li><a href="{{ path('lastFormations') }}">Derniers articles</a></li>				
-				{% if is_granted('ROLE_ADMIN') %}
-					<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-					<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-					<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
-					<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
-					<li><a href="{{ path('logout') }}">déconnexion</a></li>
-				{% else %}
+<!DOCTYPE html>
+<html lang="fr">
 
-					<li><a href="{{ path('login') }}">connexion</a></li>
-                {% endif %}
-            </ul>
-		</nav>
-		<h2>Seurche angine</h2>
-		<form class="row" action="{{ path('recherche')}}">
-			<input class="form-control col-sm-6" type="text" name="search">
-			<button class="btn btn-default col-sm-2" type="submit">Rechercher</button>
-		</form>
-		<div class="col-md-12">
-            {% block content %}{% endblock %}
+	<head>
+		<title>FormAction</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+		<link rel="stylesheet" href="{{ asset('admin/admin.css') }}" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" /> 
+	</head>
+	<body class="landing">
+		<div id="page-wrapper">
+				<header id="header">
+						<nav id="nav">
+							<ul>
+								<li class="ui icon input" action="{{ path('recherche')}}">
+									<input placeholder="Recherche" type="text" name="search">
+								</li>
+								<li><a href="{{ path('home') }}">Accueil</a></li>
+								<li><a href="{{ path('category') }}">Category</a></li>
+								<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li>				
+								{% if is_granted('ROLE_ADMIN') %}
+									<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+									<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+									<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+									<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+									<li><a href="{{ path('logout') }}">déconnexion</a></li>
+								{% else %}
+				
+									<li><a href="{{ path('login') }}">connexion</a></li>
+								   {% endif %}
+							</ul>
+						</nav>
+						</header>
+        	{# <nav class="nav nav-bar">
+            	<ul>
+					<li><a href="{{ path('home') }}">Accueil</a></li>
+					<li><a href="{{ path('category') }}">Category</a></li>
+					<li><a href="{{ path('lastFormations') }}">Derniers articles</a></li>				
+					{% if is_granted('ROLE_ADMIN') %}
+						<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+						<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+						<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+						<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+						<li><a href="{{ path('logout') }}">déconnexion</a></li>
+					{% else %}
+
+						<li><a href="{{ path('login') }}">connexion</a></li>
+               		{% endif %}
+            	</ul>
+			</nav>
+			<h2>Recherche</h2>
+				<form class="row" action="{{ path('recherche')}}">
+					<input class="form-control col-sm-6" type="text" name="search">
+					<button class="btn btn-default col-sm-2" type="submit">Rechercher</button>
+				</form> #}
+				<div class="col-md-12">
+					{% block content %}{% endblock %}
+				</div>
+				<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+					</footer>
 		</div>
-		<footer class="footer">cvxbvcbcvb
-		</footer>
-	</div>
-	{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> #}
-	{% block javascipt %}{% endblock %}
-</body>
+			{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> #}
+			
+			<!-- Scripts -->
+			<!-- Scripts -->
+		<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrolly.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.dropotron.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrollex.min.js')}}"></script>
+		<script src="{{ asset('assets/js/skel.min.js')}}"></script>
+		<script src="{{ asset('assets/js/util.js')}}"></script>
+		<!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]-->
+		<script src="{{ asset('assets/js/main.js')}}"></script>
+			{% block javascipt %}{% endblock %}
+	</body>
 </html>
