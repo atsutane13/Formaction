@@ -190,11 +190,11 @@ public function ajoutCategoryAction(Application $app, Request $request){
                 $intervenant->setImage($filename);
                 $app['dao.category']->update($id, $intervenant);
                 $file->move($path,$filename);
-                if(file_exists( '../'.$app['upload_dir'] . "/". $logo)){
-                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
+                if($logo===NULL){
                     $app['session']->getFlashBag()->add('success', 'Category modifiée');
                 }
                 else{
+                    unlink( '../'.$app['upload_dir'] . "/". $logo); 
                     $app['session']->getFlashBag()->add('success', 'Category modifiée');
                 }
                                          
