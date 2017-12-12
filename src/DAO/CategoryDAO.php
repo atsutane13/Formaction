@@ -19,7 +19,7 @@ class CategoryDAO extends DAO {
     }
     
     public function getCategoryWithId(){
-        $catId=$this->bdd->query('SELECT id category FROM '.$this->tableName);
+        $catId=$this->bdd->query('SELECT id, category FROM '.$this->tableName);
         return $dropCat=$catId->fetchALL(\PDO::FETCH_ASSOC);
     }
 

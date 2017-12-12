@@ -88,5 +88,12 @@ class ArticleDAO extends DAO{
             }
         }
 	}
+	
+	public function getIntervenantId($id){
+		$interId=$this->bdd->prepare('SELECT intervenantId FROM '.$this->tableName.' WHERE id=:id');
+		$interId->bindValue(':id', $id, \PDO::PARAM_INT);
+        return $interId->fetch(\PDO::FETCH_ASSOC);
+
+    }
 
 }

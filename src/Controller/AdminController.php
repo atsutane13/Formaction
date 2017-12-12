@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use WF3\Form\Type\ArticleType;
 use WF3\Form\Type\RegisterType;
 use WF3\Form\Type\CategoryType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 class AdminController{
@@ -26,12 +28,26 @@ class AdminController{
     public function AjoutArticleAction(Application $app, Request $request){
         $article = new Article();
         $articleForm = $app['form.factory']->create(ArticleType::class, $article);
+        $selectCats=$app['dao.category']->getCategoryWithId();
+        $dropCategory=[];
+        foreach($selectCats as $selectCat){
+            $dropCategory[$selectCat['category']]=$selectCat['id'];
+        }
+        $articleForm->add('categoryId', ChoiceType::class,array('choices'=>$dropCategory));
+
+        $selectInters=$app['dao.intervenant']->getIntervenantWithId();
+        $dropIntervenant=[];
+        foreach($selectInters as $selectInter){
+            $dropIntervenant[$selectInter['nom']]=$selectInter['id'];
+        }
+        $articleForm->add('intervenantId', ChoiceType::class,array('choices'=>$dropIntervenant));
+        
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
             $app['dao.article']->insert($article);
             $app['session']->getFlashBag()->add('success', 'Article bien enregistré');
         }
-        return $app['twig']->render('ajout.article.html.twig', array(
+        return $app['twig']->render('admin/ajout.article.html.twig', array(
             'articleForm' => $articleForm->createView(),
             'article' => $article
         ));
@@ -39,7 +55,23 @@ class AdminController{
 
     public function updateArticleAction(Application $app, Request $request, $id){
         $article = $app['dao.article']->find($id);	
+        $article->setIntervenantId($app['dao.article']->getIntervenantId($id));
         $articleForm = $app['form.factory']->create(ArticleType::class, $article);
+        $selectCats=$app['dao.category']->getCategoryWithId();
+
+        $dropCategory=[];
+        foreach($selectCats as $selectCat){
+            $dropCategory[$selectCat['category']]=$selectCat['id'];
+        }
+        $articleForm->add('categoryId', ChoiceType::class,array('choices'=>$dropCategory));
+
+        $selectInters=$app['dao.intervenant']->getIntervenantWithId();
+        $dropIntervenant=[];
+        foreach($selectInters as $selectInter){
+            $dropIntervenant[$selectInter['nom']]=$selectInter['id'];
+        }
+        $articleForm->add('intervenantId', ChoiceType::class,array('choices'=>$dropIntervenant));
+        
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
             $app['dao.article']->update($id, $article);
