@@ -26,6 +26,7 @@ class AdminController{
     public function AjoutArticleAction(Application $app, Request $request){
         $article = new Article();
         $articleForm = $app['form.factory']->create(ArticleType::class, $article);
+        
         $articleForm->handleRequest($request);
         if($articleForm->isSubmitted() && $articleForm->isValid()){
             $app['dao.article']->insert($article);
