@@ -7,30 +7,22 @@
 			<div class="row">
 					<div class="col-md-8">
 						<article>
-				<h2>{{ user.username }}</h2>
-				<p>{{ user.email }}</p>
-				<p>{{ user.phone }}</p>
+				<h2>Formation proposée par : {{ intervenant.nom }}</h2>
+				<p>Lien de contact : {{ intervenant.contact }}</p>
+				<p>{{ intervenant.phone }}</p>
 			</article>
 			
 			
 			</div>
-				<div class="col-md-4">
-						{{ form_start(uploadForm) }}
-						{{ form_end(uploadForm) }}
-					</div>
-				</div>
 
-			<h2>Articles écrits par {{ user.username }}</h2>
+
 			{% for article in articles %}
 			<article>
-				<h2>{{ article.title }}</h2>
-
+				<div>
+				<h4>Formation : {{ article.title }}</h4>
+			</div>
 				<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a>
 					
-				{% if token is defined and token.id == article.usersId %}
-					| <a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a>
-
-				{% endif %}
 				</p>
 			</article>
 			{% endfor %}

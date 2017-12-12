@@ -58,36 +58,15 @@ class HomeController{
 	
 
 
-	//fiche d'un utilisateur
-	// public function userAction(Application $app,Request $request, $id){
-	// 	$user = $app['dao.user']->find($id);
-	//     //on va chercher la liste des articles écrits par l'utilisateur dont l'id est $id
-	//     //on utilise la méthode getArticlesFromUser() de la classe ArticleDAO
-	// 	$articles = $app['dao.article']->getArticlesFromUser($id);	
-	// 	if($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
-	// 		$token=$app['security.token_storage']->getToken();	
-	// 		if(NULL!==$token){			
-	// 			$tok=$token->getUser();
-	// 		}
-	// 		$uploadForm = $app['form.factory']->create(UploadImageType::class);
-	// 		$uploadForm->handleRequest($request);
-	// 		if($uploadForm->isSubmitted() AND $uploadForm->isValid()){
-	// 			$file = $request->files->get('upload_image')['image'];
-	// 			//je lui dis où stocker le fichier
-	// 			//$app['upload_dir'] est défini dans app/config/prod.php
-	// 			$path = __DIR__.'/../../'.$app['upload_dir'];
-	// 			//le nom original est dispo avec :
-	// 			//$filename = $file->getClientOriginalName();
-	// 			//guessExtension() renvoie l'extension du fichier
-	// 			$filename = md5(uniqid()).'.'.$file->guessExtension();
-	// 			//on transfère le fichier
-	// 			$file->move($path,$filename);	
-	// 		}
-	// 	return $app['twig']->render('user.html.twig', array('user' => $user, 'articles' => $articles, 'token'=>$tok,
-	// 	'uploadForm' => $uploadForm->createView()));
-	// 	}
-	// 	return $app['twig']->render('user.html.twig', array('user' => $user, 'articles' => $articles));
-	// }
+	// fiche d'un utilisateur
+	public function userAction(Application $app,Request $request, $id){
+		$user = $app['dao.intervenant']->find($id);
+	    //on va chercher la liste des articles écrits par l'utilisateur dont l'id est $id
+	    //on utilise la méthode getArticlesFromUser() de la classe ArticleDAO
+		$articles = $app['dao.article']->getArticlesFromUser($id);	
+
+		return $app['twig']->render('user.html.twig', array('intervenant' => $user, 'articles' => $articles));
+	}
 
 	//page contact
 	// public function contactAction(Application $app, Request $request){
