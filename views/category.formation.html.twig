@@ -9,17 +9,17 @@
             {{ flashMessage }}
         </div>
     {% endfor %}          
-    {% for article in articles %}
+    {% for categorie in categories %}
     <article>
-        <h2>{{ article.title }}</h2>
-        <img src="{{ asset('uploads/' ~ article.logo ) }}" class="img img-responsive img-rounded" width="150">
+        <h2>{{ categorie.title }}</h2>
+        <img src="{{ asset('uploads/' ~ categorie.logo ) }}" class="img img-responsive img-rounded" width="150">
         <p>publié par 
-            <a href="{{ path('voirUser', {id: article.idIntervenant}) }}">
-                {{ article.nom }}
+            <a href="{{ path('voirIntervenant', {id: categorie.idIntervenant}) }}">
+                {{ categorie.nom }}
             </a>
 
         </p>
-        <p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a>
+        <p><a href="{{ path('voirFormation', {id: categorie.idArticle}) }}">Voir</a>
 
     </article>
     {% endfor %}

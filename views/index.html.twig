@@ -9,16 +9,16 @@
                     {{ flashMessage }}
                 </div>
             {% endfor %}          
-			{% for article in articles %}
+			{% for formation in formations %}
 			<article>
-				<h2>{{ article.title }}</h2>
+				<h2>{{ formation.title }}</h2>
 				<p>publié par 
-					<a href="{{article.url}}">
-						{{ article.nom }}
+					<a href="{{formation.url}}">
+						{{ formation.nom }}
 					</a>
-					le {{article.datePubli}}
+					le {{formation.datePubli}}
 				</p>
-				<p><a href="{{ path('voirArticle', {id: article.idArticle}) }}">Voir</a>
+				<p><a href="{{ path('voirFormation', {id: formation.idArticle}) }}">Voir</a>
 
 			</article>
 			{% endfor %}

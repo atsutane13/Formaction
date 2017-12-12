@@ -10,7 +10,6 @@ class ArticleDAO extends DAO{
 		$this->intervenantDAO=$intervenantDAO;
 	}
 
-
 	public function buildObject(array $row){
 		$article=parent::buildObject($row);
 		$idAuteur=$article->getIntervenantId();
@@ -23,10 +22,7 @@ class ArticleDAO extends DAO{
 		return $article;
 	}
 	
-
-
-
-	public function getLastArticles(){
+	public function getLastFormations(){
 		$result = $this->bdd->query('SELECT * FROM articles ORDER BY datePubli DESC LIMIT 0,5');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
@@ -39,7 +35,7 @@ class ArticleDAO extends DAO{
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
 
-	public function getArticlesWithAuthor(){
+	public function getFormationsWithAuthor(){
 		$result = $this->bdd->query('SELECT articles.id AS idArticle, title,  intervenant.id AS idIntervenant, nom, datePubli, url FROM articles INNER JOIN intervenant ON articles.intervenantId= intervenant.id');
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
@@ -51,7 +47,7 @@ class ArticleDAO extends DAO{
         return $result->fetchALL(\PDO::FETCH_ASSOC);
 	}
 
-	public function deleteArticleByAuthor($id){
+	public function deleteFormationByIntervenant($id){
 		if(!empty($id) && is_numeric($id)){
             $delete = $this->bdd->prepare('DELETE FROM '.$this->tableName.' WHERE intervenantId = :id');
             $delete->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -62,9 +58,8 @@ class ArticleDAO extends DAO{
         }
 	}
 
-	
 
-	public function findArticlesByCategory($title){
+	public function findFormationsByCategory($title){
         $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, intervenant.id AS idIntervenant, nom, logo FROM articles INNER JOIN intervenant ON articles.intervenantId = intervenant.id WHERE categoryId = :category');
         $result->bindValue(':category', $title);
         $result->execute();

@@ -8,16 +8,16 @@
 				<div class="col-md-8">
 					<article>
 						<h2>Formation proposée par : {{ intervenant.nom }}</h2>
-						<p>Lien de contact : {{ intervenant.contact }}</p>
+						<a href="{{ intervenant.contact }}"></a>
 						<p>{{ intervenant.phone }}</p>
 					</article>					
 				</div>
 
 				<div class="col-md-4">
-					{% for article in articles %}
+					{% for formation in formations %}
 					<article>				
-						<h4>Formation : {{ article.title }}</h4>			
-						<p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a></p>
+						<h4>Formation : {{ formation.title }}</h4>			
+						<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a></p>
 					</article>
 					{% endfor %}
 				</div>

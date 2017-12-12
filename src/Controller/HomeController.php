@@ -25,15 +25,15 @@ class HomeController{
 	
 	//page d'accueil qui affiche tout les articles
 	public function homePageAction(Application $app){
-		$articles = $app['dao.article']->getArticlesWithAuthor();	
-		if($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
+		$formations = $app['dao.article']->getFormationsWithAuthor();	
+		if($app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			$token=$app['security.token_storage']->getToken();	
 			if(NULL!==$token){			
 				$tok=$token->getUser();
 			}
-			return $app['twig']->render('index.html.twig', array('articles' => $articles,'token'=>$tok));
+			return $app['twig']->render('index.html.twig', array('formations' => $formations,'token'=>$tok));
 		}
-		return $app['twig']->render('index.html.twig', array('articles' => $articles));
+		return $app['twig']->render('index.html.twig', array('formations' => $formations));
 	}
 	
 	// permet de cherche une category
@@ -43,40 +43,41 @@ class HomeController{
 	}
 	
 	// cherche des article en fonction de la category
-	public function categoryArtAction(Application $app, Request $request, $id){
-	$category = $app['dao.article']-> findArticlesByCategory($id);
-	return $app['twig']->render('categoryArt.html.twig', array('articles' => $category));
+	public function categoryFormationsAction(Application $app, Request $request, $id){
+	$category = $app['dao.article']-> findFormationsByCategory($id);
+	return $app['twig']->render('category.Formation.html.twig', array('categories' => $category));
 	}
+	
 	//page qui affiche les 5 derniers articles
 	public function lastFiveFormationsAction(Application $app){
-		$articles = $app['dao.article']->getLastArticles();
-		if($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')){
+		$formations = $app['dao.article']->getLastFormations();
+		if($app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			$token=$app['security.token_storage']->getToken();	
 			if(NULL!==$token){			
 				$tok=$token->getUser();
 			}
-		 return $app['twig']->render('last_articles.html.twig', array('articles' => $articles,'token'=>$tok));
+		 return $app['twig']->render('last_formations.html.twig', array('formations' => $formations,'token'=>$tok));
 		}
-		return $app['twig']->render('last_articles.html.twig', array('articles' => $articles));
+		return $app['twig']->render('last_formations.html.twig', array('formations' => $formations));
 	}
 
 	//page d'affichage d'un article
-	public function articleAction(Application $app, $id){
-		$article = $app['dao.article']->find($id);	
-		return $app['twig']->render('article.html.twig', array('article' => $article));
+	public function formationAction(Application $app, $id){
+		$formation = $app['dao.article']->find($id);	
+		return $app['twig']->render('formation.html.twig', array('formation' => $formation));
 	}
 
 	
 
 
 	// fiche d'un utilisateur
-	public function userAction(Application $app,Request $request, $id){
-		$user = $app['dao.intervenant']->find($id);
+	public function intervenantAction(Application $app,Request $request, $id){
+		$intervenant = $app['dao.intervenant']->find($id);
 	    //on va chercher la liste des articles écrits par l'utilisateur dont l'id est $id
 	    //on utilise la méthode getArticlesFromUser() de la classe ArticleDAO
-		$articles = $app['dao.article']->getArticlesFromUser($id);	
+		$formations = $app['dao.article']->getArticlesFromUser($id);	
 
-		return $app['twig']->render('user.html.twig', array('intervenant' => $user, 'articles' => $articles));
+		return $app['twig']->render('intervenant.html.twig', array('intervenant' => $intervenant, 'formations' => $formations));
 	}
 
 	//page contact
@@ -159,9 +160,9 @@ class HomeController{
 				/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
 				//////////////// RECHERCHE \\\\\\\\\\\\\\\\\\
 				/////////////////////\\\\\\\\\\\\\\\\\\\\\\\
-				public function seurcheAction(Application $app, Request $request){
-					$articles=$app['dao.article']->advanceSearch($request->query->get('search'));
-					return $app['twig']->render('results.search.html.twig', array('articles' => $articles));
+				public function searchAction(Application $app, Request $request){
+					$formations=$app['dao.article']->advanceSearch($request->query->get('search'));
+					return $app['twig']->render('results.search.html.twig', array('formations' => $formations));
 				}
 				
 				// permet de chercher une formation dans une barre de recherche

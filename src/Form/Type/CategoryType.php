@@ -26,7 +26,7 @@ class CategoryType extends AbstractType
 
        $builder->add('image', FileType::class,
                array(
-                   'required'=> false,
+                    'required'=> false,
                    'constraints' => new Assert\Image()
                    
                )

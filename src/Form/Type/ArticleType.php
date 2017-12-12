@@ -72,6 +72,6 @@ class ArticleType extends AbstractType
 
     public function getName()
     {
-        return 'article';
+        return 'formation';
     }
 }

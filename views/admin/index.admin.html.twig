@@ -14,16 +14,16 @@
     
 {% endfor %}     
     
-{% for article in articles %}
+{% for formation in formations %}
 
 
 <ul>
-    <img src="{{ asset('uploads/' ~ article.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
-    <li>{{ article.title }}
+    <img src="{{ asset('uploads/' ~ formation.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
+    <li>{{ formation.title }}
              
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('deleteArticle', {id: article.id}) }}">Supprimer</a> 
-        |   <a href="{{ path('updateAdmin', {id: article.id}) }}">Modifier</a>      
+            <a href="{{ path('deleteFormation', {id: formation.id}) }}">Supprimer</a> 
+        |   <a href="{{ path('updateFormation', {id: formation.id}) }}">Modifier</a>      
         {% endif %}
     </li>
     
@@ -45,8 +45,8 @@
 <ul>
     <img src="{{ asset('uploads/' ~ intervenant.logo ) }}" class="img img-responsive img-rounded" width="150">
     <li>{{ intervenant.nom }}
-            <a href="{{ path('updateUser', {id: intervenant.id}) }}">Modifier</a>|
-        <a href="{{ path('deleteUser', {id: intervenant.id}) }}">Supprimer</a> 
+            <a href="{{ path('updateIntervenant', {id: intervenant.id}) }}">Modifier</a>|
+        <a href="{{ path('deleteIntervenant', {id: intervenant.id}) }}">Supprimer</a> 
         
     </li>
 </ul>
