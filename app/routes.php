@@ -10,7 +10,7 @@
 $app->get('/', 'WF3\Controller\HomeController::homePageAction')->bind('home');
 
 //page affichant les categories
-$app->get('/category', 'WF3\Controller\HomeController::categoryAction')
+$app->get('/category/', 'WF3\Controller\HomeController::categoryAction')
 ->bind('category');
 
 //page qui affiche les 5 dernieres formations

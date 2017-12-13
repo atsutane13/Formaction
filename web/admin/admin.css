@@ -2277,7 +2277,10 @@
 	input[type="email"],
 	select {
 		height: 3em;
-		margin-left:25em;
+		width:45%;
+		margin-right:2em;
+		display:flex;
+		
 	}
 
 	textarea {
@@ -2836,7 +2839,6 @@
 			justify-content:center; 
 			align-items:center;
 			border-radius:15px;
-			margin-left:39em;
 		}
 		
 
@@ -3348,6 +3350,7 @@
 		}
 
 		#header nav {
+			margin-top:1em;
 			position: absolute;
 			right: 1em;
 			top: 0;
@@ -3358,7 +3361,10 @@
 			}
 
 				#header nav ul li {
-					display: inline-block;
+					display: flex;
+					flex-flow:row;
+					justify-content: center;
+					align-items: center;
 					margin-left: 0.5em;
 					padding-right:5em;
 				}
@@ -3425,8 +3431,8 @@
 		}
 
 		#banner:after {
-			background-image: -moz-linear-gradient(top, rgba(38, 39, 49, 0.52), rgba(23, 24, 32, 0.95)), url("../../web/img/bdx.jpg");;
-			background-image: -webkit-linear-gradient(top, rgba(23, 24, 32, 0.726), rgba(23, 24, 32, 0.95)), url("../../img/bdx.jpg");;
+		/* 	background-image: -moz-linear-gradient(top, rgba(38, 39, 49, 0.52), rgba(23, 24, 32, 0.95)), url("images/bdx.jpg");;
+			background-image: -webkit-linear-gradient(top, rgba(23, 24, 32, 0.726), rgba(23, 24, 32, 0.95)), url("images/bdx.jpg");; */
 			background-image: -ms-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("");;
 			background-image: linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.95)), url("../../img/overlay.png");;
 			
