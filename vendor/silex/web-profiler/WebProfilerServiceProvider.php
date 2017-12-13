@@ -138,7 +138,7 @@ class WebProfilerServiceProvider implements ServiceProviderInterface, Controller
         if (class_exists('Symfony\Bridge\Twig\Extension\ProfilerExtension')) {
             $app['data_collectors'] = $app->extend('data_collectors', function ($collectors, $app) {
                 $collectors['twig'] = function ($app) {
-                    return new TwigDataCollector($app['twig.profiler.profile']);
+                    return new TwigDataCollector($app['twig.profiler.profile'], $app['twig']);
                 };
 
                 return $collectors;
@@ -379,7 +379,7 @@ class WebProfilerServiceProvider implements ServiceProviderInterface, Controller
         $dispatcher->addSubscriber($app['profiler']->get('request'));
 
         if (isset($app['var_dumper.data_collector'])) {
-            $dispatcher->addSubscriber($app['var_dumper.dump_listener']);
+            $app['var_dumper.dump_listener']->configure();
         }
     }
 

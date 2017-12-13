@@ -483,65 +483,6 @@
         ]
     },
     {
-        "name": "silex/web-profiler",
-        "version": "v2.0.9",
-        "version_normalized": "2.0.9.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/silexphp/Silex-WebProfiler.git",
-            "reference": "cd76e55490d556a81378b8230e28f55536811418"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/silexphp/Silex-WebProfiler/zipball/cd76e55490d556a81378b8230e28f55536811418",
-            "reference": "cd76e55490d556a81378b8230e28f55536811418",
-            "shasum": ""
-        },
-        "require": {
-            "silex/silex": "^2.0",
-            "symfony/stopwatch": "^2.8|^3.0",
-            "symfony/twig-bridge": "^2.8|^3.0",
-            "symfony/web-profiler-bundle": "^2.8|^3.0"
-        },
-        "conflict": {
-            "symfony/web-profiler-bundle": "3.1.0"
-        },
-        "require-dev": {
-            "symfony/browser-kit": "^2.8|^3.0",
-            "symfony/css-selector": "^2.8|^3.0",
-            "symfony/debug-bundle": "^2.8|^3.0",
-            "symfony/phpunit-bridge": "~3.2",
-            "symfony/security": "^2.8|^3.0",
-            "symfony/security-bundle": "^2.8|^3.0",
-            "symfony/translation": "^2.8|^3.0"
-        },
-        "time": "2017-04-23T23:11:39+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Silex\\Provider\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "A WebProfiler for Silex",
-        "homepage": "http://silex.sensiolabs.org/"
-    },
-    {
         "name": "sorien/silex-dbal-profiler",
         "version": "2.0.0",
         "version_normalized": "2.0.0.0",
@@ -859,76 +800,6 @@
         "keywords": [
             "cache",
             "caching"
-        ]
-    },
-    {
-        "name": "doctrine/annotations",
-        "version": "v1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/doctrine/annotations.git",
-            "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/annotations/zipball/5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
-            "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/lexer": "1.*",
-            "php": "^7.1"
-        },
-        "require-dev": {
-            "doctrine/cache": "1.*",
-            "phpunit/phpunit": "^5.7"
-        },
-        "time": "2017-07-22T10:58:02+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.5.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Roman Borschel",
-                "email": "roman@code-factory.org"
-            },
-            {
-                "name": "Benjamin Eberlei",
-                "email": "kontakt@beberlei.de"
-            },
-            {
-                "name": "Guilherme Blanco",
-                "email": "guilhermeblanco@gmail.com"
-            },
-            {
-                "name": "Jonathan Wage",
-                "email": "jonwage@gmail.com"
-            },
-            {
-                "name": "Johannes Schmitt",
-                "email": "schmittjoh@gmail.com"
-            }
-        ],
-        "description": "Docblock Annotations Parser",
-        "homepage": "http://www.doctrine-project.org",
-        "keywords": [
-            "annotations",
-            "docblock",
-            "parser"
         ]
     },
     {
@@ -2754,5 +2625,134 @@
         ],
         "description": "Symfony Form Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "silex/web-profiler",
+        "version": "v2.0.10",
+        "version_normalized": "2.0.10.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silexphp/Silex-WebProfiler.git",
+            "reference": "9657191cee54ac2a4df9e388baf4e693a3285867"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silexphp/Silex-WebProfiler/zipball/9657191cee54ac2a4df9e388baf4e693a3285867",
+            "reference": "9657191cee54ac2a4df9e388baf4e693a3285867",
+            "shasum": ""
+        },
+        "require": {
+            "silex/silex": "^2.0",
+            "symfony/stopwatch": "^2.8|^3.0",
+            "symfony/twig-bridge": "^2.8|^3.0",
+            "symfony/web-profiler-bundle": "^2.8|^3.0"
+        },
+        "conflict": {
+            "symfony/web-profiler-bundle": "3.1.0"
+        },
+        "require-dev": {
+            "symfony/browser-kit": "^2.8|^3.0",
+            "symfony/css-selector": "^2.8|^3.0",
+            "symfony/debug-bundle": "^2.8|^3.0",
+            "symfony/phpunit-bridge": "~3.2",
+            "symfony/security": "^2.8|^3.0",
+            "symfony/security-bundle": "^2.8|^3.0",
+            "symfony/translation": "^2.8|^3.0"
+        },
+        "time": "2017-12-11T23:38:10+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Silex\\Provider\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "A WebProfiler for Silex",
+        "homepage": "http://silex.sensiolabs.org/"
+    },
+    {
+        "name": "doctrine/annotations",
+        "version": "v1.6.0",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/doctrine/annotations.git",
+            "reference": "c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/doctrine/annotations/zipball/c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5",
+            "reference": "c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/lexer": "1.*",
+            "php": "^7.1"
+        },
+        "require-dev": {
+            "doctrine/cache": "1.*",
+            "phpunit/phpunit": "^6.4"
+        },
+        "time": "2017-12-06T07:11:42+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.6.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Roman Borschel",
+                "email": "roman@code-factory.org"
+            },
+            {
+                "name": "Benjamin Eberlei",
+                "email": "kontakt@beberlei.de"
+            },
+            {
+                "name": "Guilherme Blanco",
+                "email": "guilhermeblanco@gmail.com"
+            },
+            {
+                "name": "Jonathan Wage",
+                "email": "jonwage@gmail.com"
+            },
+            {
+                "name": "Johannes Schmitt",
+                "email": "schmittjoh@gmail.com"
+            }
+        ],
+        "description": "Docblock Annotations Parser",
+        "homepage": "http://www.doctrine-project.org",
+        "keywords": [
+            "annotations",
+            "docblock",
+            "parser"
+        ]
     }
 ]

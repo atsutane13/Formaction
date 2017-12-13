@@ -1,4 +1,6 @@
 {% extends "layout.html.twig" %}
+{%  block css%} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {%endblock%}
+
 
 {% block title %}Un article{% endblock %}
 
@@ -8,7 +10,25 @@
     {{ flashMessage }}
 </div>
 {% endfor %}
-    
+    <div id="wrapper">
+
+<!-- Header -->
+        <header id="header">
+            <div class="inner">
+
+                <!-- Logo -->
+                    <a href="../index.html.twig">
+                        <span class="symbol"><img src="../images/logo/logo_couleur/logo_bulle.png" alt="" /></span><span class="title"></span>
+                    </a>
+
+           
+
+            </div>
+        </header>
+
+<!-- Menu -->
+   
+
         <div id="main">
             <div class="inner">
                 <header>
@@ -17,22 +37,30 @@
                     </a>
                     <h1>Les différentes Formations Proposées par <a href="http://www.bordeaux-metropole.fr/" target="blank">Bordeaux Metropole</a></h1>
                 </header>
-                <h2>Mes category</h2>
-                    <section class="tiles">
-                        {% for category in categorys %}
-                            <article class="style{{category.id}}">
-                                <span class="image">
-                                    <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
-                                </span>
-                                <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
-                            |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a>      
-                                {% endif %}
-                            </article>
-                        {% endfor %}
-                   </section>
-                </div>
+                <h2>Mes categories</h2>
+                <section class="tiles">
+                    {% for category in categorys %}
+                        
+                        <article class="style{{category.id}}">
+                            <div>
+                            
+                            <span class="image">
+                                <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
+                            </span>
+                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+                            
+                        <div class= "admin">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
+                        |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
+                            {% endif %}
+                        </div>
+                        </div>
+                        </article>
+                        
+                    {% endfor %}
+                </section>
             </div>
-
+        </div>
+    </div>
     {% endblock %}

@@ -1,8 +1,9 @@
 	{% extends "layout.html.twig" %}
+	{%block css%}<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />{%endblock%}
 		{% block title %}Ma page d'accueil{% endblock %}
 
 		{% block content %}
-		
+	
 				
 			
 
@@ -10,7 +11,7 @@
 
 		<section id="banner">
 			<div class="content">
-				<span class="Logo"><img src="{{ asset('img/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
+				<span class="img img-responsive img-rounded"><img src="{{ asset('img/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
 				<button class="button special"><a href="{{ path('category') }}"  class="lien"id="contact" >Formations</a></button>					 
 			</div>
 			<a href="#one" class="goto-next scrolly">Next</a>
@@ -54,6 +55,8 @@
 			<footer class="footer">
 			</footer>
 	</div>
+	
+
 
 		{% endblock %}
 
