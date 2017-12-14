@@ -1,10 +1,14 @@
-	{# {% extends "layout.html.twig" %}
+	{% extends "layout.html.twig" %}
+	{%  block css%}<link rel="stylesheet" href="{{ asset('../web/category/bitch/css/main.css')}}" />{%endblock%}
 	
-	{% block title %}Un article{% endblock %}
+	{% block title %}Les Métiers du Web{% endblock %}
 	
 	{% block content %}
+
             <h2>Mon article</h2>
+
 			<article>
+
 				<h2>{{ formation.title }}</h2>
 
 				<p>publié par <a href="{{ path('voirIntervenant', {id:formation.intervenantId.id})}}">{{formation.intervenantId.nom}}</a> le {{ formation.datePubli }}</p>
@@ -12,22 +16,13 @@
 
 				<a href="{{ path('deleteFormation', {id: formation.id}) }}">Supprimer</a>
 			{% endif %}
-
-			
+		
 			</article>
-		{% endblock %} #}
-	{% extends "layout.html.twig" %}
-	<head>
-		<title>Les Métiers du Web</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
-		{%  block css%}<link rel="stylesheet" href="{{ asset('../web/category/bitch/css/main.css')}}" />{%endblock%}
-		<!--[if lte IE 9]><link rel="stylesheet" href="bitch/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="bitch/css/ie8.css" /><![endif]-->
-	</head>
-	{% block title %}Un article{% endblock %}
-	{% block content %}
+
+	{% endblock %} 
+
+	
+	{# {% block content %}
 	<body>
 
 
@@ -204,6 +199,6 @@
 
 
 	</body>
-	{% endblock %}
+	{% endblock %} #}
 {% endblock %}
 		

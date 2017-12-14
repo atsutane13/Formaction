@@ -1,26 +1,68 @@
 {% extends "layout.html.twig" %}
+{%  block css%}
+<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+ 
+{%endblock%}
+
 {% block title %}Ma page d'accueil{% endblock %}
 
 {% block content %}
-    <h2>Mes articles</h2>
+    <h1>Mes articles</h1>  
     {% for flashMessage in app.session.flashbag.get('success') %}
     {# affichage du message de réussite #}
         <div class="alert alert-success">
             {{ flashMessage }}
         </div>
-    {% endfor %}          
-    {% for categorie in categories %}
-    <article>
-        <h2>{{ categorie.title }}</h2>
-        <img src="{{ asset('uploads/' ~ categorie.logo ) }}" class="img img-responsive img-rounded" width="150">
-        <p>publié par 
-            <a href="{{ path('voirIntervenant', {id: categorie.idIntervenant}) }}">
-                {{ categorie.nom }}
-            </a>
 
-        </p>
-        <p><a href="{{ path('voirFormation', {id: categorie.idArticle}) }}">Voir</a>
-
-    </article>
     {% endfor %}
+
+    <header class="major">
+		<h2>Les Formations Proposées </h2>
+	</header>
+    
+    {% for categorie in categories %}
+
+		<div id="wrapper">
+			<div id="formation">
+				<div class="inner">
+
+                    <section>
+                        <div class="features">
+
+                            <article>
+                                <h2>{{ categorie.title }}</h2>
+                                <div class = "taille">
+                                <img src="{{ asset('uploads/' ~ categorie.logo ) }}" class="img img-responsive img-rounded" width="150">
+                                </div>
+                                <p>publié par 
+                                    <a href="{{ path('voirIntervenant', {id: categorie.idIntervenant}) }}">
+                                        {{ categorie.nom }}
+                                    </a>
+
+                                </p>
+                                <p><a href="{{ path('voirFormation', {id: categorie.idArticle}) }}">Voir</a>
+                            </article>
+                            
+
+                        </div>
+                    </section>
+                    
+                    <h3>Témoignage</h3>							
+					<div class="box">
+						<h4 class="Aga">Agathe Loiseau</h4>
+						<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum.</p>
+					</div>
+					<div class="box">
+						<h4 class="Aga">Agathe Loiseau</h4>
+						<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum.</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+        
+        <hr class="banniere">
+    {% endfor %}
+
 {% endblock %}

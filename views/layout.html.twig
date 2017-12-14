@@ -20,61 +20,77 @@
 	</head>
 	<body class="landing">
 		
-					<div id="page-wrapper">
-		
-        	{# <nav class="nav nav-bar">
-            	<ul>
-					<li><a href="{{ path('home') }}">Accueil</a></li>
-					<li><a href="{{ path('category') }}">Category</a></li>
-					<li><a href="{{ path('lastFormations') }}">Derniers articles</a></li>				
-					{% if is_granted('ROLE_ADMIN') %}
-						<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-						<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-						<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
-						<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
-						<li><a href="{{ path('logout') }}">déconnexion</a></li>
-					{% else %}
-
-						<li><a href="{{ path('login') }}">connexion</a></li>
-               		{% endif %}
-            	</ul>
-			</nav>
-			<h2>Recherche</h2>
-				<form class="row" action="{{ path('recherche')}}">
-					<input class="form-control col-sm-6" type="text" name="search">
-					<button class="btn btn-default col-sm-2" type="submit">Rechercher</button>
-				</form> #}
-				<div class="col-md-12">
-					{% block content %}{% endblock %}
+		<div id="wrapper">
+			<header id="header">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#menu">Menu</a></li>
+						</ul>
+					</nav>
 				</div>
-				<footer id="footer">
-						<ul class="icons">
+			</header>
 
-							<li><a href=" https://www.facebook.com/" class="fa fa-facebook fa-2x"><span class="label"></span></a></li>
-							<li><a href="https://www.linkedin.com" class="fa fa-linkedin fa-2x"><span class="label"></span></a></li>
-							<li><a href="http://gmail.com/" class="fa fa-envelope fa-2x"><span class="label"></span></a></li>
-						</ul>
-						<ul class="logo">
-							<h3>Partenaires</h3>
-							<img src="{{ asset('../web/img/cesi.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/cfa.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/digitalcampus2.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/greta.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/lewagon2.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/m2i.jpg') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/modula.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/philomathique.png') }}" class="img img-responsive img-rounded" width="150">
-							<img src="{{ asset('../web/img/web_force_3.png') }}" class="img img-responsive img-rounded" width="150">			
-						</ul>
+			<!-- Menu -->
+			<nav id="menu">
+				<h2>Menu</h2>
+				<ul>        
+					<li class="uiIconInput">
+						<form action="{{ path('recherche')}}">
+							<input placeholder="Recherche" type="text" name="search">
 
-					</footer>
+							<input type="submit" value="Send Message" class="prout">
+						</form>
+					</li>
+					<div class="clic">								
+							<li><a href="{{ path('home') }}">Accueil</a></li>
+						<li><a href="{{ path('category') }}">Category</a></li>
+						<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+						{% if is_granted('ROLE_ADMIN') %}
+							<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+							<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+							<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+							<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+							<li><a href="{{ path('logout') }}">déconnexion</a></li>
+						{% else %}
+							<li><a href="{{ path('login') }}">connexion</a></li> 
+						{% endif %}
 					</div>
-	
-			{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> #}
+							
+				</ul>
+			</nav>
+					
+			{% block content %}{% endblock %}
 			
-			<!-- Scripts -->
-			<!-- Scripts -->
+			<footer id="footer">
+					<ul class="icons">
+
+						<li><a href=" https://www.facebook.com/" class="fa fa-facebook fa-2x"><span class="label"></span></a></li>
+						<li><a href="https://www.linkedin.com" class="fa fa-linkedin fa-2x"><span class="label"></span></a></li>
+						<li><a href="http://gmail.com/" class="fa fa-envelope fa-2x"><span class="label"></span></a></li>
+					</ul>
+					<ul class="logo">
+						<h3>Partenaires</h3>
+						<img src="{{ asset('../web/img/cesi.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/cfa.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/digitalcampus2.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/greta.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/lewagon2.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/m2i.jpg') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/modula.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/philomathique.png') }}" class="img img-responsive img-rounded" width="150">
+						<img src="{{ asset('../web/img/web_force_3.png') }}" class="img img-responsive img-rounded" width="150">			
+					</ul>
+
+			</footer>
+			</div>
+				
+			<script src="{{ asset('category/assets/js/jquery.min.js')}}"></script>
 	
-			{% block javascipt %}{% endblock %}
+			<script src="{{ asset('category/assets/js/skel.min.js')}}"></script>
+			<script src="{{ asset('category/assets/js/util.js')}}"></script>
+			{# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
+			<script src="{{ asset('category/assets/js/main.js')}}"></script>
+		
 	</body>
 </html>
