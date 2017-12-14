@@ -1,12 +1,27 @@
-	{% extends "layout.html.twig" %}
-	{%block css%}<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />{%endblock%}
-		{% block title %}Ma page d'accueil{% endblock %}
-
-		{% block content %}
-	
-				
 			
-	<header id="header">
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<title>page dacceuil</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		
+		
+		{# <link rel="stylesheet" href="{{ asset('admin/admin.css') }}" /> #}
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+		<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" /> 
+		
+	</head>
+	<body class="landing">	
+		<div id="page-wrapper">		
+			<header id="header">
 						<nav id="nav">
 							
 							<ul class="actions">
@@ -40,14 +55,14 @@
 
 		<section id="banner">
 			<div class="content">
-				<span class="img img-responsive img-rounded"><img src="{{ asset('img/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
+				<span class="img img-responsive img-rounded"><img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
 				<button class="button special"><a href="{{ path('category') }}"  class="lien"id="contact" >Formations</a></button>					 
 			</div>
 			<a href="#one" class="goto-next scrolly">Next</a>
 		</section>
 
 		<section id="one" class="spotlight style1 bottom">
-				<span class="image fit main"><img src="{{ asset('img/rust.jpg') }}" alt="" /></span>
+				<span class="image fit main"><img src="{{ asset('images/rust.jpg') }}" alt="" /></span>
 				<div class="content">
 					<div class="container">
 						<div class="row">
@@ -76,15 +91,33 @@
 				</div>							
 		</section>
 			     
+		<footer id="footer">
+				<ul class="icons">
 
-			
-		<div class="col-md-12">
+					<li><a href=" https://www.facebook.com/" class="fa fa-facebook fa-2x"><span class="label"></span></a></li>
+					<li><a href="https://www.linkedin.com" class="fa fa-linkedin fa-2x"><span class="label"></span></a></li>
+					<li><a href="http://gmail.com/" class="fa fa-envelope fa-2x"><span class="label"></span></a></li>
+				</ul>
+				<ul class="logo">
+					<h3>Partenaires</h3>
+					<img src="{{ asset('../web/img/cesi.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/cfa.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/digitalcampus2.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/greta.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/lewagon2.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/m2i.jpg') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/modula.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/philomathique.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/web_force_3.png') }}" class="img img-responsive img-rounded" width="150">			
+				</ul>
 
-			</div>
-			<footer class="footer">
 			</footer>
 	</div>
 	
+			{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> #}
+			
+			<!-- Scripts -->
+			<!-- Scripts -->
 		<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
 		<script src="{{ asset('assets/js/jquery.scrolly.min.js')}}"></script>
 		<script src="{{ asset('assets/js/jquery.dropotron.min.js')}}"></script>
@@ -93,12 +126,17 @@
 		<script src="{{ asset('assets/js/util.js')}}"></script>
 		{# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
 		<script src="{{ asset('assets/js/main.js')}}"></script>
+			
+	</body>
+</html>
+	
+		
 
 	
 
 		
 		
 
-		{% endblock %}
+
 
 		
