@@ -24,30 +24,24 @@
 			<header id="header">
 						<nav id="nav">
 							
-							<ul class="actions">
-								<li class="uiIconInput">
+							<ul class="actions">							
+								<li class="bipe" >
 									<form action="{{ path('recherche')}}">
-										<input placeholder="Recherche" type="text" name="search">
-
-										<input type="submit" value="Send Message" class="prout">
+										<input placeholder="Recherche" type="text" name="search" size="50" >
+										<input type="submit" value="Recherche" class="prout">
 									</form>
-								</li>
-								<div class="clic">								
-								 	 <li><a href="{{ path('home') }}">Accueil</a></li>
-									<li><a href="{{ path('category') }}">Category</a></li>
-									<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
-									{% if is_granted('ROLE_ADMIN') %}
-										<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-										<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-										<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
-										<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
-										<li><a href="{{ path('logout') }}">déconnexion</a></li>
-									{% else %}
+								</li>															
+								<li><a href="{{ path('home') }}">Accueil</a></li>
+								<li><a href="{{ path('category') }}">Category</a></li>
+								<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+								{% if is_granted('ROLE_ADMIN') %}
+									<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+									<li><a href="{{ path('logout') }}">déconnexion</a></li>
+								{% else %}
 
-					
-										 <li><a href="{{ path('login') }}">connexion</a></li> 
-									{% endif %}
-								</div>
+				
+										<li><a href="{{ path('login') }}">connexion</a></li> 
+								{% endif %}						
 							</ul>
 						</nav>
 						</header>
@@ -55,8 +49,8 @@
 
 		<section id="banner">
 			<div class="content">
-				<span class="img img-responsive img-rounded"><img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
-				<button class="button special"><a href="{{ path('category') }}"  class="lien"id="contact" >Formations</a></button>					 
+				<img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}"class="img img-responsive img-rounded" alt="" />				
+				<button class="bouton special"><a href="{{ path('category') }}" class="lien" id="contact">Formations</a></button>					 
 			</div>
 			<a href="#one" class="goto-next scrolly">Next</a>
 		</section>

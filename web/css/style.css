@@ -9,8 +9,9 @@ body{
     margin-left: 10em;
    
 }
-
-
+ li :hover a {
+    color: #f56a6a;
+}
 
 .row{
     display: flex;

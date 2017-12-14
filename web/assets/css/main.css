@@ -1,6 +1,7 @@
 @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 
+
 /*
 	Landed by HTML5 UP
 	html5up.net | @ajlkn
@@ -29,6 +30,8 @@
 	ol, ul {
 		list-style: none;
 	}
+
+	
 
 	.Logo{
 		
@@ -1601,7 +1604,7 @@
 	
 
 	a {
-		color: #e44c65;
+		color: #ffffff;
 		-moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -2772,7 +2775,7 @@
 		font-weight: 300;
 		height: 3em;
 		line-height: 3em;
-		padding: 0 2.25em;
+		padding: 0 1.5em;
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
@@ -3370,18 +3373,23 @@
 			#header nav ul {
 				margin: 0;
 				display: flex;
-				justify-content: center;
+
+				justify-content: flex-end;
+				/* flex-flow: row nowrap; */
 			}
 
 				#header nav ul li {
-
+				
 					margin:0px;
-					padding-right:5em;
+					padding-right:2em;
 				}
 				#header nav ul li form{
 
 					display:flex;
 					padding:0em;
+				}
+				#bipe {
+					padding-right: 0;
 				}
 			
 
@@ -3708,7 +3716,7 @@
 	}
 
 
-	@media screen and (max-width: 736px) {
+	@media screen and (max-width: 980px) {
 
 		/* Basic */
 
@@ -4097,10 +4105,10 @@
 
 			}
 		
-			#banner .content img {
+			/* #banner .content img {
 				width:20em;
 				
-			}
+			} */
 		
 		/* Footer */
 
@@ -4120,3 +4128,26 @@
 					}
 
 	}
+@media screen and (max-width: 810px){
+	
+
+}
+#banner .content img {
+	width:100%;
+	
+}
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content button {
+	margin: auto;
+}
