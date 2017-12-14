@@ -19,7 +19,7 @@ class CategoryType extends AbstractType
        
        $builder->add('category', TextType::class,array(
            'attr'=>array (
-               'class'=>'form-control',
+               'class'=>'formulaire',
                'placeholder'=> 'entrez une category'
            )
        ));
@@ -28,13 +28,15 @@ class CategoryType extends AbstractType
                array(
                     'required'=> false,
                    'constraints' => new Assert\Image()
-                   
-               )
+                )
+                'attr'=>array(
+                    'class'=> 'formulaire'
+                ),
         );
 
        $builder->add('Enregistrer', SubmitType::class,array(
            'attr'=>array (
-               'class'=> 'btn btn-default'
+               'class'=> 'form'
            )
        ));
    }

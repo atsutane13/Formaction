@@ -1,4 +1,10 @@
 	{% extends "layout.html.twig" %}
+	{%  block css %}
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+	 
+	{% endblock %}
+
 		{% block title %}Ajout d'article{% endblock %}
 
 		{% block content %}
@@ -8,7 +14,8 @@
                 </div>
             {% endfor %}
 
-			{{ form_start(articleForm)}}
+			{{ form_start(articleForm, {
+				'attr': {'class': 'form-admin'}})}}
 			{{ form_end(articleForm)}}
 		{% endblock %}
 

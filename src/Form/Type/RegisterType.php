@@ -21,14 +21,14 @@ class RegisterType extends AbstractType
     {
         $builder->add('nom', TextType::class,array(
             'attr'=>array(
-                'class'=>'form-control',
+                'class'=>'formulaire',
                 'placeholder'=>'entrez un nom'                
             )
         ));
 
         $builder->add('phone', TextType::class,array(
             'attr'=>array(
-                'class'=>'form-control',
+                'class'=>'formulaire',
                 'placeholder'=>'entrez un numero de telephone'
             ),
             'constraints'=>array(
@@ -42,7 +42,7 @@ class RegisterType extends AbstractType
 
         $builder->add('contact', UrlType::class,array(
             'attr'=>array(
-                'class'=>'form-control',
+                'class'=>'formulaire',
                 'placeholder'=>'entrez un un URL de la page'
             ),
             'constraints'=>array(
@@ -52,13 +52,17 @@ class RegisterType extends AbstractType
 
         $builder->add('logo', FileType::class,array(
             'attr'=>array(
-                'class' => 'form-control'
+                'class' => 'formulaire'
             ),
             'required'=> false,
             'constraints'=> new Assert\Image()
         ));
 
-        $builder->add('register', SubmitType::class);
+        $builder->add('register', SubmitType::class,array(
+            'attr'=>array (
+                'class'=> 'form'
+            )
+        ));
     }
 
     public function getName()
