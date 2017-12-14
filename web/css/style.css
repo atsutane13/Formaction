@@ -9,6 +9,10 @@ body{
     margin-left: 10em;
    
 }
+
+li a {
+    color: #fff;
+}
  li :hover a {
     color: #f56a6a;
 }
