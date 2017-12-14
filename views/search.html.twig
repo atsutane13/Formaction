@@ -1,5 +1,10 @@
 {% extends "layout.html.twig" %}
-{% block title %}Recherche{% endblock %}
+{%  block css%}
+
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+	
+{%endblock%}
 
 {% block content %}
     
@@ -8,43 +13,25 @@
         <div class="alert alert-success">
             {{ flashMessage }}
         </div>
-    {% endfor %}     
-    <section >
-    {{ form_start(searchForm, { attr: {'id':'form'} ,'method':'GET'})}}    
-        <div class="form-group">
-            {{ form_widget(searchForm.text) }}     
-        </div>
-    {{ form_end(searchForm)}}
-</section>
-        <section class="resultat">
-                {% for article in articles %}
-                <article>
-                    <h2>{{ article.title }}</h2>
-                    <p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a></p>
-                </article>
-                {% endfor %}
-        </section>
+    {% endfor %}
 
-        {% block javascipt %}
-        {# <script>
-        $(function(){    
-            $('#search_Recherche').click(function(event){
-                event.preventDefault();
-                    $.ajax({
-                    type: 'POST',
-                    url: "{{ asset('resultat.html.twig') }}",
-                    data: $('#form').serialize(),
-                    timeout: 3000,
-                    dataType: 'html',
-                    success: function(data){
-                        $('#resultat').html(data);
-                    },
-                    error: function() {
-                      alert('La requête n\'a pas abouti'); 
-                    }
-                });
-            });       
-        });
-    </script> #}
-        {% endblock %}
+    <section >
+        {{ form_start(searchForm, { attr: {'id':'form'} ,'method':'GET'})}}    
+            <div class="form-group">
+                {{ form_widget(searchForm.text) }}     
+            </div>
+        {{ form_end(searchForm)}}
+    </section>
+
+    <section class="resultat">
+            {% for article in articles %}
+            <article>
+                <h2>{{ article.title }}</h2>
+                <p><a href="{{ path('voirArticle', {id: article.id}) }}">Voir</a></p>
+            </article>
+            {% endfor %}
+    </section>
+
+
+       
 {% endblock %}

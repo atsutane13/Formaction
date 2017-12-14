@@ -1,14 +1,23 @@
 {% extends "layout.html.twig" %}
+{%  block css%}
+
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+	
+{%endblock%}
 	
 {% block title %}Résultats de votre recherche{% endblock %}
 	
 	{% block content %}
-            <h2>Résultats</h2>
+		<header class="major">
+			<h2>Résultats : </h2>
+		</header>
 		{% for formation in formations %}
-			<article>
-				<h2>{{ formation.title }}</h2>
-				<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a>
+			<article class="search">
+				<h2>{{ formation.title }} : </h2>
+				<h3>{{ formation.nom}}</h3>
+				<p><a href="{{ formation.url}}" target="blank">Voir</a>
 
 			</article>
-			{% endfor %}
-		{% endblock %}
+		{% endfor %}
+	{% endblock %}

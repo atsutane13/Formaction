@@ -1,23 +1,32 @@
-	{% extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
+{%  block css%}
+
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
 	
-	{% block title %}Un utilisateur{% endblock %}
+{%endblock%}
+	
+	{% block title %}{{ intervenant.nom }}{% endblock %}
 	
 	{% block content %}
-        <h2>utilisateur:</h2>
-			<div class="row">
-				<div class="col-md-8">
+			<div class="column">
+				<div class ="end" > 
 					<article>
-						<h2>Formation proposée par : {{ intervenant.nom }}</h2>
-						<p><a href="{{ intervenant.contact }}">Contact</a></p>
-						<p>{{ intervenant.phone }}</p>
+						<header class="caporal">
+							<h2>{{ intervenant.nom }} : </h2>			
+						</header>
+					</article>
+					<article>
+						<header class="caporal">
+							<p><a href="{{ intervenant.contact }}">Contact : </a>{{ intervenant.phone }}</p>			
+						</header>
 					</article>					
 				</div>
-
-				<div class="col-md-4">
+				<div class="start">
 					{% for formation in formations %}
 					<article>				
 						<h4>Formation : {{ formation.title }}</h4>			
-						<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a></p>
+						<p><a href="{{ formation.url}}">Voir</a></p>
 					</article>
 					{% endfor %}
 				</div>
