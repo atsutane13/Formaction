@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-{%  block css%} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {%endblock%}
+{%  block css %} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {% endblock %}
 
 
 {% block title %}Un article{% endblock %}
@@ -73,30 +73,24 @@
                 </header>
                 <h2>Mes categories</h2>
                 <section class="tiles">
-                    {% for category in categorys %}
-                        
-                        <article class="style{{category.id}}">
-                            <div>
-                            
-                            
+                    {% for category in categorys %}                    
+                        <article class="style{{category.id}}">                            
                                 <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
                             </span>
-                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
-                            
+                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>                            
                         <div class= "admin">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
                         |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
                             {% endif %}
                         </div>
-                        </div>
-                        </article>
-                        
+                        </article> 
                     {% endfor %}
                 </section>
             </div>
         </div>
     </div>
+    <!-- javascript -->
         <script src="{{ asset('category/assets/js/jquery.min.js')}}"></script>
 		
 		<script src="{{ asset('category/assets/js/skel.min.js')}}"></script>
