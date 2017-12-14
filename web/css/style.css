@@ -2,12 +2,35 @@ ul li{
     list-style: none;
     
 }
+body{
+    padding: 0 3em;
+}
+.search{
+    margin-left: 10em;
+   
+}
 
 
 
 .row{
     display: flex;
     justify-content: space-between;
+}
+.start{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    margin:auto;
+
+}
+.end {
+    margin:auto;
+}
+
+.column{
+    display: flex;
+    flex-flow: column;
+  
 }
 .cadre ul {
     background-color:#565a926c;
@@ -76,7 +99,7 @@ padding: 0 1em;
     
 
 }
-article{
+article .droit{
     display: flex;
     justify-content: center;
     box-sizing: border-box;

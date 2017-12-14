@@ -1,9 +1,10 @@
 {% extends "layout.html.twig" %}
-{%  block css%}
-<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
- 
-{%endblock%}
+    {%  block css%}
+
+        <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+        
+    {%endblock%}
 
 {% block title %}Les formations{% endblock %}
 
@@ -20,7 +21,7 @@
     {% endfor %}
 
     <header class="major">
-		<h2>Les Formations Proposées </h2>
+		<h2>Les Formations Proposées : </h2>
 	</header>
     
     {% for categorie in categories %}
@@ -44,7 +45,7 @@
                                     </a>
 
                                 </p>
-                                <p><a href="{{ path('voirFormation', {id: categorie.idArticle}) }}">Voir</a>
+                                <p><a href="{{categorie.url}}">Voir</a></p>
                             </article>
                             
 
