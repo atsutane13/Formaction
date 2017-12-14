@@ -21,14 +21,10 @@
             </header>
             <h2>Mes categories</h2>
             <section class="tiles">
-                {% for category in categorys %}
-                    
-                    <article class="style{{category.id}}">
-                        <div>
-                        
+                {% for category in categorys %}                  
                         
                         <article class="style{{category.id}}">
-                            <div>
+
                             
                             <span class="image">
                                 <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
@@ -41,7 +37,7 @@
                         |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
                             {% endif %}
                         </div>
-                        </div>
+
                         </article>
                         
                     <div class= "admin">
@@ -50,8 +46,7 @@
                     |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
                         {% endif %}
                     </div>
-                    </div>
-                    </article>
+
                     
                 {% endfor %}
             </section>
