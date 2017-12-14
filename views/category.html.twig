@@ -29,10 +29,10 @@
                 <article class="style{{category.id}}">
                     <div>
                     
-                    
+                    <span class="image">
                         <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
                     </span>
-                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"target="blank"><h2>{{ category.category }}</h2></a>
                     
                 <div class= "admin">
                     {% if is_granted('ROLE_ADMIN') %}
