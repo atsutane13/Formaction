@@ -1,3 +1,6 @@
 vendor/
 cache/
 vendor/composer/installed.json
+web/images/521fb2_1ae412cdd4124ace8b6baa61caf62761_mv2.png
+web/images/logo-greta-nord.png
+*.png

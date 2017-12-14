@@ -37,6 +37,8 @@ $app->get('/login', 'WF3\Controller\HomeController::loginAction')->bind('login')
 
 // Route pour la page admin
 $app->get('/admin', 'WF3\Controller\AdminController::indexAction')->bind('homeAdmin');
+$app->get('/admin/', 'WF3\Controller\AdminController::indexAction')->bind('homeAdmin');
+
 
                     ///////////////ROUTE ARTICLES///////////////
 
