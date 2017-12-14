@@ -36,33 +36,33 @@
         <ul>
             
             <li class="uiIconInput">
-									<form action="{{ path('recherche')}}">
-										<input placeholder="Recherche" type="text" name="search">
+                <form action="{{ path('recherche')}}">
+                    <input placeholder="Recherche" type="text" name="search">
 
-										<input type="submit" value="Send Message" class="prout">
-									</form>
-								</li>
-								<div class="clic">								
-								 	 <li><a href="{{ path('home') }}">Accueil</a></li>
-									<li><a href="{{ path('category') }}">Category</a></li>
-									<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
-									{% if is_granted('ROLE_ADMIN') %}
-										<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-										<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-										<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
-										<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
-										<li><a href="{{ path('logout') }}">déconnexion</a></li>
-									{% else %}
+                    <input type="submit" value="Send Message" class="prout">
+                </form>
+            </li>
+            <div class="clic">								
+                    <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="{{ path('category') }}">Category</a></li>
+                <li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+                    <li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+                    <li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+                    <li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+                    <li><a href="{{ path('logout') }}">déconnexion</a></li>
+                {% else %}
 
-					
-										 <li><a href="{{ path('login') }}">connexion</a></li> 
-									{% endif %}
-								</div>
-            
+
+                        <li><a href="{{ path('login') }}">connexion</a></li> 
+                {% endif %}
+            </div>
+
             
         </ul>
     </nav>
-
+<!-- Main -->
         <div id="main">
             <div class="inner">
                 <header>
@@ -74,22 +74,23 @@
                 <h2>Mes categories</h2>
                 <section class="tiles">
                     {% for category in categorys %}                    
-                        <article class="style{{category.id}}">                            
-                                <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
-                            </span>
-                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>                            
-                        <div class= "admin">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
-                        |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
-                            {% endif %}
-                        </div>
+                        <article class="style{{category.id}}">     
+                                <span class="image">                     
+                                    <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
+                                </span>
+                                <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>                            
+                                <div class= "admin">
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
+                                |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
+                                    {% endif %}
+                                </div>
                         </article> 
                     {% endfor %}
                 </section>
             </div>
         </div>
-    </div>
+
     <!-- javascript -->
         <script src="{{ asset('category/assets/js/jquery.min.js')}}"></script>
 		
