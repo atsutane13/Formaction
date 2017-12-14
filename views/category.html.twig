@@ -21,13 +21,47 @@
                         <span class="symbol"><img src="../images/logo/logo_couleur/logo_bulle.png" alt="" /></span><span class="title"></span>
                     </a>
 
-           
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+				</nav>
 
             </div>
         </header>
 
 <!-- Menu -->
-   
+   <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+            
+            <li class="uiIconInput">
+									<form action="{{ path('recherche')}}">
+										<input placeholder="Recherche" type="text" name="search">
+
+										<input type="submit" value="Send Message" class="prout">
+									</form>
+								</li>
+								<div class="clic">								
+								 	 <li><a href="{{ path('home') }}">Accueil</a></li>
+									<li><a href="{{ path('category') }}">Category</a></li>
+									<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+									{% if is_granted('ROLE_ADMIN') %}
+										<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+										<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+										<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+										<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+										<li><a href="{{ path('logout') }}">déconnexion</a></li>
+									{% else %}
+
+					
+										 <li><a href="{{ path('login') }}">connexion</a></li> 
+									{% endif %}
+								</div>
+            
+            
+        </ul>
+    </nav>
 
         <div id="main">
             <div class="inner">
@@ -44,7 +78,7 @@
                         <article class="style{{category.id}}">
                             <div>
                             
-                            <span class="image">
+                            
                                 <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
                             </span>
                             <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
@@ -63,4 +97,10 @@
             </div>
         </div>
     </div>
+        <script src="{{ asset('category/assets/js/jquery.min.js')}}"></script>
+		
+		<script src="{{ asset('category/assets/js/skel.min.js')}}"></script>
+		<script src="{{ asset('category/assets/js/util.js')}}"></script>
+		{# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
+		<script src="{{ asset('category/assets/js/main.js')}}"></script>
     {% endblock %}
