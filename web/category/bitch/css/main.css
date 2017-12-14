@@ -3116,9 +3116,9 @@
 			display: -webkit-flex;
 			display: -ms-flex;
 			display: flex;
-			margin: 0 0 3em 3em;
+			margin: 3em 3em 3em 3em;
 			position: relative;
-			width: calc(50% - 3em);
+
 		}
 
 			.features article:nth-child(2n - 1) {
@@ -3479,11 +3479,11 @@
 		-moz-flex-grow: 1;
 		-webkit-flex-grow: 1;
 		-ms-flex-grow: 1;
-		flex-grow: 1;
+		flex-grow: 0;
 		-moz-flex-shrink: 1;
 		-webkit-flex-shrink: 1;
 		-ms-flex-shrink: 1;
-		flex-shrink: 1;
+		flex-shrink: 0;
 		width: 100%;
 	}
 

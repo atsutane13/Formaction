@@ -6,19 +6,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Silex\Provider;
 
 //gestion des pages d'erreur
-$app->error(function (\Exception $e, Request $request, $code) use ($app) {
-    switch ($code) {
-        case 403:
-            $message = 'Access interdit !';
-            break;
-        case 404:
-            $message = 'Page introuvable !';
-            break;
-        default:
-            $message = "Bug, va chercher le dev !";
-    }
-    return $app['twig']->render('error.html.twig', array('message' => $message));
- });
+// $app->error(function (\Exception $e, Request $request, $code) use ($app) {
+//     switch ($code) {
+//         case 403:
+//             $message = 'Access interdit !';
+//             break;
+//         case 404:
+//             $message = 'Page introuvable !';
+//             break;
+//         default:
+//             $message = "Bug, va chercher le dev !";
+//     }
+//     return $app['twig']->render('error.html.twig', array('message' => $message));
+//  });
 
 //On enregistre ces services dans l'application Silex
 ErrorHandler::register();
