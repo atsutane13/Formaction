@@ -1,14 +1,28 @@
 {% extends "layout.html.twig" %}
-	
+	{%  block css%}
+		<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+	{%endblock%}
+
 	{% block title %}5 derniers article{% endblock %}
-	
+
 	{% block content %}
+	{% for flashMessage in app.session.flashbag.get('success') %}
+		<div class="alert alert-success">
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
+	
+		<header class="major">
 			<h2>Mes Formations</h2>
-			{% for formation in formations %}
+		</header>
+
+		{% for formation in formations %}
 			<article>
 				<h2>{{ formation.title }}</h2>
 				<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a></p>
+			</article>			
+		{% endfor %}
+		
 
-			</article>
-			{% endfor %}
-		{% endblock %}
+{% endblock %}

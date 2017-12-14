@@ -1,3 +1,29 @@
+ul li{
+    list-style: none;
+    
+}
+h1 {
+    background-color:#a54848;
+    border-radius: 8px;
+    padding: 0.3em; 
+}
+
+
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+.cadre ul {
+    background-color:#565a926c;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+ article.cadre{
+    background-color:#565a926c;
+    border-radius: 5px;
+    padding: 1em;
+ }
+
 ul.logo img {
     display: inline-block;
     height: 3.5em;
@@ -11,12 +37,28 @@ ul.logo img {
 hr.major {
     margin: 3em 0;
 }
+
 header.major > :last-child {
     border-bottom: solid 3px #f56a6a;
     display: inline-block;
-    margin: 0 0 2em 0;
+    margin: 3em 0 1em 7em;
     padding: 0 0.75em 0.5em 0;
 }
+
+
+
+hr.caporal {
+    margin: 3em 0;
+}
+
+header.caporal > :last-child {
+    border-bottom: solid 3px #f56a6a;
+    display: inline-block;
+    margin: 0 0 3em 0em;
+    padding: 0 0.75em 0.5em 0;
+}
+
+
 footer {
     margin-top: 5em;
 }

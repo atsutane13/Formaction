@@ -5,10 +5,12 @@
  
 {%endblock%}
 
-{% block title %}Ma page d'accueil{% endblock %}
+{% block title %}Les formations{% endblock %}
 
 {% block content %}
-    <h1>Mes articles</h1>  
+
+        <h1>Mes articles</h1>
+ 
     {% for flashMessage in app.session.flashbag.get('success') %}
     {# affichage du message de réussite #}
         <div class="alert alert-success">
@@ -30,8 +32,9 @@
                     <section>
                         <div class="features">
 
-                            <article>
-                                <h2>{{ categorie.title }}</h2>
+                            <article class=" cadre">
+                                <h3>{{ categorie.title }}</h3>
+
                                 <div class = "taille">
                                 <img src="{{ asset('uploads/' ~ categorie.logo ) }}" class="img img-responsive img-rounded" width="150">
                                 </div>

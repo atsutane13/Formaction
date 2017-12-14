@@ -1,5 +1,8 @@
 {% extends "layout.html.twig" %}
-{%  block css %} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {% endblock %}
+{%  block css %} 
+<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+{% endblock %}
 
 
 {% block title %}Un article{% endblock %}
@@ -23,35 +26,24 @@
             <section class="tiles">
                 {% for category in categorys %}
                     
-                    <article class="style{{category.id}}">
-                        <div>
+                <article class="style{{category.id}}">
+                    <div>
+                    
+                    
+                        <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
+                    </span>
+                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+                    
+                <div class= "admin">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a>
+                |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
+                    {% endif %}
+                </div>
+                </div>
+                </article>
                         
-                        
-                        <article class="style{{category.id}}">
-                            <div>
-                            
-                            <span class="image">
-                                <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
-                            </span>
-                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
-                            
-                        <div class= "admin">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
-                        |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
-                            {% endif %}
-                        </div>
-                        </div>
-                        </article>
-                        
-                    <div class= "admin">
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
-                    |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
-                        {% endif %}
-                    </div>
-                    </div>
-                    </article>
+                    
                     
                 {% endfor %}
             </section>
