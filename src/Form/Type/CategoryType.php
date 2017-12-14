@@ -27,12 +27,12 @@ class CategoryType extends AbstractType
        $builder->add('image', FileType::class,
                array(
                     'required'=> false,
-                   'constraints' => new Assert\Image()
-                )
+                   'constraints' => new Assert\Image(),
+               
                 'attr'=>array(
                     'class'=> 'formulaire'
-                ),
-        );
+                )
+                ));
 
        $builder->add('Enregistrer', SubmitType::class,array(
            'attr'=>array (

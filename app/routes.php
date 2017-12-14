@@ -71,7 +71,7 @@ $app->get('/admin/delete/intervenant/{id}', 'WF3\Controller\AdminController::del
                         ///////////////ROUTE CATEGORY///////////////
 
 // Route pour ajouter une category
-$app->match('/admin/ajoutCategory', 'WF3\Controller\AdminController::ajoutCategoryAction')
+$app->match('/admin/ajout/category', 'WF3\Controller\AdminController::ajoutCategoryAction')
 ->bind('ajoutCategory');
 
 // Route pour modifier une category
