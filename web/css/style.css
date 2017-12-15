@@ -13,9 +13,18 @@ body{
 li a {
     color: #fff;
 }
+
+
  li :hover a {
     color: #f56a6a;
 }
+
+.cadre li a {
+    color: #f56a6a;
+    transition: 0.2s;
+}
+
+
 
 .row{
     display: flex;
@@ -578,6 +587,8 @@ a {
         color: #f56a6a !important;
     }
 
+   
+
         a:hover strong {
             color: inherit;
         }
@@ -859,5 +870,9 @@ input.formulaire{
 .tiles{
     display: flex;
     justify-content: space-between;
+}
+
+.admin a:hover a{
+    color: #529AD4;
 }
 
