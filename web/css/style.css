@@ -6,7 +6,7 @@ body{
     padding: 0 3em;
 }
 .search{
-    margin-left: 10em;
+    padding-left: 2em;
    
 }
 
@@ -55,7 +55,22 @@ li a {
     background-color:#565a926c;
     border-radius: 5px;
     padding: 1em;
+    width: 100%; 
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+
  }
+
+ @media screen and (min-width: 736px){
+    article.cadre{
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+ }
+
+
 
 ul.logo img {
     display: inline-block;
@@ -365,8 +380,8 @@ h1{
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: 0 0 2em -3em;
-    width: calc(100% + 3em);
+
+    width: 100%;
 }
 
     .features article {
