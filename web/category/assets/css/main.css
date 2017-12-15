@@ -2163,10 +2163,6 @@
 	input[type="tel"],
 	select,
 	textarea {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
 		background-color: transparent;
 		border: none;
 		border-radius: 0;
@@ -2685,10 +2681,12 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		flex-flow: column;
-		align-items: center;
+		-moz-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
 		position: relative;
-		margin: -2.5em 0 0 -2.5em;
+		
 	}
 
 		.tiles article {
@@ -2697,8 +2695,8 @@
 			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
 			transition: transform 0.5s ease, opacity 0.5s ease;
 			position: relative;
-			width: 30%;
-			margin: 2.5em 0 0 2.5em;
+			width: calc(33.33333% - 2.5em);
+			
 		}
 
 			.tiles article > .image {
@@ -2887,24 +2885,27 @@
 			opacity: 1;
 		}
 
-		@media screen and (min-width: 980px){
-			.tiles{
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: space-between;
-				position: relative;
-			}
+		@media screen and (max-width: 1280px) {
 
-			.tiles article{
-				width:40%;
-			}
+
+
+				.tiles article {
+					width: calc(33.33333% - 1.25em);
+					
+
+				}
+
 		}
 
 		@media screen and (min-width: 1280px) {
 
-			.tiles article{
-				width:30%;
-			}
+	
+
+				.tiles article {
+					width: calc(50% - 2.5em);
+
+				}
+
 		}
 
 		@media screen and (min-width: 1680px) {
@@ -2917,13 +2918,11 @@
 
 		@media screen and (max-width: 736px) {
 
-			.tiles {
-				margin: -1.25em 0 0 -1.25em;
-			}
+
 
 				.tiles article {
 					width: calc(50% - 1.25em);
-					margin: 1.25em 0 0 1.25em;
+
 				}
 
 					.tiles article:hover > .image {

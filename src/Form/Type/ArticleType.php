@@ -39,7 +39,7 @@ class ArticleType extends AbstractType
             'choices'  => array(
             ),
             'attr'=>array(
-                'class'=> 'formulaire'
+                'class'=> 'formulaire round'
             ),
             'constraints'=>array(
                 new Assert\NotBlank(),
@@ -52,7 +52,7 @@ class ArticleType extends AbstractType
             'choices'  => array(
             ),
             'attr'=>array(
-                'class'=> 'formulaire'
+                'class'=> 'formulaire round'
             ),
             'constraints'=>array(
                 new Assert\NotBlank(),

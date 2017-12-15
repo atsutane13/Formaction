@@ -34,7 +34,7 @@ class CategoryType extends AbstractType
 
        $builder->add('Enregistrer', SubmitType::class,array(
            'attr'=>array (
-               'class'=> 'form'
+               'class'=> 'form-btn'
            )
        ));
    }

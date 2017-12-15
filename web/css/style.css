@@ -65,7 +65,7 @@ hr.major {
 header.major > :last-child {
     border-bottom: solid 3px #f56a6a;
     display: inline-block;
-    margin: 3em 0 1em 7em;
+
     padding: 0 0.75em 0.5em 0;
 }
 
@@ -602,7 +602,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto Slab", serif;
     font-weight: 700;
     line-height: 1.5;
-    margin: 0 0 1em 0;
+    margin: 0 0 0em 0;
 }
 
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -766,10 +766,20 @@ hr {
     background: #565a92;
 }
 
+input{
+    margin-top: 1em;
+    text-align: center;
+}
 
 input.formulaire{
     background: #565a92;
     border-radius: 5px;
+   
+}
+
+.login{
+    max-width: 50%;
+    margin:auto;
 }
 
 .form-admin .form-btn{
@@ -783,7 +793,14 @@ input.formulaire{
     -moz-border-radius: 5;
     margin: 0.5em;
     color:#fff;
-    box-shadow: inset 0 0 0 2px #242943;    
+    box-shadow: inset 0 0 0 2px #242943;   
+    
+}
+
+.form-admin div:last-child{
+    display: block ;
+    margin: auto;
+    
 }
 
 .form-admin .form-btn:hover{
@@ -800,17 +817,73 @@ input.formulaire{
 
 
 
-@media screen and (max-width: 736px) {
-    .form-admin{
-        min-width: 90%;
-    }
+.admin p{
+    text-align: center;
+    margin-top: 2em;
 }
 
-#main>.inner{
-    max-width: 90%
-}
+.image{
+    position: relative;
 
-.images img{
+}
+.image h2{
+    position: absolute;
+    top: 35%;
+    color: #ffffff;
+    text-shadow: 0 0 10px #000000, 0 0 10px #000000;
+    width:100%;
+    z-index: 2;
+    text-align: center;
+    
+}
+.image img{
     width:100%;
     height: auto;
+    transition: 0.5s;
+
 }
+.image:hover img{
+    transform: scale(1.1);
+    opacity: 0.3;
+    
+}
+
+.tiles{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-admin select.round {
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      radial-gradient(#ddd 70%, transparent 72%);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - .5em) .5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1.5em 1.5em;
+    background-repeat: no-repeat;
+  }
+  
+  .form-admin select.round:focus {
+    background-image:
+      linear-gradient(45deg, white 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, white 50%),
+      radial-gradient(gray 70%, transparent 72%);
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - .5em) .5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1.5em 1.5em;
+    background-repeat: no-repeat;
+    border-color: green;
+    outline: 0;
+  }
+  

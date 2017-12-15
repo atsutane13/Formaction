@@ -27,12 +27,13 @@
                 {% for category in categorys %}                  
                         
                         <article class="style{{category.id}}">
-                            <div>
+                            <div class="imge">
                             
                                 <span class="image">
-                                    <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
+                                    
+                                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2><img src="{{ asset('uploads/' ~ category.image ) }}" alt="" /></a>
                                 </span>
-                                <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+                                
                                 
                                 <div class= "admin">
                                     {% if is_granted('ROLE_ADMIN') %}
