@@ -38,27 +38,27 @@ class ArticleType extends AbstractType
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
             ),
-            'attr'=>array(
-                'class'=> 'formulaire round'
+            'choice_attr'=>array(
+                'choice_class'=> 'formulaire round'
             ),
             'constraints'=>array(
                 new Assert\NotBlank(),
                 new Assert\NotNULL()                
             ),
-            'label'=>'Categorie'
+            'choice_label'=>'Categorie'
         ));
 
         $builder->add('intervenantId', ChoiceType::class, array(
             'choices'  => array(
             ),
-            'attr'=>array(
-                'class'=> 'formulaire round'
+            'choice_attr'=>array(
+                'choice_class'=> 'formulaire round'
             ),
             'constraints'=>array(
                 new Assert\NotBlank(),
                 new Assert\NotNULL()                
             ),
-            'label'=>'Intervenant'
+            'choice_label'=>'Intervenant'
         ));
 
         $builder->add('url', UrlType::class,array(

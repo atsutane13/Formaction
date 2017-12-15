@@ -55,7 +55,17 @@ class RegisterType extends AbstractType
                 'class' => 'formulaire'
             ),
             'required'=> false,
-            'constraints'=> new Assert\Image()
+            'constraints'=> array(
+                new Assert\Image(array(
+                    'minWidth' => 200,
+                    'maxWidth' => 400,
+                    'minHeight' => 200,
+                    'maxHeight' => 400,
+                )),
+                new Assert\File(array(
+                    'maxSize' => '1024k')
+              )
+            )
         ));
 
         $builder->add('register', SubmitType::class,array(

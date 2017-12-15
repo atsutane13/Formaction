@@ -26,7 +26,17 @@ class CategoryType extends AbstractType
 
        $builder->add('image', FileType::class,array(
                 'required'=> false,
-                'constraints' => new Assert\Image(),
+                'constraints' => array(
+                    new Assert\Image(array(
+                        'minWidth' => 200,
+                        'maxWidth' => 400,
+                        'minHeight' => 200,
+                        'maxHeight' => 400,
+                    )),
+                    new Assert\File(array(
+                        'maxSize' => '1024k')
+                  )
+                ),
                 'attr'=>array(
                     'class'=> 'formulaire'
                 )
