@@ -65,7 +65,7 @@ hr.major {
 header.major > :last-child {
     border-bottom: solid 3px #f56a6a;
     display: inline-block;
-    margin: 3em 0 1em 7em;
+
     padding: 0 0.75em 0.5em 0;
 }
 
@@ -600,7 +600,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto Slab", serif;
     font-weight: 700;
     line-height: 1.5;
-    margin: 0 0 1em 0;
+    margin: 0 0 0em 0;
 }
 
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -823,3 +823,4 @@ input.formulaire{
 .admin p{
     text-align: center;
 }
+
