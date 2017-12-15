@@ -1930,11 +1930,7 @@
 			padding-left: 0.25em;
 		}
 
-	ul {
-		list-style: disc;
-		margin: 0 0 2em 0;
-		padding-left: 1em;
-	}
+
 
 		ul li {
 			padding-left: 0.5em;
@@ -2935,7 +2931,10 @@
 		}
 	.admin {
 		z-index: 10;
+		transition: 0.2s;
 	}
+
+
 
 		@media screen and (max-width: 480px) {
 
@@ -3292,7 +3291,7 @@
 
 		}
 
-/* Footer */
+
 
 	#footer {
 		padding: 3px 0 2em 2em ;

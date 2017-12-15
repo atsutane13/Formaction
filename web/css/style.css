@@ -6,16 +6,25 @@ body{
     padding: 0 3em;
 }
 .search{
-    margin-left: 10em;
+    padding-left: 2em;
    
 }
 
 li a {
     color: #fff;
 }
+
+
  li :hover a {
     color: #f56a6a;
 }
+
+.cadre li a {
+    color: #f56a6a;
+    transition: 0.2s;
+}
+
+
 
 .row{
     display: flex;
@@ -46,14 +55,31 @@ li a {
     background-color:#565a926c;
     border-radius: 5px;
     padding: 1em;
+    width: 100%; 
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+
  }
 
+ @media screen and (min-width: 736px){
+    article.cadre{
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+ }
+
+ul.logo{
+    width: 100%;
+    
+}
+
 ul.logo img {
-    display: inline-block;
-    height: 3.5em;
+    height: auto;
+    max-width: 150px;
+    margin: auto;
     line-height: 2.5em;
-    padding: 0 0.5em;
-    margin: 0.5em;
 }
 
 
@@ -122,11 +148,10 @@ h1{
 /* Footer */
 
 #footer {
-    padding: 3px 0 2em 2em ;
+
     
     color:rgb(255, 255, 255);
-    margin-left:5em;
-    margin-right:5em;
+
     text-decoration: none;
     list-style-type: none;
 }
@@ -358,8 +383,8 @@ h1{
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: 0 0 2em -3em;
-    width: calc(100% + 3em);
+
+    width: 100%;
 }
 
     .features article {
@@ -579,6 +604,8 @@ a {
         border-bottom-color: #f56a6a;
         color: #f56a6a !important;
     }
+
+   
 
         a:hover strong {
             color: inherit;
@@ -862,5 +889,7 @@ input.formulaire{
     justify-content: space-between;
 }
 
+.admin a:hover a{
+    color: #529AD4;
+}
 
-  
