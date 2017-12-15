@@ -755,21 +755,28 @@ hr {
     text-align: center;
     color:#fff;
 }
-.formulaire::{
-    text-align: center;
-}
+
 
 .form-admin select{ 
     background: #565a92;
-    border-radius: 5px;    
+    border-radius: 5px;   
+    
 }
 .form-admin select option{
     background: #565a92;
 }
 
+.form-admin input[type="url"]{
+    width: 100%; 
+}
+.form-admin div{
+    padding-bottom: 1em;
+}
+
 input{
-    margin-top: 1em;
     text-align: center;
+    
+
 }
 
 input.formulaire{

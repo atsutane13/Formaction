@@ -1,4 +1,9 @@
 {% extends "layout.html.twig" %}
+
+	{%  block css %}
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" /> 
+	{% endblock %}
 {% block title %}Modifier utlisateur{% endblock %}
 
 {% block content %}
@@ -8,10 +13,12 @@
     </div>
 {% endfor %}
 
-{{ form_start(articleForm)}}
-
+{{ form_start(articleForm, {
+    'attr': {'class': 'form-admin'}})}}
+    
+    <P><span>Logo actuelle : </span>
+        <img src="{{ asset('uploads/' ~ logo ) }}" class="img img-responsive img-rounded" width="200">
+        </P>
 {{ form_end(articleForm)}}
-<P><span>Logo actuelle : </span>
-<img src="{{ asset('uploads/' ~ logo ) }}" class="img img-responsive img-rounded" width="150">
-</P>
+
 {% endblock %}
