@@ -2685,11 +2685,9 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		-moz-flex-wrap: wrap;
-		-webkit-flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-		postiion: relative;
+		flex-flow: column;
+		align-items: center;
+		position: relative;
 		margin: -2.5em 0 0 -2.5em;
 	}
 
@@ -2699,7 +2697,7 @@
 			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
 			transition: transform 0.5s ease, opacity 0.5s ease;
 			position: relative;
-			width: calc(33.33333% - 2.5em);
+			width: 30%;
 			margin: 2.5em 0 0 2.5em;
 		}
 
@@ -2889,32 +2887,33 @@
 			opacity: 1;
 		}
 
-		@media screen and (max-width: 1280px) {
-
-			.tiles {
-				margin: -1.25em 0 0 -1.25em;
+		@media screen and (min-width: 980px){
+			.tiles{
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+				position: relative;
 			}
 
-				.tiles article {
-					width: calc(33.33333% - 1.25em);
-					margin: 1.25em 0 0 1.25em;
-
-				}
-
-		}
-
-		@media screen and (max-width: 980px) {
-
-			.tiles {
-				margin: -2.5em 0 0 -2.5em;
+			.tiles article{
+				width:40%;
 			}
-
-				.tiles article {
-					width: calc(50% - 2.5em);
-					margin: 2.5em 0 0 2.5em;
-				}
-
 		}
+
+		@media screen and (min-width: 1280px) {
+
+			.tiles article{
+				width:30%;
+			}
+		}
+
+		@media screen and (min-width: 1680px) {
+			
+						.tiles article{
+							width:20%;
+							max-width:25%;
+						}
+					}
 
 		@media screen and (max-width: 736px) {
 
