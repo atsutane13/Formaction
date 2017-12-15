@@ -1,10 +1,17 @@
-	{% extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
+	{%  block css %} 
+		<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+	{% endblock %}
 	
-	{% block title %}Un article{% endblock %}
+	{% block title %}Les Métiers du Web{% endblock %}
 	
 	{% block content %}
+
             <h2>Mon article</h2>
-			<article>
+
+			<article class="droit">
+
 				<h2>{{ formation.title }}</h2>
 
 				<p>publié par <a href="{{ path('voirIntervenant', {id:formation.intervenantId.id})}}">{{formation.intervenantId.nom}}</a> le {{ formation.datePubli }}</p>
@@ -12,8 +19,12 @@
 
 				<a href="{{ path('deleteFormation', {id: formation.id}) }}">Supprimer</a>
 			{% endif %}
-
-			
+		
 			</article>
-		{% endblock %}
+
+	{% endblock %} 
+
+	
+
+
 		

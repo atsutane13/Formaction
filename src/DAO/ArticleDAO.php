@@ -60,7 +60,7 @@ class ArticleDAO extends DAO{
 
 
 	public function findFormationsByCategory($title){
-        $result = $this->bdd->prepare('SELECT articles.id AS idArticle, title, intervenant.id AS idIntervenant, nom, logo FROM articles INNER JOIN intervenant ON articles.intervenantId = intervenant.id WHERE categoryId = :category');
+        $result = $this->bdd->prepare('SELECT  url, title, intervenant.id AS idIntervenant, nom, logo FROM articles INNER JOIN intervenant ON articles.intervenantId = intervenant.id WHERE categoryId = :category');
         $result->bindValue(':category', $title);
         $result->execute();
 		return $result->fetchALL(\PDO::FETCH_ASSOC);
@@ -69,7 +69,7 @@ class ArticleDAO extends DAO{
 
 	public function advanceSearch($str){
 		if(!empty($str)){			
-			$search = $this->bdd->prepare('SELECT articles.id , title FROM ' . $this->tableName . ' INNER JOIN intervenant ON  articles.intervenantId = intervenant.id WHERE nom LIKE :string  OR duree LIKE :string OR title LIKE :string');
+			$search = $this->bdd->prepare('SELECT articles.id , title, nom, url FROM ' . $this->tableName . ' INNER JOIN intervenant ON  articles.intervenantId = intervenant.id WHERE nom LIKE :string  OR duree LIKE :string OR title LIKE :string');
 			$search->bindValue(':string', '%'.$str.'%');
             $search->execute();				
 			return $search->fetchALL(\PDO::FETCH_ASSOC);;

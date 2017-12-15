@@ -1,4 +1,10 @@
 	{% extends "layout.html.twig" %}
+
+	{%  block css %}
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" /> 
+	{% endblock %}
+
 		{% block title %}Ajout d'article{% endblock %}
 
 		{% block content %}
@@ -8,7 +14,31 @@
                 </div>
             {% endfor %}
 
-			{{ form_start(articleForm)}}
+			{{ form_start(articleForm, {
+				'attr': {'class': 'form-admin'}})}}
+				<div>
+				<label for="">Titre de la formation</label>
+				{{ form_widget(articleForm.title, { 'attr': {'class': 'formulaire'}}) }}
+			</div>
+			<div>
+				<label for="">Duree de la formation</label>
+				{{ form_widget(articleForm.duree, { 'attr': {'class': 'formulaire'}}) }}
+			</div>
+			<div>
+				<label for="">Categorie</label>
+				{{ form_widget(articleForm.categoryId, { 'attr': {'class': 'formulaire'}}) }}
+			</div>
+			<div>
+				<label for="">Intervenant</label>
+				{{ form_widget(articleForm.intervenantId, { 'attr': {'class': 'formulaire'}}) }}
+			</div>
+			<div>
+				<label for="">Url de la formation</label>
+				{{ form_widget(articleForm.url, { 'attr': {'class': 'formulaire'}}) }}
+			</div>
+			<div>
+				{{ form_widget(articleForm.Enregistrer, { 'attr': {'class': 'form-btn'}}) }}
+			</div>
 			{{ form_end(articleForm)}}
 		{% endblock %}
 

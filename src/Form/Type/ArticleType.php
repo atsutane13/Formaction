@@ -21,7 +21,7 @@ class ArticleType extends AbstractType
     {
         $builder->add('title', TextType::class,array(
             'attr'=>array(
-                'class'=> 'form-control',
+                'class'=> 'formulaire',
                 'placeholder'=>'entrez votre titre'
             ),
             'label'=>'Nom de la formation'
@@ -30,41 +30,48 @@ class ArticleType extends AbstractType
         $builder->add('duree', TextType::class,array(
 
             'attr'=>array(
-                'class'=> 'form-control'
+                'class'=> 'formulaire',
+                'placeholder'=>'entrez la duree de la formation'
                 )
         ));
         
         $builder->add('categoryId', ChoiceType::class, array(
             'choices'  => array(
             ),
+            'choice_attr'=>array(
+                'choice_class'=> 'formulaire round'
+            ),
             'constraints'=>array(
                 new Assert\NotBlank(),
                 new Assert\NotNULL()                
             ),
-            'label'=>'categorie'
+            'choice_label'=>'Categorie'
         ));
 
         $builder->add('intervenantId', ChoiceType::class, array(
             'choices'  => array(
             ),
+            'choice_attr'=>array(
+                'choice_class'=> 'formulaire round'
+            ),
             'constraints'=>array(
                 new Assert\NotBlank(),
                 new Assert\NotNULL()                
             ),
-            'label'=>'Intervenant'
+            'choice_label'=>'Intervenant'
         ));
 
         $builder->add('url', UrlType::class,array(
             'attr'=>array(
-                'class'=> 'form-control',
+                'class'=> 'formulaire',
                 'placeholder'=>'entrez l\'url'
             ),
-            'label'=>'url de la formation'
+            'label'=>'Url de la formation'
         ));
 
         $builder->add('Enregistrer', SubmitType::class,array(
             'attr'=>array(
-                'class'=> 'btn btn-default'
+                'class'=> 'form-btn'
             )
             
         ));

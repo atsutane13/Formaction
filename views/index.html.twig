@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 	{% extends "layout.html.twig" %}
 	{%block css%}<link rel="stylesheet" href="{{ asset('css/main.css') }}" />{%endblock%}
 		{% block title %}Ma page d'accueil{% endblock %}
@@ -35,59 +36,157 @@
 								</ul>
 							</nav>
 							</header>
+=======
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
 			
+<!DOCTYPE html>
+<html lang="fr">
 
+	<head>
+		<title>page dacceuil</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		
+		
+		{# <link rel="stylesheet" href="{{ asset('admin/admin.css') }}" /> #}
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+		<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" /> 
+		
+	</head>
+	<body class="landing">	
+		<div id="page-wrapper">		
+			<header id="header">
+						<nav id="nav">
+							
+							<ul class="actions">							
+								<li class="bipe" >
+									<form action="{{ path('recherche')}}">
+										<input placeholder="Recherche" type="text" name="search" size="50" >
+										<input type="submit" value="Recherche" class="prout">
+									</form>
+								</li>															
+								<li><a href="{{ path('home') }}">Accueil</a></li>
+								<li><a href="{{ path('category') }}">Category</a></li>
+								<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+								{% if is_granted('ROLE_ADMIN') %}
+									<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+									<li><a href="{{ path('logout') }}">déconnexion</a></li>
+								{% else %}
+
+				
+										<li><a href="{{ path('login') }}">connexion</a></li> 
+								{% endif %}						
+							</ul>
+						</nav>
+						</header>
+						
+						
+						
 		
 
 		<section id="banner">
 			<div class="content">
-				<span class="img img-responsive img-rounded"><img src="{{ asset('img/logo/logo_couleur/logo_slogan.png') }}" alt="" /></span>					
-				<button class="button special"><a href="{{ path('category') }}"  class="lien"id="contact" >Formations</a></button>					 
+				<img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}"class="img img-responsive img-rounded" alt="" />				
+				<a class="bouton special" href="{{ path('category') }}">Formations</a>					 
 			</div>
 			<a href="#one" class="goto-next scrolly">Next</a>
 		</section>
 
 		<section id="one" class="spotlight style1 bottom">
-				<span class="image fit main"><img src="{{ asset('img/rust.jpg') }}" alt="" /></span>
-				<div class="content">
-					<div class="container">
-						<div class="row">
-							<div class="4u 12u$(medium)">
-								<header>
-									<h2>Odio faucibus ipsum integer consequat</h2>
-									<p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
-								</header>
-							</div>
-							<div class="4u 12u$(medium)">
-								<p>Feugiat accumsan lorem eu ac lorem amet sed accumsan donec.
-								Blandit orci porttitor semper. Arcu phasellus tortor enim mi
-								nisi praesent dolor adipiscing. Integer mi sed nascetur cep aliquet
-								augue varius tempus lobortis porttitor accumsan consequat
-								adipiscing lorem dolor.</p>
-							</div>
-							<div class="4u$ 12u$(medium)">
-								<p>Morbi enim nascetur et placerat lorem sed iaculis neque ante
-								adipiscing adipiscing metus massa. Blandit orci porttitor semper.
-								Arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer
-								mi sed nascetur cep aliquet augue varius tempus. Feugiat lorem
-								ipsum dolor nullam.</p>
-							</div>
-						</div>
+			<div class="content">
+				<div class="container">
+				
+					<span class="image fit main"><img src="{{ asset('images/rust.jpg') }}" alt="" /></span>
+						{% for flashMessage in app.session.flashbag.get('success') %}
+					<div class="alert alert-success">
+						{{ flashMessage }}
 					</div>
-				</div>							
+					{% endfor %}
+				
+					<header class="major">
+						<h1>les Dernieres formations</h1>
+					</header>
+					<div id="last">
+					{% for formation in formations %}
+						<article>
+							<h2>{{ formation.title }}</h2>
+							<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a></p>
+						</article>			
+					{% endfor %}
+				</div>
+				</div>
+			</div>							
 		</section>
+		<div>								
+			<div class="row">					
+				<div class="4u 12u$(medium)">
+					<header>
+						<h2>TU RECHERCHES UNE FORMATION QUALIFIANTE ?</h2>
+						<h2>TU LA CROIS INACCESSIBLE !?<h2>
+					</header>
+				</div>
+				<div class="4u 12u$(medium)">
+					<P><strong>ICI ! Vous êtes au bon endroit. Sur le bon site ! Pour avancer, et trouver celle-ci !</strong><p>					
+					Ces formations sont ouvertes, quelque soit vôtre niveau scolaire. À partir de la 3ème jusqu'au BAC.					
+					L'accession à celles-ci peut se faire sans pré-requis. Trouvez vôtre formation, candidatez, quelques tests et/où entretiens suffisent... </p>
+				</div>
+				<div class="4u$ 12u$(medium)">
+					<p>Ces formations courtes où en alternance vous permettront d'acceder à l'emploi, dans les métiers de demain où demandeurs.
+					De plus, des financements sont possibles !<br> Vôtre avenir est là, à vous de jouer !
+					</p>
+				</div>				
+			</div>				
+		</div>
 			     
+		<footer id="footer">
+				<ul class="icons">
 
-			
-		<div class="col-md-12">
+					<li><a href=" https://www.facebook.com/" class="fa fa-facebook fa-2x"><span class="label"></span></a></li>
+					<li><a href="https://www.linkedin.com" class="fa fa-linkedin fa-2x"><span class="label"></span></a></li>
+					<li><a href="http://gmail.com/" class="fa fa-envelope fa-2x"><span class="label"></span></a></li>
+				</ul>
+				<ul class="logo">
+					<h3>Partenaires</h3>
+					<img src="{{ asset('../web/img/cesi.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/cfa.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/digitalcampus2.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/greta.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/lewagon2.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/m2i.jpg') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/modula.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/philomathique.png') }}" class="img img-responsive img-rounded" width="150">
+					<img src="{{ asset('../web/img/web_force_3.png') }}" class="img img-responsive img-rounded" width="150">			
+				</ul>
 
-			</div>
-			<footer class="footer">
 			</footer>
 	</div>
 </div>
 	
+			{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> #}
+			
+			<!-- Scripts -->
+			<!-- Scripts -->
+		<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrolly.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.dropotron.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrollex.min.js')}}"></script>
+		<script src="{{ asset('assets/js/skel.min.js')}}"></script>
+		<script src="{{ asset('assets/js/util.js')}}"></script>
+		{# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
+		<script src="{{ asset('assets/js/main.js')}}"></script>
+			
+	</body>
+</html>
+	
+		
 
+<<<<<<< HEAD
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.scrolly.min.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.dropotron.min.js')}}"></script>
@@ -97,5 +196,13 @@
 {# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
 <script src="{{ asset('assets/js/main.js')}}"></script>
 		{% endblock %}
+=======
+	
+
+		
+		
+
+
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
 
 		

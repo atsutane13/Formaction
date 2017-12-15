@@ -1,6 +1,7 @@
 @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 
+
 /*
 	Landed by HTML5 UP
 	html5up.net | @ajlkn
@@ -29,6 +30,8 @@
 	ol, ul {
 		list-style: none;
 	}
+
+	
 
 	.Logo{
 		
@@ -1601,7 +1604,7 @@
 	
 
 	a {
-		color: #e44c65;
+		color: #ffffff;
 		-moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -2552,11 +2555,7 @@
 			padding-left: 0.25em;
 		}
 
-	ul {
-		list-style: disc;
 
-
-	}
 
 		ul li {
 			padding-left: 0.5em;
@@ -2617,7 +2616,7 @@
 
 			ul.actions li {
 				display: inline-block;
-				padding: 0 1em 0 0;
+				padding: 0;
 				vertical-align: middle;
 			}
 
@@ -2626,7 +2625,7 @@
 				}
 
 			ul.actions.small li {
-				padding: 0 0.5em 0 0;
+				padding: 0;
 			}
 
 			ul.actions.vertical li {
@@ -2757,7 +2756,7 @@
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
-		appearance: none;
+		-moz-appearance: none;
 		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -2772,7 +2771,7 @@
 		font-weight: 300;
 		height: 3em;
 		line-height: 3em;
-		padding: 0 2.25em;
+		padding: 0 1.5em;
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
@@ -2846,8 +2845,10 @@
 			border-radius:15px;
 			margin-left:19.5em;
 		}
-		input[type="submit"].prout,{
+		input[type="submit"].prout{
 			background-color: #47a9e2;
+			font-weight: bold;
+			border-radius: 20px;
 		}
 
 		
@@ -3370,18 +3371,23 @@
 			#header nav ul {
 				margin: 0;
 				display: flex;
-				justify-content: center;
+
+				justify-content: flex-end;
+				/* flex-flow: row nowrap; */
 			}
 
 				#header nav ul li {
-
+				
 					margin:0px;
-					padding-right:5em;
+					padding-right:2em;
 				}
 				#header nav ul li form{
 
 					display:flex;
 					padding:0em;
+				}
+				#bipe {
+					padding-right: 0;
 				}
 			
 
@@ -3424,7 +3430,7 @@
 	#banner {
 		background-attachment: fixed;
 		background-color: #272833;
-		background-image: url("../../img/bdx.jpg");
+		background-image: url("../../images/bdx.jpg");
 		background-position: center center;
 		background-size: cover;
 		box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.25);
@@ -3708,7 +3714,7 @@
 	}
 
 
-	@media screen and (max-width: 736px) {
+	@media screen and (max-width: 980px) {
 
 		/* Basic */
 
@@ -4097,10 +4103,10 @@
 
 			}
 		
-			#banner .content img {
+			/* #banner .content img {
 				width:20em;
 				
-			}
+			} */
 		
 		/* Footer */
 
@@ -4120,3 +4126,71 @@
 					}
 
 	}
+
+	.content a{
+		display: block;
+		margin: auto;
+		background-color: #529AD4;
+		border-radius: 100px;
+		padding: 0.5em 1em 0.5em 1em;
+		max-width: 100%;
+		text-align: center;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+	.content a:hover{
+		background-color:#cc5555;
+	}
+	
+
+@media screen and (min-width: 300px){
+	.content a{
+		max-width: 60%;
+
+	}
+}
+@media screen and (min-width: 600px){
+	.content a{
+		max-width: 40%;
+
+	}
+}
+#banner .content img {
+	width:100%;
+	margin: auto;
+	display: block;
+	
+}
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content  {
+	max-width:80%;
+}
+
+#banner .content button {
+	margin: auto;
+	display: block;
+	
+}
+
+.actions li a{
+	padding: 1em;
+	font-weight: bold;
+	transition: 100;
+	border-radius: 10px;
+}
+.actions li:hover a{
+	color: #e44c65;
+
+}
+
+#last{
+	display: flex;
+	justify-content: space-between;
+}

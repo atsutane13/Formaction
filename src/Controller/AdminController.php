@@ -163,8 +163,12 @@ class AdminController{
                 $intervenant->setLogo($filename);
                 $app['dao.intervenant']->update($id, $intervenant);
                 $file->move($path,$filename);
+<<<<<<< HEAD
                 if($Logo==NULL){
                     
+=======
+                if($logo===NULL){                    
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
                     $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
                 else{

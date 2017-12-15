@@ -19,22 +19,32 @@ class CategoryType extends AbstractType
        
        $builder->add('category', TextType::class,array(
            'attr'=>array (
-               'class'=>'form-control',
+               'class'=>'formulaire',
                'placeholder'=> 'entrez une category'
            )
        ));
 
-       $builder->add('image', FileType::class,
-               array(
-                    'required'=> false,
-                   'constraints' => new Assert\Image()
-                   
-               )
-        );
+       $builder->add('image', FileType::class,array(
+                'required'=> false,
+                'constraints' => array(
+                    new Assert\Image(array(
+                        'minWidth' => 200,
+                        'maxWidth' => 400,
+                        'minHeight' => 200,
+                        'maxHeight' => 400,
+                    )),
+                    new Assert\File(array(
+                        'maxSize' => '1024k')
+                  )
+                ),
+                'attr'=>array(
+                    'class'=> 'formulaire'
+                )
+            ));
 
        $builder->add('Enregistrer', SubmitType::class,array(
            'attr'=>array (
-               'class'=> 'btn btn-default'
+               'class'=> 'form-btn'
            )
        ));
    }

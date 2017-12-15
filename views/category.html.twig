@@ -1,5 +1,12 @@
 {% extends "layout.html.twig" %}
+<<<<<<< HEAD
 {%  block css %} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {% endblock %}
+=======
+{%  block css %} 
+<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+{% endblock %}
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
 
 
 {% block title %}Un article{% endblock %}
@@ -10,6 +17,7 @@
     {{ flashMessage }}
 </div>
 {% endfor %}
+<<<<<<< HEAD
 <!-- Wrapper -->
 <div id="wrapper">
     
@@ -45,29 +53,46 @@
                 <h2>Mes categories</h2>
                 <section class="tiles">
                     {% for category in categorys %}
+=======
+
+    <div id="main">
+        <div class="inner">
+            <header>
+                <a href="{{ path('home') }}">
+                    <span class="symbol"><img src="{{ asset('images/logo/logo_couleur/logo_bulle.png') }}" alt="" /></span><span class="title"></span>
+                </a>
+                <h1>Les différentes Formations Proposées par <a href="http://www.bordeaux-metropole.fr/" target="blank">Bordeaux Metropole</a></h1>
+            </header>
+            <h2>Mes categories</h2>
+            <section class="tiles">
+                {% for category in categorys %}                  
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
                         
                         <article class="style{{category.id}}">
-                            <div>
+                            <div class="imge">
                             
-                            <span class="image">
-                                <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
-                            </span>
-                            <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
-                            
-                        <div class= "admin">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
-                        |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
-                            {% endif %}
-                        </div>
-                        </div>
+                                <span class="image">
+                                    
+                                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2><img src="{{ asset('uploads/' ~ category.image ) }}" alt="" /></a>
+                                </span>
+                                
+                                
+                                <div class= "admin">
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
+                                |       <a href="{{ path('updateCategory', {id: category.id}) }}">Modifier</a></p>      
+                                    {% endif %}
+                                </div>
+                            </div>
                         </article>
-                        
-                    {% endfor %}
-                </section>
-            </div>
+
+
+                    
+                {% endfor %}
+            </section>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Menu -->
     <nav id="menu">
         <h2>Menu</h2>
@@ -98,3 +123,6 @@
     {# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
     <script src="{{ asset('category/assets/js/main.js')}}"></script>
     {% endblock %}
+=======
+{% endblock %}
+>>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
