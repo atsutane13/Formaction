@@ -27,8 +27,8 @@
 
                     <li>{{ formation.title }}             
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('deleteFormation', {id: formation.id}) }}">Supprimer</a> 
-                        |   <a href="{{ path('updateFormation', {id: formation.id}) }}">Modifier</a>      
+                        <a href="{{ path('updateFormation', {id: formation.id}) }}">Modifier</a> |
+                        <a href="{{ path('deleteFormation', {id: formation.id}) }}">Supprimer</a> 
                         {% endif %}
                     </li>
                     
