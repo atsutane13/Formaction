@@ -2849,8 +2849,10 @@
 			border-radius:15px;
 			margin-left:19.5em;
 		}
-		input[type="submit"].prout,{
+		input[type="submit"].prout{
 			background-color: #47a9e2;
+			font-weight: bold;
+			border-radius: 20px;
 		}
 
 		
@@ -4189,7 +4191,5 @@
 }
 .actions li:hover a{
 	color: #e44c65;
-	border-bottom-color: #ffffff;
-	 box-shadow: inset 3px -3px 3px#ffffff6c; 
-	background: linear-gradient(to bottom left, transparent, rgba(255, 255, 255, 0.075))
+
 }

@@ -757,18 +757,31 @@ hr {
     text-align: center;
     color:#fff;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0dae2c2da03e3d3b2b4a8d91fa6e168597d64138
 
 .form-admin select{ 
     background: #565a92;
-    border-radius: 5px;    
+    border-radius: 5px;   
+    
 }
 .form-admin select option{
     background: #565a92;
 }
 
+.form-admin input[type="url"]{
+    width: 100%; 
+}
+.form-admin div{
+    padding-bottom: 1em;
+}
+
 input{
-    margin-top: 1em;
     text-align: center;
+    
+
 }
 
 input.formulaire{
