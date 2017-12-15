@@ -1,5 +1,4 @@
 @import url(font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
 
 /*
 	Phantom by HTML5 UP
@@ -18,7 +17,6 @@
 		vertical-align: baseline;
 		
 	}
-
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
@@ -2691,7 +2689,7 @@
 			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
 			transition: transform 0.5s ease, opacity 0.5s ease;
 			position: relative;
-			width: calc(33.33333% - 2.5em);
+			width: 45%;
 			
 		}
 
@@ -2881,34 +2879,15 @@
 			opacity: 1;
 		}
 
-		@media screen and (max-width: 1280px) {
-
-
-
-				.tiles article {
-					width: calc(33.33333% - 1.25em);
-					
-
-				}
-
-		}
-
 		@media screen and (min-width: 1280px) {
-
-	
-
 				.tiles article {
-					width: calc(50% - 2.5em);
-
+					width: 30%;		
 				}
-
 		}
 
-		@media screen and (min-width: 1680px) {
-			
+		@media screen and (min-width: 1680px) {			
 						.tiles article{
-							width:20%;
-							max-width:25%;
+							max-width:33%;
 						}
 					}
 
@@ -3463,7 +3442,7 @@
 
 	#wrapper > * > .inner {
 		width: 100%;
-		max-width: 68em;
+		max-width: 90%;
 		margin: 0 auto;
 		padding: 0 2.5em;
 	}
