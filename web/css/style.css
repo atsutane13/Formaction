@@ -70,14 +70,16 @@ li a {
     }
  }
 
-
+ul.logo{
+    width: 100%;
+    
+}
 
 ul.logo img {
-    display: inline-block;
-    height: 3.5em;
+    height: auto;
+    max-width: 150px;
+    margin: auto;
     line-height: 2.5em;
-    padding: 0 0.5em;
-    margin: 0.5em;
 }
 
 
@@ -146,11 +148,10 @@ h1{
 /* Footer */
 
 #footer {
-    padding: 3px 0 2em 2em ;
+
     
     color:rgb(255, 255, 255);
-    margin-left:5em;
-    margin-right:5em;
+
     text-decoration: none;
     list-style-type: none;
 }
