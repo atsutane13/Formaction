@@ -43,7 +43,7 @@ class RegisterType extends AbstractType
         $builder->add('contact', UrlType::class,array(
             'attr'=>array(
                 'class'=>'formulaire',
-                'placeholder'=>'entrez un un URL de la page'
+                'placeholder'=>'entrez un URL de la page'
             ),
             'constraints'=>array(
                 new Assert\Url()
@@ -60,7 +60,7 @@ class RegisterType extends AbstractType
 
         $builder->add('register', SubmitType::class,array(
             'attr'=>array (
-                'class'=> 'form'
+                'class'=> 'form-btn'
             )
         ));
     }

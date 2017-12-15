@@ -1,5 +1,11 @@
 {% extends "layout.html.twig" %}
-{% block title %}Ajout category{% endblock %}
+
+	{%  block css %}
+	<link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}" /> 
+    {% endblock %}
+    
+    {% block title %}Ajout de category{% endblock %}
 
 {% block content %}
     {% for flashMessage in app.session.flashbag.get('success') %}
@@ -8,10 +14,7 @@
         </div>
     {% endfor %}
 
-    {{ form_start(articleForm)}}
-
-
-
-
+    {{ form_start(articleForm, {
+        'attr': {'class': 'form-admin'}})}}
     {{ form_end(articleForm)}}
 {% endblock %}

@@ -755,6 +755,9 @@ hr {
     text-align: center;
     color:#fff;
 }
+.formulaire::{
+    text-align: center;
+}
 
 .form-admin select{ 
     background: #565a92;
@@ -764,10 +767,20 @@ hr {
     background: #565a92;
 }
 
+input{
+    margin-top: 1em;
+    text-align: center;
+}
 
 input.formulaire{
     background: #565a92;
     border-radius: 5px;
+   
+}
+
+.login{
+    max-width: 50%;
+    margin:auto;
 }
 
 .form-admin .form-btn{
@@ -781,7 +794,14 @@ input.formulaire{
     -moz-border-radius: 5;
     margin: 0.5em;
     color:#fff;
-    box-shadow: inset 0 0 0 2px #242943;    
+    box-shadow: inset 0 0 0 2px #242943;   
+    
+}
+
+.form-admin div:last-child{
+    display: block ;
+    margin: auto;
+    
 }
 
 .form-admin .form-btn:hover{
@@ -794,4 +814,12 @@ input.formulaire{
     -webkit-border-radius: 5;
     -moz-border-radius: 5;
     box-shadow: inset 0 0 0 2px #f56a6a;
+}
+
+.imge h2{
+    text-align: center;
+}
+
+.admin p{
+    text-align: center;
 }
