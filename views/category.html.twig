@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-{%  block css%} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {%endblock%}
+{%  block css %} <link rel="stylesheet" href="{{ asset('category/assets/css/main.css') }}" /> {% endblock %}
 
 
 {% block title %}Un article{% endblock %}
@@ -10,25 +10,30 @@
     {{ flashMessage }}
 </div>
 {% endfor %}
-    <div id="wrapper">
-
+<!-- Wrapper -->
+<div id="wrapper">
+    
 <!-- Header -->
-        <header id="header">
-            <div class="inner">
+    <header id="header">
+        <div class="inner">
 
-                <!-- Logo -->
-                    <a href="../index.html.twig">
-                        <span class="symbol"><img src="../images/logo/logo_couleur/logo_bulle.png" alt="" /></span><span class="title"></span>
-                    </a>
+            <!-- Logo -->
+                <a href="../index.html.twig">
+                    <span class="symbol"><img src="../images/logo/logo_couleur/logo_bulle.png" alt="" /></span><span class="title"></span>
+                </a>
 
-           
+            <!-- Nav -->
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
 
-            </div>
-        </header>
+        </div>
+    </header>
 
-<!-- Menu -->
-   
 
+<!-- Main -->
         <div id="main">
             <div class="inner">
                 <header>
@@ -63,4 +68,33 @@
             </div>
         </div>
     </div>
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>						
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+            <li><a href="{{ path('category') }}">Category</a></li>
+            <li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
+                <li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
+                <li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+                <li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+                <li><a href="{{ path('logout') }}">déconnexion</a></li>
+            {% else %}
+
+
+                    <li><a href="{{ path('login') }}">connexion</a></li> 
+            {% endif %}       
+            
+        </ul>
+    </nav>
+
+
+    
+    <script src="{{ asset('category/assets/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('category/assets/js/skel.min.js')}}"></script>
+    <script src="{{ asset('category/assets/js/util.js')}}"></script>
+    {# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
+    <script src="{{ asset('category/assets/js/main.js')}}"></script>
     {% endblock %}

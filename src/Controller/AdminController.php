@@ -163,7 +163,7 @@ class AdminController{
                 $intervenant->setLogo($filename);
                 $app['dao.intervenant']->update($id, $intervenant);
                 $file->move($path,$filename);
-                if($Logo===NULL){
+                if($Logo==NULL){
                     
                     $app['session']->getFlashBag()->add('success', 'Intervenant modifiée');
                 }
@@ -250,7 +250,7 @@ public function ajoutCategoryAction(Application $app, Request $request){
                 $category->setImage($filename);
                 $app['dao.category']->update($id, $category);
                 $file->move($path,$filename);
-                if($logo===NULL){
+                if($logo==NULL){
                     $app['session']->getFlashBag()->add('success', 'Categorie modifiée');
                 }
                 else{
