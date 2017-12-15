@@ -30,8 +30,8 @@
                             <div class="imge">
                             
                                 <span class="image">
-                                    <img src="{{ asset('uploads/' ~ category.image ) }}" alt="" />
-                                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2></a>
+                                    
+                                    <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2><img src="{{ asset('uploads/' ~ category.image ) }}" alt="" /></a>
                                 </span>
                                 
                                 
