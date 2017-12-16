@@ -2932,8 +2932,10 @@
 /* Header */
 
 	#header {
-		padding: 8em 0 0.1em 0 ;
+		padding: 2em 0 0.1em 0 ;
 	}
+
+
 
 		#header .logo {
 			display: block;
@@ -2956,10 +2958,16 @@
 				margin-right: 0.65em;
 			}
 
-				#header .logo .symbol img {
+				#header .logo .symbol #symbol{
 					display: block;
-					width: 2em;
-					height: 2em;
+					width: 90%;
+					height: auto;
+				}
+
+				@media screen and (min-width: 480px){
+					#header .logo .symbol #symbol{
+						width: 75%;
+					}
 				}
 
 		#header nav {

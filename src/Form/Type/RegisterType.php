@@ -31,6 +31,7 @@ class RegisterType extends AbstractType
                 'class'=>'formulaire',
                 'placeholder'=>'entrez un numero de telephone'
             ),
+            'label'=>'Numero de telephone',
             'constraints'=>array(
                 new Assert\NotBlank(),
                 new Regex(array(

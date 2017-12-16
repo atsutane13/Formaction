@@ -2888,12 +2888,22 @@
 		height: 5em;
 		left: 50%;
 		margin: 0 0 0 -5em;
-		overflow: hidden;
 		position: absolute;
-		text-indent: 10em;
 		white-space: nowrap;
 		width: 10em;
 		z-index: 1;
+		display: flex;
+		flex-flow: column;
+		transition: 0.3s linear;
+	}
+
+	.goto-next:hover{
+		font-weight: bold;
+		height: 7em;
+	}
+
+	.goto-next:hover p{
+		padding-bottom: 0.2em;
 	}
 
 		.goto-next:before {
@@ -2911,6 +2921,7 @@
 			width: 2em;
 			z-index: 1;
 		}
+
 
 /* Spotlight */
 
@@ -4138,18 +4149,54 @@
 	.content a:hover{
 		background-color:#cc5555;
 	}
+	#last{
+		width: 100%;
+		display: flex;
+		flex-flow: column;
+	}
+	
+	#last article{
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		margin: 0 2em;
+		padding: 1em;
+		text-align: center;
+	}
+	
+	#last article a{
+		width:100%;
+		display: block;
+	}
+
+	#one .content{
+		padding: 0;
+	}
+	#one .content .container{
+		width:95%;
+	}
 	
 
 @media screen and (min-width: 300px){
-	.content a{
+	.content .info{
 		max-width: 60%;
-
 	}
+	 
 }
 @media screen and (min-width: 600px){
-	.content a{
+	.content .info{
 		max-width: 40%;
+	}
 
+}
+
+@media screen and (min-width:1280px){
+	#last{
+		display: flex;
+		flex-flow: row;
+	}
+	#last article{
+		width: 20%;
 	}
 }
 #banner .content img {
@@ -4187,7 +4234,5 @@
 
 }
 
-#last{
-	display: flex;
-	justify-content: space-between;
-}
+
+

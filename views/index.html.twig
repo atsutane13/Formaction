@@ -31,9 +31,7 @@
 										<input type="submit" value="Recherche" class="prout">
 									</form>
 								</li>															
-								<li><a href="{{ path('home') }}">Accueil</a></li>
-								<li><a href="{{ path('category') }}">Category</a></li>
-								<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+								<li><a href="{{ path('category') }}">Categorie</a></li>
 								{% if is_granted('ROLE_ADMIN') %}
 									<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
 									<li><a href="{{ path('logout') }}">déconnexion</a></li>
@@ -52,17 +50,18 @@
 
 		<section id="banner">
 			<div class="content">
-				<img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}"class="img img-responsive img-rounded" alt="" />				
-				<a class="bouton special" href="{{ path('category') }}">Formations</a>					 
+				<img src="{{ asset('images/logo/logo_couleur/logo_slogan.png') }}" class="img img-responsive img-rounded" alt="" />				
+				<a class="bouton special info" href="{{ path('category') }}">Formations</a>					 
 			</div>
-			<a href="#one" class="goto-next scrolly">Next</a>
+			
+			<a href="#one" class="goto-next scrolly"><p>Dernieres Formations</p></a>
 		</section>
 
 		<section id="one" class="spotlight style1 bottom">
-			<div class="content">
-				<div class="container">
-				
-					<span class="image fit main"><img src="{{ asset('images/rust.jpg') }}" alt="" /></span>
+			
+			<span class="image fit main"><img src="{{ asset('images/fornation.jpeg') }}" alt="" /></span>
+				<div class="content">
+					<div class="container">
 						{% for flashMessage in app.session.flashbag.get('success') %}
 					<div class="alert alert-success">
 						{{ flashMessage }}
@@ -70,40 +69,48 @@
 					{% endfor %}
 				
 					<header class="major">
-						<h1>les Dernieres formations</h1>
+						<h2>les Dernieres formations</h2>
 					</header>
 					<div id="last">
-					{% for formation in formations %}
-						<article>
-							<h2>{{ formation.title }}</h2>
-							<p><a href="{{ path('voirFormation', {id: formation.id}) }}">Voir</a></p>
-						</article>			
-					{% endfor %}
-				</div>
+						{% for formation in formations %}
+							<article>
+								<h3>{{ formation.title }}</h3>
+									<img src="{{ asset('uploads/' ~ formation.intervenantId.logo ) }}" class="img img-responsive img-rounded" width="150"> 
+									<span>Proposee par :{{ formation.intervenantId.nom }}</span>
+									<span>Duree :{{ formation.duree}}</span>
+								<p><a href="{{ formation.url }}">plus d'information</a></p>
+							</article>			
+						{% endfor %}
+					</div>
 				</div>
 			</div>							
 		</section>
-		<div>								
-			<div class="row">					
-				<div class="4u 12u$(medium)">
-					<header>
-						<h2>TU RECHERCHES UNE FORMATION QUALIFIANTE ?</h2>
-						<h2>TU LA CROIS INACCESSIBLE !?<h2>
-					</header>
+		<section id="two" class="spotlight style2 bottom">
+			<span class="image fit main"><img src="{{ asset('images/bordeaux_vin.jpg') }}" alt="" /></span>	
+					<div class="content">
+						<div class="container">		
+					<div class="row">					
+						<div class="4u 12u$(medium)">
+							<header>
+								<h2>TU RECHERCHES UNE FORMATION QUALIFIANTE ?</h2>
+								<h2>TU LA CROIS INACCESSIBLE !?<h2>
+							</header>
+						</div>
+						<div class="4u 12u$(medium)">
+							<P><strong>ICI ! Vous êtes au bon endroit. Sur le bon site ! Pour avancer, et trouver celle-ci !</strong><p>					
+							Ces formations sont ouvertes, quelque soit vôtre niveau scolaire. À partir de la 3ème jusqu'au BAC.					
+							L'accession à celles-ci peut se faire sans pré-requis. Trouvez vôtre formation, candidatez, quelques tests et/où entretiens suffisent... </p>
+						</div>
+						<div class="4u$ 12u$(medium)">
+							<p>Ces formations courtes où en alternance vous permettront d'acceder à l'emploi, dans les métiers de demain où demandeurs.
+							De plus, des financements sont possibles !<br> Vôtre avenir est là, à vous de jouer !
+							</p>
+						</div>				
+					</div>				
 				</div>
-				<div class="4u 12u$(medium)">
-					<P><strong>ICI ! Vous êtes au bon endroit. Sur le bon site ! Pour avancer, et trouver celle-ci !</strong><p>					
-					Ces formations sont ouvertes, quelque soit vôtre niveau scolaire. À partir de la 3ème jusqu'au BAC.					
-					L'accession à celles-ci peut se faire sans pré-requis. Trouvez vôtre formation, candidatez, quelques tests et/où entretiens suffisent... </p>
-				</div>
-				<div class="4u$ 12u$(medium)">
-					<p>Ces formations courtes où en alternance vous permettront d'acceder à l'emploi, dans les métiers de demain où demandeurs.
-					De plus, des financements sont possibles !<br> Vôtre avenir est là, à vous de jouer !
-					</p>
-				</div>				
-			</div>				
-		</div>
-			     
+			</div>							
+		</section>
+						
 		<footer id="footer">
 				<ul class="icons">
 

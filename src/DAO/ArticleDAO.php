@@ -24,7 +24,12 @@ class ArticleDAO extends DAO{
 	
 	public function getLastFormations(){
 		$result = $this->bdd->query('SELECT * FROM articles ORDER BY datePubli DESC LIMIT 0,5');
-		return $result->fetchALL(\PDO::FETCH_ASSOC);
+		$rows=$result->fetchALL(\PDO::FETCH_ASSOC);
+		$objectsArray =[];
+        foreach($rows as $row){
+            $objectsArray[$row['id']] = $this->buildObject($row);
+        }
+		return $objectsArray;
 	}
 
 	//retourne la liste des articles de l'utilisateur dont l'id est fourni

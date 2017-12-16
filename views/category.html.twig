@@ -17,24 +17,17 @@
     <div id="main">
         <div class="inner">
             <header>
-                <a href="{{ path('home') }}">
-                    <span class="symbol"><img src="{{ asset('images/logo/logo_couleur/logo_bulle.png') }}" alt="" /></span><span class="title"></span>
-                </a>
-                <h1>Les différentes Formations Proposées par <a href="http://www.bordeaux-metropole.fr/" target="blank">Bordeaux Metropole</a></h1>
+                <h1>Les différentes Formations Proposées par <a href="http://www.bordeaux-metropole.fr/" target="blank">Bordeaux</a></h1>
             </header>
             <h2>Mes categories</h2>
             <section class="tiles">
                 {% for category in categorys %}                  
                         
                         <article class="style{{category.id}}">
-                            <div>
-                            
-                                <span class="image">
-                                    
+                            <div>                            
+                                <span class="image">                                    
                                     <a href ="{{ path('categoryFormation', { id: category.id }) }}"><h2>{{ category.category }}</h2><img src="{{ asset('uploads/' ~ category.image ) }}" alt="" /></a>
-                                </span>
-                                
-                                
+                                </span>                          
                                 <div class= "admin">
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <p><a href="{{ path('deleteCategory', {id: category.id}) }}">Supprimer</a> 
@@ -42,10 +35,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                        </article>
-
-
-                    
+                        </article>                   
                 {% endfor %}
             </section>
         </div>
