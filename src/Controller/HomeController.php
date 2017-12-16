@@ -25,7 +25,7 @@ class HomeController{
 	
 	//page d'accueil qui affiche tout les articles
 	public function homePageAction(Application $app){
-		$formations = $app['dao.article']->getFormationsWithAuthor();	
+		$formations = $app['dao.article']->getLastFormations();	
 		if($app['security.authorization_checker']->isGranted('ROLE_ADMIN')){
 			$token=$app['security.token_storage']->getToken();	
 			if(NULL!==$token){			
