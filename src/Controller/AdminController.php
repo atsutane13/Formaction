@@ -9,6 +9,7 @@ use WF3\Domain\Intervenant;
 use Symfony\Component\HttpFoundation\Request;
 use WF3\Form\Type\ArticleType;
 use WF3\Form\Type\RegisterType;
+use WF3\Form\Type\UserRegisterType;
 use WF3\Form\Type\CategoryType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -279,3 +280,27 @@ public function ajoutCategoryAction(Application $app, Request $request){
         return $app->redirect($app['url_generator']->generate('category'));
     }
 }
+
+    ///change login\\\\
+
+
+    public function updateLoginAction(Apllication $app, Request $request){
+		    $user=$app['dao.users']->find($id);
+		    $articleForm = $app['form.factory']->create(UserRegisterType::class, $user);
+		    $articleForm->handleRequest($request);
+		    if($articleForm->isSubmitted() && $articleForm->isValid()){			
+			        $salt = substr(md5(time()),0,23);
+			        $user->setSalt($salt);
+			        $encoder=$app['security.encoder.bcrypt'];
+			        $pwd=$encoder->encodePassword($user->getPassword(), $user->getSalt());
+					$user->setPassword($pwd);
+			        $app['dao.user']->insert($user);
+					$app['session']->getFlashBag()->add('success', 'Utilisateur bien enregistré');
+			    }
+			    return $app['twig']->render('Register.html.twig', array(
+				        'articleForm' => $articleForm->createView(),
+				        'user' => $user
+				    ));
+				}
+
+    }

@@ -84,6 +84,13 @@ $app->get('/admin/delete/category/{id}', 'WF3\Controller\AdminController::delete
 ->assert('id', '\d+')
 ->bind('deleteCategory');
 
+
+                        ///////////////ROUTE UPDATE LOGIN///////////////
+
+
+$app->get('/admin/update/login/', 'WF3\controller\AdminController::updateLoginAction')
+->bind('updateLogin');
+
                     ////////////////////\\\\\\\\\\\\\\\\\\\\\\
                     ////////////// RECHERCHE\\\\\\\\\\\\\\\
                     ////////////////////\\\\\\\\\\\\\\\\\\\\\\
