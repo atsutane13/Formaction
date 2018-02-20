@@ -20,8 +20,9 @@ class CategoryType extends AbstractType
        $builder->add('category', TextType::class,array(
            'attr'=>array (
                'class'=>'formulaire',
-               'placeholder'=> 'entrez une category'
-           )
+               'placeholder'=> 'entrez une categorie'
+           ),
+           'label'=>'Nom de la categorie'
        ));
 
        $builder->add('image', FileType::class,array(

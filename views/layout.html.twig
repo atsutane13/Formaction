@@ -15,6 +15,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		{%block css%}{%endblock%}
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 		<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" /> 
 		
 	</head>
@@ -22,6 +23,9 @@
 		
 		<div id="wrapper">
 			<header id="header">
+					<a href="{{ path('home') }}" class="logo">
+							<span class="symbol"><img id="symbol" src="{{ asset('images/logo/logo_couleur/logo_1.png') }}" class="img img-responsive img-rounded" alt="" /></span>
+						</a>
 				<div class="inner">
 					<nav>
 						<ul>
@@ -44,13 +48,15 @@
 					</li>
 					<div class="clic">								
 							<li><a href="{{ path('home') }}">Accueil</a></li>
-						<li><a href="{{ path('category') }}">Category</a></li>
+						<li><a href="{{ path('category') }}">Categorie</a></li> 	
 						<li><a href="{{ path('lastFormations') }}">Dernieres formations</a></li> 	 	
+						
 						{% if is_granted('ROLE_ADMIN') %}
 							<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
 							<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-							<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
+							<li><a href="{{ path('ajoutCategory') }}">Ajouter categorie</a></li>
 							<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
+							<li><a href="{{ path('updateLogin') }}">Changer les login</a></li>
 							<li><a href="{{ path('logout') }}">déconnexion</a></li>
 						{% else %}
 							<li><a href="{{ path('login') }}">connexion</a></li> 
@@ -76,13 +82,12 @@
 					</ul>
 
 					<ul class="logo">						
-						<img src="{{ asset('../web/img/cesi.png') }}">
-						<img src="{{ asset('../web/img/cfa.png') }}">
-						<img src="{{ asset('../web/img/digitalcampus2.png') }}" >
-						<img src="{{ asset('../web/img/greta.png') }}">
-						<img src="{{ asset('../web/img/lewagon2.png') }}" >
-						<img src="{{ asset('../web/img/m2i.jpg') }}">
-						<img src="{{ asset('../web/img/modula.png') }}">
+						<img src="{{ asset('../web/img/caf2.jpg') }}">
+						<img src="{{ asset('../web/img/gen2.jpg') }}">
+						<img src="{{ asset('../web/img/na.JPG') }}" >
+						<img src="{{ asset('../web/img/pole.jpg') }}">
+						<img src="{{ asset('../web/img/acse2.jpg') }}" >
+						<img src="{{ asset('../web/img/bx.png') }}">
 						<img src="{{ asset('../web/img/philomathique.png') }}">
 						<img src="{{ asset('../web/img/web_force_3.png') }}" >			
 					</ul>

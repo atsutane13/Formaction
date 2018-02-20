@@ -25,17 +25,24 @@
 				{{ form_widget(articleForm.duree, { 'attr': {'class': 'formulaire'}}) }}
 			</div>
 			<div>
-				<label for="">Categorie</label>
+			<label for="">Categorie</label>
+				<div class="select-wrapper">
 				{{ form_widget(articleForm.categoryId, { 'attr': {'class': 'formulaire'}}) }}
 			</div>
+		</div>
 			<div>
 				<label for="">Intervenant</label>
+				<div class="select-wrapper">
 				{{ form_widget(articleForm.intervenantId, { 'attr': {'class': 'formulaire'}}) }}
 			</div>
+		</div>
+
+
 			<div>
 				<label for="">Url de la formation</label>
 				{{ form_widget(articleForm.url, { 'attr': {'class': 'formulaire'}}) }}
 			</div>
+
 			<div>
 				{{ form_widget(articleForm.Enregistrer, { 'attr': {'class': 'form-btn'}}) }}
 			</div>
