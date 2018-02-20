@@ -20,36 +20,6 @@
 	</head>
 	<body>
 		
-<<<<<<< HEAD
-					
-        	{# <nav class="nav nav-bar">
-            	<ul>
-					<li><a href="{{ path('home') }}">Accueil</a></li>
-					<li><a href="{{ path('category') }}">Category</a></li>
-					<li><a href="{{ path('lastFormations') }}">Derniers articles</a></li>				
-					{% if is_granted('ROLE_ADMIN') %}
-						<li><a href="{{ path('homeAdmin') }}">Page admin</a></li>
-						<li><a href="{{ path('ajoutFormation') }}">Ajouter formation</a></li>
-						<li><a href="{{ path('ajoutCategory') }}">Ajouter category</a></li>
-						<li><a href="{{ path('ajoutIntervenant') }}">Ajouter Intervenant</a></li>
-						<li><a href="{{ path('logout') }}">déconnexion</a></li>
-					{% else %}
-
-						<li><a href="{{ path('login') }}">connexion</a></li>
-               		{% endif %}
-            	</ul>
-			</nav>
-			<h2>Recherche</h2>
-				<form class="row" action="{{ path('recherche')}}">
-					<input class="form-control col-sm-6" type="text" name="search">
-					<button class="btn btn-default col-sm-2" type="submit">Rechercher</button>
-				</form> #}
-
-					{% block content %}{% endblock %}
-
-				<footer id="footer">
-						<ul class="icons">
-=======
 		<div id="wrapper">
 			<header id="header">
 				<div class="inner">
@@ -100,20 +70,11 @@
 						<li><a href="https://www.linkedin.com" class="fa fa-linkedin fa-2x"><span class="label"></span></a></li>
 						<li><a href="http://gmail.com/" class="fa fa-envelope fa-2x"><span class="label"></span></a></li>
 					</ul>
->>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
 
 					<ul>
 						<h3>Partenaires</h3>
 					</ul>
 
-<<<<<<< HEAD
-					</footer>
-
-	
-			
-
-
-=======
 					<ul class="logo">						
 						<img src="{{ asset('../web/img/cesi.png') }}">
 						<img src="{{ asset('../web/img/cfa.png') }}">
@@ -136,6 +97,5 @@
 			{# <!--[if lte IE 8]><script src="{{ asset('assets/js/ie/respond.min.js')}}"></script><![endif]--> #}
 			<script src="{{ asset('category/assets/js/main.js')}}"></script>
 		
->>>>>>> d5d51697fed60dd3367f0de148f4cc40c26c4e15
 	</body>
 </html>
